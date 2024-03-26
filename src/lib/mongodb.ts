@@ -1,22 +1,30 @@
-import { MongoClient } from "mongodb";
+import { MongoClient } from 'mongodb';
+import { boolean } from 'zod';
+interface optionsj {
 
-const URI = "mongodb://localhost:27017"; // Add missing URI variable
-const options = {}; // Add options if needed
-
-if (!URI) {
-    throw new Error("MongoDB URI is required");
+  useNewUrlParser: boolean;
+  useUnifiedTopology: boolean;
 }
 
-const client = new MongoClient(URI, options);
-let clientPromise: Promise<MongoClient>;
-
-if (process.env.NODE_ENV === "production") {
-    if (!global._mongoClientPromise) {
-        global._mongoClientPromise = client.connect();
-    }
-    clientPromise = global._mongoClientPromise;
-} else {
-    clientPromise = client.connect();
+const dbUrl = process.env.MONGODB_URI;
+if (!dbUrl) {
+  throw new Error('MONGODB_URI is not defined');
 }
 
-export default clientPromise;
+const client = new MongoClient(dbUrl, {
+  useNewUrlParser  : true,
+  useUnifiedTopology: true,
+});
+
+async function connectToDb(): Promise<MongoClient> {
+  try {
+    await client.connect();
+    console.log('MongoDB connected successfully!');
+    return client;
+  } catch (error) {
+    console.error('MongoDB connection error:', error);
+    throw error; // Re-throw the error for handling in your application
+  }
+}
+
+export default connectToDb;

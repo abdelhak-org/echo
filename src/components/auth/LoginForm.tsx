@@ -17,9 +17,13 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
-  email: z.string().min(2).max(50),
-  password: z.string().min(6).max(100),
+  email: z.string().email(),
+  password: z.string().min(6),
 });
+
+ export  type LoginCredentials = z.infer<typeof formSchema>;
+
+
 
 const LoginForm = () => {
   const Router = useRouter();
@@ -32,7 +36,7 @@ const LoginForm = () => {
     resolver: zodResolver(formSchema),
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: LoginCredentials) {
     console.log(values);
   }
 
