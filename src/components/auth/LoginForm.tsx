@@ -27,7 +27,6 @@ const formSchema = z.object({
 
 const LoginForm = () => {
   const Router = useRouter();
-  const inputRef = useRef(null);
   const form = useForm<z.infer<typeof formSchema>>({
     defaultValues: {
       email: "",
