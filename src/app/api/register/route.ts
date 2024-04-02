@@ -28,7 +28,7 @@ export async function GET(_req: Request) {
 
 // POST /api/register
 export async function POST(req: Request) {
-    try {
+  try {
     // connect to the database
     client = await clientPromise;
     db = await client.db();
@@ -39,22 +39,21 @@ export async function POST(req: Request) {
     // validate the data
     const parsedData = userSchema.safeParse(data);
     if (!parsedData.success) {
-    return Response.json({ error: parsedData.error });
+      return Response.json({ error: parsedData.error });
     }
     const isExist = await users.findOne({ email: parsedData.data.email });
     if (isExist) {
-    return Response.json({ error: "User already exists" }, 
-    { status: 400 });
+      return Response.json({ error: "User already exists" }, { status: 400 });
     }
-    const hashedPassword = await bcrypt.hash(parsedData.data.password, 10);
-    parsedData.data.password = hashedPassword;
+    // const hashedPassword = await bcrypt.hash(parsedData.data.password, 10);
+    //parsedData.data.password = hashedPassword;
     // insert the data into the database
     await users.insertOne(parsedData.data);
     //return Response
     return Response.json(data);
-    } catch (error: any) {
+  } catch (error: any) {
     console.log(error.message);
     return Response.json({ error: "Internal Server Error" });
-    } finally {
-    }
+  } finally {
+  }
 }
