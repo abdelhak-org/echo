@@ -46,10 +46,10 @@ const RegisterForm = () => {
        Router.push("/login");
       } else {
         const data = await response.json();
-        console.log(data.message);
+        alert(data.message);
       }
-    } catch (error) {
-      console.error( error);
+    } catch (error:any) {
+      alert( error.message);
     }
     
     }

@@ -3,6 +3,8 @@
 import { Button } from "../ui/button";
 import { ModeToggle } from "../ModeToggle";
 import { useRouter } from "next/navigation";
+import LoginButton from "./LoginButton";
+import SignUpButton from "./SignUpButton";
 const Navbar = () => {
   const Router = useRouter();
   return (
@@ -21,12 +23,8 @@ const Navbar = () => {
         <ModeToggle />
       </div>
       <div className="flex space-x-8">
-        <Button
-        onClick={() => Router.push("/register")}
-        variant={"outline"}>Sign Up</Button>
-        <Button
-        onClick={() => Router.push("/login")}
-        > Log In</Button>
+         <SignUpButton />
+         <LoginButton />
       </div>
     </nav>
   );

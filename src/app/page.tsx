@@ -1,29 +1,41 @@
-
-"use client";
+"use client"
 import { useSession } from "next-auth/react";
-import Link from "next/link";
-
-
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 export default function Home() {
-  const {data:session , status} = useSession();
-  
-  if (status === "authenticated") {
-     return (
-    <>
-      <Link
-       className="text-lg text-blue-500 hover:text-blue-700 mt-4"
-       href="/dashboard" >dashboad</Link>
-       <p>Signed in as {session.user.email}</p>)
-    </>
-     )
+  const {data:session , status }= useSession();
+  const router = useRouter();
+  const url = "https://jsonplaceholder.typicode.com/posts";
+  const [posts, setPosts] = useState([]);
+  interface Post {
+    userId?: number;
+    id: number;
+    title: string;
+    body: string;
   }
-
+  useEffect(() => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setPosts(data);
+      });
+  }, []);
+  if (status === "unauthenticated"){
+    router.push("/login");
+  }
   return (
-    <main className="flex w-[1534px] min-h-screen flex-col items-center text-red-700
-     justify-between p-24 border mx-auto border-neutral-200">
-      
-       <h1 className="text-4xl font-bold">Welcome to Next.js</h1>
-  
+    <main className="flex w-full min-h-screen flex-col items-center text-gray-900 justify-between p-24 border mx-auto border-gray-200">
+        <h1 className="text-4xl font-bold capitalize my-8 ">Welcome to Echo </h1>
+        <section  className="w-full h-screen bg-yellow-300 p-4 overflow-auto">
+         {
+          posts.map((post:Post) => (
+            <article key={post.id} className="mb-4 p-4 bg-white rounded shadow">
+              <h2 className="text-2xl font-bold mb-2">{post.title}</h2>
+              <p className="text-gray-700">{post.body}</p>
+            </article>
+          ))
+         }
+        </section>
     </main>
   );
 }

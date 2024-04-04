@@ -44,8 +44,7 @@ const LoginForm: NextPage = ()  => {
       if (!res) throw new Error("Error in login");
       Router.push("/");
     } catch (error: any) {
-      throw new Error("Error in login");
-      console.log(error.message);
+      alert(error.message);
     }
   };
 

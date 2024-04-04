@@ -1,7 +1,8 @@
 import clientPromise from "../../../lib/mongodb";
 import bcrypt from "bcrypt";
-import { RegisterCredentials } from "@/components/auth/RegisterForm";
 import { z } from "zod";
+
+
 const userSchema = z.object({
   email: z.string().email(),
   password: z.string().min(6),
@@ -45,14 +46,13 @@ export async function POST(req: Request) {
     if (isExist) {
       return Response.json({ error: "User already exists" }, { status: 400 });
     }
-    // const hashedPassword = await bcrypt.hash(parsedData.data.password, 10);
-    //parsedData.data.password = hashedPassword;
+     const hashedPassword = await bcrypt.hash(parsedData.data.password, 10);
+    parsedData.data.password = hashedPassword;
     // insert the data into the database
     await users.insertOne(parsedData.data);
     //return Response
     return Response.json(data);
   } catch (error: any) {
-    console.log(error.message);
     return Response.json({ error: "Internal Server Error" });
   } finally {
   }
