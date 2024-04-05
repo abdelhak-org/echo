@@ -7,7 +7,8 @@ import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 const inter = Inter({ subsets: ["latin"] });
 import { SessionProvider } from "next-auth/react";
-
+import { Provider } from "react-redux";
+import { store } from "@/redux/app/store";
 export default function RootLayout({
   children ,  params: { session , ...params },
 
@@ -18,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <Provider store={store}>
       <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -29,6 +31,7 @@ export default function RootLayout({
         {children}
           </SessionProvider>
         </ThemeProvider >
+        </Provider>
         </body>
     </html>
   );

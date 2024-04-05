@@ -16,7 +16,7 @@ const Navbar = () => {
       "
     >
       <h4 
-      className="text-2xl font-bold cursor-pointer"
+      className="text-2xl font-bold cursor-pointer "
       onClick={() => Router.push("/")}
       >ECHO BLOG</h4>
       <div>
