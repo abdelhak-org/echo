@@ -40,11 +40,12 @@ export async function POST(req: Request) {
     // validate the data
     const parsedData = userSchema.safeParse(data);
     if (!parsedData.success) {
-      return Response.json({ error: parsedData.error });
+      throw new Error("Invalid data");
     }
     const isExist = await users.findOne({ email: parsedData.data.email });
     if (isExist) {
-      return Response.json({ error: "User already exists" }, { status: 400 });
+      throw new Error("User already exists");
+      //return Response.json({ error: "User already exists" }, { status: 400 });
     }
      const hashedPassword = await bcrypt.hash(parsedData.data.password, 10);
     parsedData.data.password = hashedPassword;

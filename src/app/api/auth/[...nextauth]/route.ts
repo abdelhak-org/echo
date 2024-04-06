@@ -20,7 +20,7 @@ const handler = NextAuth({
     },
     async session({ session, token }) {
       if (token) {
-        session.user.email = token.email;
+        session.user.email  = token.email;
       }
       console.log("this is session", session);
       return session;
@@ -37,26 +37,27 @@ const handler = NextAuth({
    
       credentials: {},
 
-      async authorize(credentials: { email: string; password: string }) {
+      async authorize(credentials:User) {
       
-          let user: User 
         try {
           const client = await clientPromise;
           const db = client.db();
           const users = db.collection("users");
           const user = await users.findOne({ email: credentials.email });
           if (!user) {
+            Response.json({ message: "Email does not exist" });
             throw new Error("Invalid email or password");
           }
           const res = await bcrypt.compare(
             credentials.password,
-            user?.password
+            user.password
           );
           if (res === false) {
-            throw new Error("Invalid email or password");
+          throw new Error("Invalid email or password");
           }
             
           return user;
+
 
         } catch (error) {
           throw new Error("Error in login");

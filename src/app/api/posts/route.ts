@@ -1,13 +1,13 @@
 //import data from "../../posts/data";
 import clientPromise from "../../../lib/mongodb";
 import {z} from "zod";
-const userSchema = z.object({ 
+const postSchema = z.object({ 
     title: z.string(),
     content: z.string()
   });
 
-let client: any;
-let db: any;
+let client:any;
+let db:any;
 let posts: any;
  
 export async function GET(_req: Request,) {
@@ -35,7 +35,7 @@ export async function POST(req: Request) {
         // get the data from the request
         const data = await  req.json();
         // validate the data
-        const parsedData = userSchema.safeParse(data);
+        const parsedData = postSchema.safeParse(data);
         if (!parsedData.success) {
             return Response.json({ error: parsedData.error });
         }

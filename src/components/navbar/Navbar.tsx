@@ -9,7 +9,7 @@ const Navbar = () => {
   const Router = useRouter();
   return (
     <nav
-      className="w-screen h-[105px]  flex justify-between items-center px-16
+      className="w-screen h-[75px]  flex justify-between items-center px-16
       dark:text-neutral-100 dark:bg-neutral-950 
        bg-neutral-100
       
@@ -22,7 +22,7 @@ const Navbar = () => {
       <div>
         <ModeToggle />
       </div>
-      <div className="flex space-x-8">
+      <div className="flex space-x-8 items-center ">
          <SignUpButton />
          <LoginButton />
       </div>

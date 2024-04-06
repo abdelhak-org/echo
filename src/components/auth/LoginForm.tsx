@@ -41,7 +41,10 @@ const LoginForm: NextPage = ()  => {
         password: values.password,
         redirect: false,
       });
-      if (!res) throw new Error("Error in login");
+      if (!res) {
+        throw new Error("Error in login")
+        
+      };
       Router.push("/");
     } catch (error: any) {
       alert(error.message);
