@@ -11,7 +11,7 @@ interface User {
 
 const handler = NextAuth({
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user }){
       if (user) {
         token.email = user.email;
       }
@@ -20,7 +20,7 @@ const handler = NextAuth({
     },
     async session({ session, token }) {
       if (token) {
-        session.user.email  = token.email;
+         session.user.email  = token.email;
       }
       console.log("this is session", session);
       return session;
@@ -34,9 +34,9 @@ const handler = NextAuth({
   providers: [
     CredentialsProvider({
       name: "credentials",
-   
+      
       credentials: {},
-
+      
       async authorize(credentials:User) {
       
         try {
@@ -45,22 +45,24 @@ const handler = NextAuth({
           const users = db.collection("users");
           const user = await users.findOne({ email: credentials.email });
           if (!user) {
-            Response.json({ message: "Email does not exist" });
+            Response.json( "user does not exist" );
             throw new Error("Invalid email or password");
           }
+          
           const res = await bcrypt.compare(
             credentials.password,
             user.password
           );
-          if (res === false) {
-          throw new Error("Invalid email or password");
+          if (!res ) {
+            Response.json({ message: "Invalid email or password" });
+            throw new Error("Invalid email or password");
           }
             
           return user;
 
 
-        } catch (error) {
-          throw new Error("Error in login");
+        } catch (error:any) {
+        Response.json({ message: "server error" });
         }
       },
     }),

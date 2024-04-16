@@ -15,7 +15,11 @@ const LoginButton = () => {
     return <Button variant={"outline"}  onClick={logOut}>Log Out</Button>;
 
   }
-  return <Button variant={"default"} onClick={()=> Router.push("/login")}>Log In</Button>;
+  return (
+  <Button 
+  className="font-bold font-roboto px-4 py-3"
+  variant={"default"} onClick={()=> Router.push("/login")}>Log In</Button>
+  );
 };
 
 export default LoginButton;

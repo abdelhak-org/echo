@@ -1,27 +1,51 @@
-import Posts from "../../../posts/data"
+import clientPromise from "@/lib/mongodb";
+import { ObjectId  } from "mongodb";
+import { Posts , Post } from "@/types/interfaces";
+
 
 
 export async function GET(_request: Request, {params}:{params:{id:string}} ){
-     const postId = parseInt(params.id);
-    const post =  Posts.filter((x)=> x.id === postId );
-    
-    return  Response.json(post);
- }
- 
- export async function DELETE(_request: Request, {params}:{params:{id:string}} ){
-    const postId = parseInt(params.id);
-   const posts =  Posts.filter((x)=> x.id !== postId );
+   try {
+      const postId = new ObjectId(params.id);
+      console.log(postId);
+      const client = await clientPromise;
+      const db =  client.db();
+      const posts =  db.collection("posts");
+      const post = await posts.findOne({_id: postId});
+      if(!post){ 
+         return Response.json({status: 404, body: {error:"Post not found"}})
+       };
    
-   return  Response.json(posts);
+      return Response.json(post)
+   } catch (error:any) {
+      return Response.json({status: 500, body: {error: error.message}});
+   }  finally {
+   }
+      
+   }
+
+   export async function DELETE(_request: Request, {params}:{params:{id:string}} ){
+   const postId = new ObjectId(params.id);
+   
+   try {
+      const client = await clientPromise;
+      const db =  client.db();
+
+      const posts =  db.collection("posts");
+      const post = await posts.findOneAndDelete({_id: postId});
+      if(!post){
+         return Response.json("Post not found")
+      }
+      return Response.json("Post deleted successfully")
+   } catch (error) {
+      return Response.json("An error occured while deleting post")
+   } finally {
+   }  
 }
 
- 
-export async function PATCH(request: Request, {params}:{params:{id:string}} ){
-   const body = await request.json();
-   const {title} = body;
-   const postId = parseInt(params.id);
-  const index =  Posts.findIndex((x)=> x.id === postId );
-  Posts[index].title = title;
-  
-  return  Response.json(Posts[index]);
-}
+
+
+
+
+
+

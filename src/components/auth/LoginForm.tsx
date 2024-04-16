@@ -1,4 +1,6 @@
 "use client";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -24,7 +26,7 @@ const formSchema = z.object({
 
 export type LoginCredentials = z.infer<typeof formSchema>;
 
-const LoginForm: NextPage = ()  => {
+const LoginForm: NextPage = () => {
   const Router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     defaultValues: {
@@ -41,35 +43,40 @@ const LoginForm: NextPage = ()  => {
         password: values.password,
         redirect: false,
       });
-      if (!res) {
-        throw new Error("Error in login")
-        
-      };
-      Router.push("/");
-    } catch (error: any) {
-      alert(error.message);
+      if (res.ok) {
+        Router.push("/dashboard");
+      } else {
+        toast("INVALID CREDENTIALS");
+      }
+     
+    } catch (error:any) {
+     toast("SERVER ERROR");
     }
-  };
+  }
+  const notify = () => toast("Wow so easy !");
 
   return (
-    <div className=" border p-8 rounded-md border-neutral-300 w-[660px] bg-neutral-100">
-      <h4 className="text-neutral-800 text-center  text-xl ">Log In </h4>
+    <div className=" flex justify-center items-center flex-col
+    border p-8 rounded-md border-neutral-300 w-[760px]  bg-neutral-100">
+      <h4 className="text-black  text-center font-sans   text-3xl underline ">
+        Sign in {" "}
+      </h4>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 font-mono w-full ">
           <FormField
             control={form.control}
             name="email"
             render={({ field }) => (
-                < FormItem >
-                <FormLabel className="text-neutral-700 dark:text-neutral-300">
+              <FormItem>
+                <FormLabel className="text-neutral-900 dark:text-neutral-300 text-xl ">
                   Email
                 </FormLabel>
                 <FormControl>
                   <Input
-                    className="w-full bg-neutral-200   border-transparent focus:ring-0 text-lg py-2 px-3  
-                    focus:ring-neutral-200 focus:ring-opacity-40 focus:ring-offset-0 
-                      focus:border-neutral-300 focus:ring-offset-white
-                    border-[1px] text-neutral-800"
+                    className="w-full bg-neutral-200  text-lg outline--none  border-0  
+                     text-neutral-900 px-4 py-3 focus:ring-offset-0 focus:border-neutral-300
+                     
+                     "
                     placeholder="Enter your Email"
                     {...field}
                   />
@@ -84,15 +91,15 @@ const LoginForm: NextPage = ()  => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-neutral-700 dark:text-neutral-300">
+                <FormLabel className="text-neutral-900 dark:text-neutral-300 text-xl ">
                   Password
                 </FormLabel>
                 <FormControl>
                   <Input
-                    className="w-full bg-neutral-200   border-transparent focus:ring-0 text-lg py-2 px-3  
-                      focus:ring-neutral-300 focus:ring-opacity-40 focus:ring-offset-0 
-                      focus:border-neutral-300 focus:ring-offset-white
-                      border-[1px] text-neutral-800"
+                  className="w-full bg-neutral-200  text-xl   border-transparent focus:ring-0  py-3 px-4  
+                  focus:ring-neutral-200 focus:ring-opacity-40 focus:ring-offset-0 
+                    focus:border-neutral-300 focus:ring-offset-white
+                  border-[1px] text-neutral-900"
                     placeholder="Enter your Password"
                     {...field}
                   />
@@ -102,25 +109,25 @@ const LoginForm: NextPage = ()  => {
             )}
           />
           <Button
-            className="font-semibold w-full text-lg"
-            size="lg"
+            className=" w-full text-xl font-bold py-4  "
             type="submit"
           >
             Submit
           </Button>
         </form>
       </Form>
-      <div className="w-full flex justify-center items-center mt-2 space-x-2">
+      <div className="w-full flex justify-center items-center mt-2 space-x-2 font-roboto">
         <p className="text-center text-sm text-neutral-800 ">
           You do Not have an Account
         </p>
         <span
           onClick={() => Router.push("/register")}
-          className="text-blue-500  cursor-pointer "
+          className="text-blue-600  cursor-pointer "
         >
           click here
         </span>
       </div>
+      <ToastContainer />
     </div>
   );
 };

@@ -1,15 +1,16 @@
 //import data from "../../posts/data";
 import clientPromise from "../../../lib/mongodb";
+import { Post , Posts } from "@/types/interfaces";
 import {z} from "zod";
 const postSchema = z.object({ 
     title: z.string(),
     content: z.string()
-  });
+    });
+    let client:any;
+    let db:any;
+    let posts: Posts | any    ;
 
-let client:any;
-let db:any;
-let posts: any;
- 
+
 export async function GET(_req: Request,) {
     try {
         client = await clientPromise;
@@ -37,14 +38,13 @@ export async function POST(req: Request) {
         // validate the data
         const parsedData = postSchema.safeParse(data);
         if (!parsedData.success) {
-            return Response.json({ error: parsedData.error });
+        throw new Error("Invalid Data");
         }
         // insert the data into the database
         await posts.insertOne(parsedData.data);
         //return Response
         return Response.json(data);
     } catch (error: any) {
-        console.log(error.message);
         return Response.json({ error: "Internal Server Error" });
     } finally {
     }

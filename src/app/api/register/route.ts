@@ -2,6 +2,7 @@ import clientPromise from "../../../lib/mongodb";
 import bcrypt from "bcrypt";
 import { z } from "zod";
 
+import {Users} from "../../../types/interfaces";
 
 const userSchema = z.object({
   email: z.string().email(),
@@ -11,21 +12,8 @@ const userSchema = z.object({
 let client: any;
 let db: any;
 let users: any;
-
 // GET /api/register
-export async function GET(_req: Request) {
-  try {
-    client = await clientPromise;
-    db = await client.db();
-    users = await db.collection("users");
-    const data = await users.find().toArray();
-    return Response.json({ data });
-  } catch (error: any) {
-    console.log(error.message);
-    return Response.json({ error: "Internal Server Error" });
-  } finally {
-  }
-}
+
 
 // POST /api/register
 export async function POST(req: Request) {
@@ -33,28 +21,28 @@ export async function POST(req: Request) {
     // connect to the database
     client = await clientPromise;
     db = await client.db();
-    users = await db.collection("users");
+     users = await db.collection("users");
 
     // get the data from the request
     const data = await req.json();
     // validate the data
     const parsedData = userSchema.safeParse(data);
     if (!parsedData.success) {
-      throw new Error("Invalid data");
+      return Response.json({ error: "Invalid data" }, { status: 400 });
+      
     }
     const isExist = await users.findOne({ email: parsedData.data.email });
     if (isExist) {
-      throw new Error("User already exists");
-      //return Response.json({ error: "User already exists" }, { status: 400 });
+      return Response.json({ error: "User already exists" }, { status: 400 });
     }
      const hashedPassword = await bcrypt.hash(parsedData.data.password, 10);
     parsedData.data.password = hashedPassword;
     // insert the data into the database
     await users.insertOne(parsedData.data);
     //return Response
-    return Response.json(data);
+    return Response.json({ message: "you are  registered successfully" });
   } catch (error: any) {
-    return Response.json({ error: "Internal Server Error" });
+    return Response.json({ error: " Server Error"  }, { status: 500});
   } finally {
   }
 }

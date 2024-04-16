@@ -19,7 +19,12 @@ const config = {
       },
     },
     extend: {
-     
+      fontFamily: {
+        sans: ['var(--font-inter)'],
+        roboto: ['var(--font-roboto-mono)'],
+        script : ['var(--font-nova-script)'],
+      },
+  
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

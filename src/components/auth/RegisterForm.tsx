@@ -46,10 +46,10 @@ const RegisterForm = () => {
        Router.push("/login");
       } else {
         const data = await response.json();
-        alert(data.message);
+        throw new Error(data.error);
       }
     } catch (error:any) {
-      alert( error.message);
+      console.error(error);
     }
     
     }
@@ -61,28 +61,29 @@ const RegisterForm = () => {
 
 
   return (
-    <div className=" border p-8 rounded-md border-neutral-300 w-[660px] bg-neutral-100">
-      <h4 className="text-neutral-800 text-center  text-xl ">Register </h4>
+    <div  className=" flex justify-center items-center flex-col
+    border p-8 rounded-md border-neutral-300 w-[760px]  bg-neutral-100">
+      <h4 className="text-black text-center  text-3xl font-sans underline ">Sign up </h4>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 font-roboto w-full ">
           <FormField
             control={form.control}
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-neutral-700 dark:text-neutral-300">Email</FormLabel>
+                <FormLabel className="text-neutral-900 dark:text-neutral-300 text-xl ">Email</FormLabel>
                 <FormControl>
                   <Input
-                    className="w-full bg-neutral-200   border-transparent focus:ring-0 text-lg py-2 px-3  
-                   focus:ring-neutral-200 focus:ring-opacity-40 focus:ring-offset-0 
-                     focus:border-neutral-300 focus:ring-offset-white
-                   border-[1px] text-neutral-800"
+                    className="w-full bg-neutral-200  text-xl   border-transparent focus:ring-0  py-3 px-4  
+                    focus:ring-neutral-200 focus:ring-opacity-40 focus:ring-offset-0 
+                      focus:border-neutral-300 focus:ring-offset-white
+                    border-[1px] text-neutral-900"
                     placeholder="Enter your Email"
                     {...field}
                   />
                 </FormControl>
 
-                <FormMessage />
+                <FormMessage /> 
               </FormItem>
             )}
           />
@@ -91,13 +92,13 @@ const RegisterForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-neutral-700 dark:text-neutral-300">Password</FormLabel>
+                <FormLabel className="text-neutral-700 dark:text-neutral-300 text-xl">Password</FormLabel>
                 <FormControl>
                   <Input
-                    className="w-full bg-neutral-200   border-transparent focus:ring-0 text-lg py-2 px-3  
-                      focus:ring-neutral-300 focus:ring-opacity-40 focus:ring-offset-0 
-                      focus:border-neutral-300 focus:ring-offset-white
-                      border-[1px] text-neutral-800"
+                     className="w-full bg-neutral-200  text-xl   border-transparent focus:ring-0  py-3 px-4  
+                     focus:ring-neutral-200 focus:ring-opacity-40 focus:ring-offset-0 
+                       focus:border-neutral-300 focus:ring-offset-white
+                     border-[1px] text-neutral-900"
                     placeholder="Enter your Password"
                     {...field}
                   />
@@ -106,12 +107,12 @@ const RegisterForm = () => {
               </FormItem>
             )}
           />
-          <Button className="font-semibold w-full text-lg" size="lg"  type="submit">
+          <Button className="font-semibold w-full text-lg py-3 px-4" size="lg"  type="submit">
             Submit
           </Button>
         </form>
       </Form>
-       <div className="w-full flex justify-center items-center mt-2 space-x-2">
+       <div className="w-full flex justify-center items-center mt-2 space-x-2 font-roboto">
       <p className="text-center text-sm text-neutral-800 ">You have an Account</p> 
       <span
       onClick={()=> Router.push("/login")}

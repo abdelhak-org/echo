@@ -1,6 +1,5 @@
 'use client'
 
-import { Button } from "../ui/button";
 import { ModeToggle } from "../ModeToggle";
 import { useRouter } from "next/navigation";
 import LoginButton from "./LoginButton";
@@ -9,22 +8,24 @@ const Navbar = () => {
   const Router = useRouter();
   return (
     <nav
-      className="w-screen h-[75px]  flex justify-between items-center px-16
-      dark:text-neutral-100 dark:bg-neutral-950 
-       bg-neutral-100
-      
-      "
+      className="w-screen h-[75px] dark:text-neutral-100 dark:bg-neutral-900
+      bg-neutral-100 text-neutral-900"
     >
-      <h4 
-      className="text-2xl font-bold cursor-pointer "
+      <div className="max-w-[1534px] h-full flex justify-between items-center   z-50 mx-auto px-8
+    ">
+      <h4
+      className="text-4xl font-light cursor-pointer font-script  "
       onClick={() => Router.push("/")}
-      >ECHO BLOG</h4>
+      >Echo 
+      </h4>
       <div>
         <ModeToggle />
       </div>
       <div className="flex space-x-8 items-center ">
          <SignUpButton />
          <LoginButton />
+      </div>
+
       </div>
     </nav>
   );

@@ -1,18 +1,26 @@
-"use client";
 import { useSession } from "next-auth/react";
 import { Button } from "../ui/button";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 const SignUpButton = () => {
   const { data: session, status } = useSession();
-  const Router = useRouter() ;
 
 
   if (status === "authenticated") {
     return <p > loged in as :{session.user?.email}</p>;
 
   }
-  return <Button variant={"outline"} onClick={()=> Router.push("/register")}>Sign Up</Button>;
-};
+
+
+  return( 
+  <Button
+  className=" font-bold font-roboto px-4 py-3 "
+    variant={"outline"} >
+    <Link href="/register">
+      Sign Up
+    </Link>
+    </Button>
+    ) ;
+}
+
 
 export default SignUpButton;
- 

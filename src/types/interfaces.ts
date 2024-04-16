@@ -1,6 +1,7 @@
+import { ObjectId } from "mongodb";
 export interface Post {
     userId?:number | string;
-    id?:number | string;
+    _id?:any
     title: string;
     description?: string;
     content: string;
@@ -20,15 +21,16 @@ export interface Comment {
     likes?: number;
     dislikes?: number;
 }
-export interface Posts {
-    posts: Post[];
-}
+export type  Posts = Post[];
+
 export interface comments {
     comments: Comment[];
 }
 export interface User {
     id?:number | string;
-    username: string;
+    username?: string;
     email: string;
     password: number | string;
 }
+
+export type Users  =  User[];
