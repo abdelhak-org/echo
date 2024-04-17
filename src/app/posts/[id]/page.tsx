@@ -14,7 +14,7 @@ const PostView =  ({})  => {
   useEffect( () => {
     async function fetchPost() { 
       const res = await fetch(`http://localhost:3000/api/posts/${params.id}`)
-      const post = await res.json()
+      const post:Post = await res.json()
       setPost(
         post
       )
@@ -24,10 +24,10 @@ const PostView =  ({})  => {
   
   return (
     <article className="w-full h-screen  px-4 overflow-auto py-8">
-      <h3 className="text-4xl font-extrabold capitalize my-8 mx-auto w-fit ">
+      <h3 className="text-4xl font-bold capitalize my-8 mx-auto w-fit font-sans text-neutral-900  ">
         { post?.title}
       </h3>
-      <h5 className="text-xl font-bold capitalize my-8 mx-auto w-fit text-neutral-900/80">
+      <h5 className="text-xl font-bold font-sans capitalize my-8 mx-auto w-fit text-neutral-900/80">
         Top Next.js Tools to Boost Your Development Workflow in 2024
       </h5>
       <div className="w-[670px] h-fit mx-auto relative my-4  px-2 flex items-center ">
@@ -37,14 +37,13 @@ const PostView =  ({})  => {
         </Avatar>
         <p>Vidura p, </p>
       </div>
-      <Image
+      <img
         className="mx-auto my-8 "
-        src="/next.svg"
+        src="https://source.unsplash.com/random/600x400" 
         alt="Next.js"
-        width={500}
-        height={500}
+       
       />
-      <p className="text-lg font-normal text-neutral-900/80 mx-auto w-[640px] indent-4">
+      <p className="text-lg font-normal text-neutral-900/80 mx-auto w-[640px] indent-4 text-left font-mono ">
       {
         post?.content
       }
