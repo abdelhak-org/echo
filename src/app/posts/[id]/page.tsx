@@ -23,7 +23,7 @@ const PostView =  ({})  => {
   },[post])
   
   return (
-    <article className="w-full h-screen  px-4 overflow-auto py-8">
+    <article className="w-full min-h-screen  px-4  py-8">
       <h3 className="text-4xl font-bold capitalize my-8 mx-auto w-fit font-sans text-neutral-900  ">
         { post?.title}
       </h3>
