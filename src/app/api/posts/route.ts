@@ -14,7 +14,7 @@ const postSchema = z.object({
 export async function GET(_req: Request,) {
     try {
         client = await clientPromise;
-        db = await client.db();
+        db = await client.db("echodb");
         posts = await  db.collection("posts");
         const data = await posts.find().toArray();
         return Response.json({data});
@@ -30,7 +30,7 @@ export async function POST(req: Request) {
 
         // connect to the database
         client = await clientPromise;
-        db = await client.db();
+        db = await client.db("echodb");
         posts = await  db.collection("posts");
 
         // get the data from the request

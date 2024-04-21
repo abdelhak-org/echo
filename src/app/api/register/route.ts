@@ -20,7 +20,7 @@ export async function POST(req: Request) {
   try {
     // connect to the database
     client = await clientPromise;
-    db = await client.db();
+    db = await client.db("echodb");
      users = await db.collection("users");
 
     // get the data from the request

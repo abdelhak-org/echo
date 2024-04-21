@@ -9,7 +9,7 @@ export async function GET(_request: Request, {params}:{params:{id:string}} ){
       const postId = new ObjectId(params.id);
       console.log(postId);
       const client = await clientPromise;
-      const db =  client.db();
+      const db =  client.db("echodb");
       const posts =  db.collection("posts");
       const post = await posts.findOne({_id: postId});
       if(!post){ 
@@ -29,7 +29,7 @@ export async function GET(_request: Request, {params}:{params:{id:string}} ){
    
    try {
       const client = await clientPromise;
-      const db =  client.db();
+      const db =  client.db("echodb");
 
       const posts =  db.collection("posts");
       const post = await posts.findOneAndDelete({_id: postId});
