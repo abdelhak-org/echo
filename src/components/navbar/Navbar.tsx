@@ -8,8 +8,8 @@ const Navbar = () => {
   const Router = useRouter();
   return (
     <nav
-      className="w-screen h-[75px] dark:text-neutral-100 dark:bg-neutral-900
-      bg-neutral-100 text-neutral-900"
+      className="w-screen h-[75px] dark:text-neutral-100 dark:bg-neutral-900 border  py-12
+      bg-neutral-50 text-neutral-900"
     >
       <div className="max-w-[1534px] h-full flex justify-between items-center   z-50 mx-auto px-8
     ">

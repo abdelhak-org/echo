@@ -21,21 +21,22 @@ export async function POST(req: Request) {
     // connect to the database
     client = await clientPromise;
     db = await client.db("echodb");
-     users = await db.collection("users");
-
+    users = await db.collection("users");
+    
     // get the data from the request
     const data = await req.json();
     // validate the data
     const parsedData = userSchema.safeParse(data);
     if (!parsedData.success) {
-      return Response.json({ error: "Invalid data" }, { status: 400 });
-      
+    
+    return Response.json({ error: "Invalid data" }, { status: 400 });
+    
     }
     const isExist = await users.findOne({ email: parsedData.data.email });
     if (isExist) {
       return Response.json({ error: "User already exists" }, { status: 400 });
     }
-     const hashedPassword = await bcrypt.hash(parsedData.data.password, 10);
+    const hashedPassword = await bcrypt.hash(parsedData.data.password, 10);
     parsedData.data.password = hashedPassword;
     // insert the data into the database
     await users.insertOne(parsedData.data);

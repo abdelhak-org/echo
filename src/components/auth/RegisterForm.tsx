@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -35,7 +36,7 @@ const RegisterForm = () => {
     
     const handleRegister  = async (data :RegisterCredentials)=>{
     try {
-      const response = await fetch("/api/register", {
+      const response = await fetch('/api/register', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -43,8 +44,10 @@ const RegisterForm = () => {
         body: JSON.stringify(data),
       });
       if (response.ok) {
+      toast.success("Account Created Successfully");
        Router.push("/login");
       } else {
+        toast.error("Account Creation Failed");
         const data = await response.json();
         throw new Error(data.error);
       }
@@ -61,9 +64,9 @@ const RegisterForm = () => {
 
 
   return (
-    <div  className=" flex justify-center items-center flex-col
+    <div  className=" flex justify-center items-center flex-col shadow-md
     border p-8 rounded-md border-neutral-300 w-[760px]  bg-neutral-100">
-      <h4 className="text-black text-center  text-3xl font-sans underline ">Sign up </h4>
+      <h4 className="text-black text-center  text-3xl font-sans underline font-bold my-2 ">Sign up </h4>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 font-roboto w-full ">
           <FormField
@@ -97,7 +100,7 @@ const RegisterForm = () => {
                   <Input
                      className="w-full bg-neutral-200  text-xl   border-transparent focus:ring-0  py-3 px-4  
                      focus:ring-neutral-200 focus:ring-opacity-40 focus:ring-offset-0 
-                       focus:border-neutral-300 focus:ring-offset-white
+                     focus:border-neutral-300 focus:ring-offset-white
                      border-[1px] text-neutral-900"
                     placeholder="Enter your Password"
                     {...field}
@@ -119,6 +122,8 @@ const RegisterForm = () => {
       className="text-blue-500  cursor-pointer ">click here</span>
 
        </div>
+       <ToastContainer />
+
     </div>
   );
 };

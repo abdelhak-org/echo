@@ -27,7 +27,6 @@ const script = Nova_Script({
   variable: '--font-nova-script',
   weight: '400',
 })
-
 export default function RootLayout({
   children ,  params: { session , ...params },
 

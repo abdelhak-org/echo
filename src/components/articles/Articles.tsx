@@ -1,18 +1,21 @@
-"use client";
-import {  useEffect , useState } from "react";
 import PostCard from "../PostCard";
 import { Post } from "@/types/interfaces";
-const Articles  = () => {
-    const [articles, setArticles] = useState([]) as [Post[], Function];
-    useEffect(() => {
-        fetch("http://localhost:3000/api/posts")
-            .then((response) => response.json())
-            .then((data) => setArticles(data.data));
-    }, []); 
+
+
+ async function getPosts() {
+  const response = await fetch("http://localhost:3000/api/posts");
+  const posts = await response.json();
+  return posts.data;
+ };
+
+
+const Articles  = async () => {
+    
+  const posts = await getPosts();
   return (
-    <section className="max-w-[1534px] mx-auto  px-8 ">
+    <section className="max-w-[1534px] min-h-screen mx-auto  px-8 py-12">
       {
-       articles.map((post:Post , index) => (
+       posts?.map((post:Post, index:number ) => (
         <PostCard
         key={index}
         title={post.title}

@@ -1,7 +1,11 @@
+'use client'
+
+import { useSession } from 'next-auth/react';
 import Link from 'next/link'
 import React from 'react'
 
 const HeroSection = () => {
+      const {data:session, status } = useSession();
   return (
    <section className="w-screen h-[600px] relative ">
   <div className='w-full h-full top-0 right-0'>
@@ -13,7 +17,7 @@ const HeroSection = () => {
     <h1 className="text-4xl text-white font-bold font-sans  ">Welcome to ECHO BLOG</h1>
     <p className="text-white text-lg mt-4 font-roboto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac ante mollis.</p>
     <button className="bg-blue-500 text-white px-4 py-3 rounded-md mt-4 font-bold">
-      <Link href="/login">
+      <Link href={status === 'authenticated'?'/dashboard' :'/login'}>
       Get Started
       
       </Link>

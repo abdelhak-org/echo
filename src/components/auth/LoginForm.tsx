@@ -15,7 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { signIn } from "next-auth/react";
+import {  signIn } from "next-auth/react";
 
 import { NextPage } from "next";
 
@@ -35,30 +35,32 @@ const LoginForm: NextPage = () => {
     },
     resolver: zodResolver(formSchema),
   });
+  
+
 
   const onSubmit = async (values: LoginCredentials) => {
     try {
-      const res = await signIn("credentials", {
+      const res : any = await signIn("credentials", {
         email: values.email,
         password: values.password,
         redirect: false,
       });
       if (res.ok) {
+        toast.success("LOGGED IN");
         Router.push("/dashboard");
       } else {
-        toast("INVALID CREDENTIALS");
+        toast.error("INVALID CREDENTIALS");
       }
      
     } catch (error:any) {
-     toast("SERVER ERROR");
+     toast.error("SERVER ERROR");
     }
   }
-  const notify = () => toast("Wow so easy !");
 
   return (
-    <div className=" flex justify-center items-center flex-col
-    border p-8 rounded-md border-neutral-300 w-[760px]  bg-neutral-100">
-      <h4 className="text-black  text-center font-sans   text-3xl underline ">
+    <div className=" flex justify-center items-center flex-col  shadow-md dark:bg-neutral-950  
+    border p-8 rounded-md border-neutral-300 w-[760px]  bg-neutral-100 ">
+      <h4 className="text-black  text-center font-sans  font-bold  text-3xl underline my-2 ">
         Sign in {" "}
       </h4>
       <Form {...form}>
@@ -73,10 +75,9 @@ const LoginForm: NextPage = () => {
                 </FormLabel>
                 <FormControl>
                   <Input
-                    className="w-full bg-neutral-200  text-lg outline--none  border-0  
-                     text-neutral-900 px-4 py-3 focus:ring-offset-0 focus:border-neutral-300
-                     
-                     "
+                    className="w-full bg-white  text-lg outline--none  border  h-12
+                      text-neutral-900 px-4 py-3 focus:ring-offset-0 focus:border-neutral-300 
+                      "
                     placeholder="Enter your Email"
                     {...field}
                   />
@@ -96,10 +97,9 @@ const LoginForm: NextPage = () => {
                 </FormLabel>
                 <FormControl>
                   <Input
-                  className="w-full bg-neutral-200  text-xl   border-transparent focus:ring-0  py-3 px-4  
-                  focus:ring-neutral-200 focus:ring-opacity-40 focus:ring-offset-0 
-                    focus:border-neutral-300 focus:ring-offset-white
-                  border-[1px] text-neutral-900"
+                   className="w-full bg-white  text-lg outline--none  border  h-12
+                   text-neutral-900 px-4 py-3 focus:ring-offset-0 focus:border-neutral-300 
+                   "
                     placeholder="Enter your Password"
                     {...field}
                   />
@@ -116,8 +116,8 @@ const LoginForm: NextPage = () => {
           </Button>
         </form>
       </Form>
-      <div className="w-full flex justify-center items-center mt-2 space-x-2 font-roboto">
-        <p className="text-center text-sm text-neutral-800 ">
+      <div className="w-full flex justify-center items-center mt-2 space-x-2 font-mono">
+        <p className="text-center text-sm text-neutral-800 dark:text-neutral-200">
           You do Not have an Account
         </p>
         <span
