@@ -64,9 +64,9 @@ const RegisterForm = () => {
 
 
   return (
-    <div  className=" flex justify-center items-center flex-col shadow-md
-    border p-8 rounded-md border-neutral-300 w-[760px]  bg-neutral-100">
-      <h4 className="text-black text-center  text-3xl font-sans underline font-bold my-2 ">Sign up </h4>
+    <div  className=" flex justify-center items-center flex-col  shadow-md dark:bg-neutral-950  
+    border p-8 rounded-md border-neutral-300 w-[760px]  bg-neutral-100 ">
+      <h4 className="text-black text-center  text-3xl font-sans underline font-bold my-2  dark:text-neutral-100  ">Sign up </h4>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 font-roboto w-full ">
           <FormField
@@ -77,7 +77,7 @@ const RegisterForm = () => {
                 <FormLabel className="text-neutral-900 dark:text-neutral-300 text-xl ">Email</FormLabel>
                 <FormControl>
                   <Input
-                    className="w-full bg-neutral-200  text-xl   border-transparent focus:ring-0  py-3 px-4  
+                    className="w-full bg-neutral-200  text-xl   border-transparent focus:ring-0  py-3 px-4 h-12
                     focus:ring-neutral-200 focus:ring-opacity-40 focus:ring-offset-0 
                       focus:border-neutral-300 focus:ring-offset-white
                     border-[1px] text-neutral-900"
@@ -98,7 +98,7 @@ const RegisterForm = () => {
                 <FormLabel className="text-neutral-700 dark:text-neutral-300 text-xl">Password</FormLabel>
                 <FormControl>
                   <Input
-                     className="w-full bg-neutral-200  text-xl   border-transparent focus:ring-0  py-3 px-4  
+                     className="w-full bg-neutral-200  text-xl   border-transparent focus:ring-0  py-3 px-4  h-12
                      focus:ring-neutral-200 focus:ring-opacity-40 focus:ring-offset-0 
                      focus:border-neutral-300 focus:ring-offset-white
                      border-[1px] text-neutral-900"
@@ -116,7 +116,7 @@ const RegisterForm = () => {
         </form>
       </Form>
        <div className="w-full flex justify-center items-center mt-2 space-x-2 font-roboto">
-      <p className="text-center text-sm text-neutral-800 ">You have an Account</p> 
+      <p className="text-center text-sm text-neutral-800 dark:text-neutral-200">You have an Account</p> 
       <span
       onClick={()=> Router.push("/login")}
       className="text-blue-500  cursor-pointer ">click here</span>

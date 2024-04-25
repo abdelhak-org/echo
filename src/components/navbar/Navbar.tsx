@@ -22,8 +22,8 @@ const Navbar = () => {
         <ModeToggle />
       </div>
       <div className="flex space-x-8 items-center ">
-         <SignUpButton />
-         <LoginButton />
+      <SignUpButton />
+      <LoginButton />
       </div>
 
       </div>

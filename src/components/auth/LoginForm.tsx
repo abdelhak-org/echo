@@ -58,9 +58,9 @@ const LoginForm: NextPage = () => {
   }
 
   return (
-    <div className=" flex justify-center items-center flex-col  shadow-md dark:bg-neutral-950  
+    <div className=" flex justify-center items-center flex-col  shadow-md dark:bg-neutral-900   dark:text-neutral-100
     border p-8 rounded-md border-neutral-300 w-[760px]  bg-neutral-100 ">
-      <h4 className="text-black  text-center font-sans  font-bold  text-3xl underline my-2 ">
+      <h4 className="text-black   text-center font-sans  font-bold  text-3xl underline my-2   dark:text-neutral-100 ">
         Sign in {" "}
       </h4>
       <Form {...form}>
@@ -70,7 +70,7 @@ const LoginForm: NextPage = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-neutral-900 dark:text-neutral-300 text-xl ">
+                <FormLabel className="text-neutral-900 dark:text-neutral-100 text-xl ">
                   Email
                 </FormLabel>
                 <FormControl>
@@ -104,7 +104,7 @@ const LoginForm: NextPage = () => {
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage  />
               </FormItem>
             )}
           />
