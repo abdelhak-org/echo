@@ -1,17 +1,15 @@
+import clientPromise from "@/lib/mongodb";
 import PostCard from "../PostCard";
-import { Post } from "@/types/interfaces";
+import { Post, Posts } from "@/types/interfaces";
+import { getPosts } from "@/actions/posts";
 
 
- async function getPosts() {
-  const response = await fetch("http://localhost:3000/api/posts");
-  const posts = await response.json();
-  return posts.data;
- };
 
 
 const Articles  = async () => {
     
   const posts = await getPosts();
+  console.log("articles", posts )
   return (
     <section className="max-w-[1534px] min-h-screen mx-auto  px-8 py-12">
       {

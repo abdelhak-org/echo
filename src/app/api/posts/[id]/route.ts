@@ -3,12 +3,12 @@ import { ObjectId  } from "mongodb";
 import { Posts , Post } from "@/types/interfaces";
 
 export async function GET(_request: Request, {params}:{params:{id:string}} ){
-     
+           console.log("params", params)
       try {
          const client = await clientPromise;
          const db =    client.db("echodb");
          const collection  = db.collection("posts");
-         const post = await collection.findOne({_id: new ObjectId(params.id)});
+         const post = await collection.findOne({ _id: new  ObjectId(params.id)});
          console.log("post =>", post)
 
      

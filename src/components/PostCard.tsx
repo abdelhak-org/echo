@@ -24,7 +24,8 @@ const fetcher = (url: string)  =>  fetch(url).then((res) => res.blob());
 
 const PostCard = (props: PostCardProps) => {
   const url = "https://source.unsplash.com/random/600x400";
-
+   console.log("props", props.id)
+   console.log("href " , `http://localhost:3000/posts/${props.id}`)
   const { data, error } = useSWR(url, fetcher);
   if (error) return "An error has occurred.";
   if (!data) return "Loading...";

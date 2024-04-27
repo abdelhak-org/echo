@@ -1,6 +1,7 @@
 //import data from "../../posts/data";
 import clientPromise from "../../../lib/mongodb";
 import { Post , Posts } from "@/types/interfaces";
+import { DevBundlerService } from "next/dist/server/lib/dev-bundler-service";
 import {z} from "zod";
 const postSchema = z.object({ 
     title: z.string(),
@@ -12,14 +13,16 @@ const postSchema = z.object({
 
 
 export async function GET(_req: Request,) {
+    console.log("################")
     try {
         client = await clientPromise;
         db = await client.db("echodb");
         posts = await  db.collection("posts");
-        const data = await posts.find().toArray();
+        const data:Posts = await posts.find().toArray();
+         console.log("(db)",db)
         return Response.json({data});
     } catch (error: any) {
-        console.log(error.message);
+        console.log("error==>", error)
         return Response.json({ error: "Internal Server Error" });
     } finally {
     }

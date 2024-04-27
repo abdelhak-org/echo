@@ -35,7 +35,7 @@ export default function RootLayout({
   params:{ session: any}
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${roboto_mono.variable} ${script.className}`}>
+    <html lang="en" className={`${inter.variable} `}>
       <body >
       <ThemeProvider
             attribute="class"
