@@ -16,9 +16,11 @@ const LoginButton = () => {
 
   }
   return (
-  <Button 
-  className="font-bold font-roboto px-4 py-3"
-  variant={"default"} onClick={()=> Router.push("/login")}>Log In</Button>
+  <button 
+  className="font-bold text-sm rounded-md border border-gray-700 text-gray-950 px-4 py-2 dark:text-gray-100 dark:bg-gray-900
+  hover:bg-gray-100 dark:hover:bg-gray-800
+  "
+  onClick={()=> Router.push("/login")}>Log In</button>
   );
 };
 

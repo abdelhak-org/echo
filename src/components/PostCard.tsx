@@ -56,9 +56,11 @@ const PostCard = (props: PostCardProps) => {
           </Link>
         </CardTitle>
       </CardHeader>
-      <CardContent className="font-mono indent-4 text-md mr-8">
-        {props.content}
+      <CardContent
+       dangerouslySetInnerHTML={{__html:props.content}}
+      className="font-mono indent-4 text-md mr-8">
       </CardContent>
+     
     </Card>
   );
 };
@@ -66,3 +68,8 @@ const PostCard = (props: PostCardProps) => {
 export default PostCard;
 
 //<Image src = {dataUrl}  alt="Random Image" width={260} height={220} className="mx-auto"/>
+/*
+
+
+
+*/

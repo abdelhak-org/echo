@@ -11,9 +11,8 @@ const postSchema = z.object({
     let db:any;
     let posts: Posts | any    ;
 
-
+/// api to get all posts
 export async function GET(_req: Request,) {
-    console.log("################")
     try {
         client = await clientPromise;
         db = await client.db("echodb");
@@ -27,7 +26,7 @@ export async function GET(_req: Request,) {
     } finally {
     }
 }
-
+// api to add a post
 export async function POST(req: Request) {
     try {
 

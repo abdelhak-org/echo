@@ -1,7 +1,12 @@
+'use client'
+
 import React from 'react'
+
+
 const page = () => {
   return (
-    <div className='rounded-md  border border-blue-200  '>
+    <div className='w-full 
+      rounded-md bg-neutral-200 '>
     
       <h1 className='text-center font-bold text-3xl my-4 text-sans 
        '>Dashboard</h1>

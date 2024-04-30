@@ -1,23 +1,22 @@
-'use client'
 
+import Link from "next/link";
 import { ModeToggle } from "../ModeToggle";
-import { useRouter } from "next/navigation";
 import LoginButton from "./LoginButton";
 import SignUpButton from "./SignUpButton";
 const Navbar = () => {
-  const Router = useRouter();
   return (
     <nav
-      className="w-screen h-[75px] dark:text-neutral-100 dark:bg-neutral-900 border  py-12
+      className="w-screen  h-[55px] dark:text-neutral-100 dark:bg-neutral-900 border 
       bg-neutral-50 text-neutral-900"
     >
-      <div className="max-w-[1534px] h-full flex justify-between items-center   z-50 mx-auto px-8
+      <div className="max-w-[1534px] h-full flex justify-between items-center   z-50 mx-auto px-4
     ">
+      <Link href="/">
       <h4
-      className="text-4xl font-light cursor-pointer font-script  "
-      onClick={() => Router.push("/")}
+      className="text-2xl font-bold cursor-pointer  tracking-wide  "
       >Echo 
       </h4>
+      </Link>
       <div>
         <ModeToggle />
       </div>
