@@ -6,14 +6,14 @@ const SignUpButton = () => {
 
 
   if (status === "authenticated") {
-    return <p > loged in as :{session.user?.email}</p>;
+    return <p className="text-xs font-sans "> loged in as :{session.user?.email}</p>;
 
   }
 
 
   return( 
   <Button
-  className=" font-bold font-roboto px-4 py-3 "
+  className=" font-light  font-roboto px-4 py-3 text-sm "
     variant={"outline"} >
     <Link href="/register">
       Sign Up

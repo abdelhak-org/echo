@@ -11,7 +11,7 @@ const Articles  = async () => {
   const posts = await getPosts();
   console.log("articles", posts )
   return (
-    <section className="max-w-[1534px] min-h-screen mx-auto  px-8 py-12">
+    <section className="max-w-[1080px] w-full  min-h-screen mx-auto  px-4 py-12">
       {
        posts?.map((post:Post, index:number ) => (
         <PostCard

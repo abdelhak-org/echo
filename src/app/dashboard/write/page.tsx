@@ -48,26 +48,28 @@ export default function page() {
 
 
   return (
-    <div  className=" w-full min-h-full  space-y-4   bg-neutral-200 rounded-md p-8 ">
-
-    <h1 className="text-2xl font-bold text-center tracking-wide">Write a new Post</h1>
+    <div  className = " w-full max-w-[1534px] min-h-full mx-auto space-y-4   bg-neutral-300 rounded-md p-8 " >
+    
+    <h1 className="text-2xl font-light text-center tracking-wide font-sans  ">Write a new Post</h1>
     <form onSubmit={handleSubmit}>
-    <div className="grid w-full  items-center gap-1.5">
+    <div className=" w-full  items-start p-4 flex flex-col  space-y-4 ">
       <Label htmlFor="title">Title</Label>
       <Input
       value={title}
       onChange={(e)=>setTitle(e.target.value)}
-      className=" w-full"
-      type="text" id="title" placeholder="write a Title" />
+      className=" w-full min-h-12"
+      type="text" id="title" placeholder="  Title ... " />
     </div>
-    <div className="grid w-full  items-center gap-1.5">
+    <div className=" w-full  items-start p-4 flex flex-col  space-y-4 ">
       <Label htmlFor="title">Description</Label>
       <Input
-      className=" w-full"
-      type="text" id="description" placeholder="write a Description" />
+      className=" w-full min-h-12"
+      type="text" id="description" placeholder=" Description ..." />
     </div>
-    <div className="grid w-full  items-center gap-1.5">
-      <Label htmlFor="post">Post</Label>
+    <div  className=" w-full  items-start p-2 flex flex-col  space-y-2 ">
+
+      <Label
+      htmlFor="post">Post</Label>
       <Tiptap
        content ={content} 
        handleContentChange  = {(newContent:any)=> handleContentChange(newContent)}

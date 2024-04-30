@@ -12,9 +12,11 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-      <section className=" w-screen  h-screen flex space-x-8 mx-auto p-4 border  bg-white" >
+      <section className="w-[1534px]  min-h-screen flex space-x-8 mx-auto p-4 border 
+      roundeded-md
+      bg-white" >
         <ControllMenu />
-        <main className="flex-1">
+        <main className="w-full  mx-auto p-2">
         {children}
         </main>
         
