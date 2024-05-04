@@ -36,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} `}>
-      <body >
+      <body className="w-screen" >
       <ThemeProvider
             attribute="class"
             defaultTheme="system"

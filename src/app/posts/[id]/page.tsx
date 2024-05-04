@@ -8,7 +8,6 @@ import { Post } from "@/types/interfaces"; // Import the 'Post' type from the ap
 const PostView = () => {
   const params = useParams();
 
-  console.log("id =>", params?.id)
   const [post, setPost] = useState<Post | undefined>(undefined);
   const fetchPost = async () => {
     try {

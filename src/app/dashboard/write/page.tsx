@@ -1,4 +1,205 @@
 
+"use client";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import Tiptap from "@/components/tiptap/Tiptap";
+
+const formSchema = z.object({
+  title: z.string(),
+  description: z.string(),
+  content: z.string(),
+  createdAt: z.string(),
+});
+
+export type RegisterCredentials = z.infer<typeof formSchema>;
+
+const page = () => {
+  const Router = useRouter();
+  const form = useForm<z.infer<typeof formSchema>>({
+    defaultValues: {
+      title: "",
+      description: "",
+      content: "",
+      createdAt: new Date().toString(),
+    },
+    resolver: zodResolver(formSchema),
+  });
+
+  const handlePost = async (data: RegisterCredentials) => {
+    try {
+      const response = await fetch("/api/posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        toast.success("post Added Successfully");
+      } else {
+        toast.error("Post Adding Failed");
+        const data = await response.json();
+        throw new Error(data.error);
+      }
+    } catch (error: any) {
+      console.error(error);
+    }
+  };
+
+  async function submitHandler(values: RegisterCredentials) {
+    try {
+      const res = await handlePost(values);
+      console.log(res);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  return (
+    <div
+      className=" max-w-[1534px] w-full min-h-screen flex justify-center items-center flex-col  shadow-md dark:bg-gray-950  
+    border p-8 rounded-md border-gray-300  bg-gray-100 "
+    >
+      <h4 className="text-black text-center  text-3xl font-sans underline font-bold   dark:text-gray-100 ">
+        Write 
+      </h4>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(submitHandler)}
+          className="space-y-4  w-full "
+        >
+          <FormField
+            control={form.control}
+            name="title"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-gray-900 dark:text-gray-300 text-xl ">
+                  Title :
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    className="w-full bg-gray-200  text-xl   border-transparent focus:ring-0  py-3 px-4 h-12
+                    focus:ring-gray-200 focus:ring-opacity-40 focus:ring-offset-0 
+                      focus:border-gray-300 focus:ring-offset-white
+                    border-[1px] text-gray-900"
+                    placeholder="Title ..."
+                    {...field}
+                  />
+                </FormControl>
+
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="description"
+            render={({ field }) => {
+              return (
+                <FormItem>
+                  <FormLabel className="text-gray-700 dark:text-gray-300 text-xl">
+                    Description :
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      className="w-full bg-gray-200  text-xl   border-transparent focus:ring-0  py-3 px-4  h-12
+                     focus:ring-gray-200 focus:ring-opacity-40 focus:ring-offset-0 
+                     focus:border-gray-300 focus:ring-offset-white
+                     border-[1px] text-gray-900"
+                      placeholder=" Description ..."
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              );
+            }}
+          />
+          <FormField
+            control={form.control}
+            name="content"
+            render={({ field }) => {
+              return (
+                <FormItem>
+                  <FormLabel className="text-gray-700 dark:text-gray-300 text-xl">
+                    Post :
+                  </FormLabel>
+                  <FormControl>
+                    <Tiptap
+                      className="w-full bg-gray-200  text-xl   border-transparent focus:ring-0  py-3 px-4  h-12
+                      focus:ring-gray-200 focus:ring-opacity-40 focus:ring-offset-0 
+                      focus:border-gray-300 focus:ring-offset-white
+                      border-[1px] text-gray-900"
+                      placeholder="write your content here"
+                      content={field.value}
+                      handleContentChange={(newValue: string) =>
+                        field.onChange(newValue)
+                      }
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              );
+            }}
+          />
+          
+          <Button
+            className="font-semibold w-full text-lg py-3 px-4"
+            size="lg"
+            type="submit"
+          >
+            Submit
+          </Button>
+        </form>
+      </Form>
+
+      <ToastContainer />
+    </div>
+  );
+};
+
+export default page;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 'use client'
 
 import Tiptap from "@/components/tiptap/Tiptap"
@@ -36,12 +237,18 @@ export default function page() {
       e.preventDefault();
       const data = {
         title :title,
-        content :content
+        description: "description",
+        content :content, 
+        createdAt : new Date(),
+        likes : 0,
+        dislikes : 0,
+        
       }
       addPost(data)
       .then((res)=>{
+        console.log(res)
         setTitle('')
-        setContent('')
+        
       })
     }
     
@@ -72,7 +279,7 @@ export default function page() {
       htmlFor="post">Post</Label>
       <Tiptap
        content ={content} 
-       handleContentChange  = {(newContent:any)=> handleContentChange(newContent)}
+       handleContentChange  = {(newContent:any)=> handleContentChange(newContent) }
      />
       
       
@@ -81,3 +288,4 @@ export default function page() {
      </div>
   )
 }
+*/

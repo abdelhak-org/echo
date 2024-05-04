@@ -1,4 +1,3 @@
-"use client";
 import {
   Card,
   CardContent,
@@ -8,68 +7,82 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { cn } from "@/lib/utils";
-import Image from "next/image";
-import useSWR from "swr";
 import Link from "next/link";
-import { promises } from "dns";
-interface PostCardProps {
-  id: string;
+import { AiFillLike, AiFillDislike, AiOutlineDislike } from "react-icons/ai";
+
+interface Post {
+  userId?: number | string;
+  id?: any;
   title: string;
+  description?: string;
   content: string;
-  author?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  comments?: Comment[];
+  likes?: number;
+  dislikes?: number;
 }
 
-const fetcher = (url: string)  =>  fetch(url).then((res) => res.blob());
-
-const PostCard = (props: PostCardProps) => {
-  const url = "https://source.unsplash.com/random/600x400";
-   console.log("props", props.id)
-   console.log("href " , `http://localhost:3000/posts/${props.id}`)
-  const { data, error } = useSWR(url, fetcher);
-  if (error) return "An error has occurred.";
-  if (!data) return "Loading...";
-
-  const dataUrl = URL.createObjectURL(data);
-
+const PostCard = ({
+  id,
+  title,
+  description,
+  content,
+  createdAt = new Date().toLocaleString(),
+  likes = 10,
+  dislikes = 0,
+}: Post) => {
   return (
     <Card
-      className="dark:bg-neutral-800 dark:text-neutral-100  text-neutral-900 
-    my-4 flex    -space-y-2 border rounded-md border-transparent justify-between  items-center flex-col 
-      border-b-neutral-200 "
+      className="dark:bg-neutral-800 dark:text-neutral-100 text-gray-900
+    my-4 flex -space-y-2 border rounded-md border-transparent justify-between items-center flex-col
+      border-b-gray-200"
     >
-      <CardHeader className=" w-full  h-fit flex flex-col ">
-        <Avatar className="mr-4">
+      <CardHeader className="w-full h-fit flex flex-col">
+        <CardTitle className="text-2xl font-bold font-sans tracking-wide">
+          <Link href={`http://localhost:3000/posts/${id}`}>{title}</Link>
+        </CardTitle>
+        <CardDescription className="font-sm font-mono">
+          {description || "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\n There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."}
+        </CardDescription>
+      </CardHeader>
+
+      <div className="flex justify-between items-start py-2 w-full h-fit ">
+      <CardContent
+        dangerouslySetInnerHTML={{ __html: content }}
+        className="font-mono   text-md indent-2"
+      ></CardContent>
+      <img src="https://source.unsplash.com/random/300*200" alt="post" className="w-1/6 h-full mr-2" />
+      </div>
+     
+     
+     
+     
+      <CardFooter className="flex w-full h-fit justify-start items-center space-x-8  ">
+        <Avatar className="">
           <AvatarImage
             src="https://source.unsplash.com/random/35*35"
             alt="@shadcn"
           />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
-        <CardDescription className="font-sm font-mono">
-          Devon Wijesinghe in Stackademic ·Mar 25, 2024
-        </CardDescription>
-
-        <CardTitle className="text-2xl font-bold font-sans tracking-wide  ">
-          <Link href={`http://localhost:3000/posts/${props.id}`}>
-            {props.title}
-          </Link>
-        </CardTitle>
-      </CardHeader>
-      <CardContent
-       dangerouslySetInnerHTML={{__html:props.content}}
-      className="font-mono indent-4 text-md mr-8">
-      </CardContent>
-     
+        <p> {createdAt}</p>
+        <p className="text-blue-500 relative ">
+          {<AiFillLike size={18} />}{" "}
+          <span className="absolute left-5 top-0 z-50 text-blue-300">
+            {likes}
+          </span>
+        </p>
+        <p className="text-red-500 relative ">
+          {<AiFillDislike size={18} />}
+          <span className="absolute left-5 top-0 z-50 text-red-300">
+            {dislikes}
+          </span>
+        </p>
+      </CardFooter>
     </Card>
   );
 };
 
 export default PostCard;
 
-//<Image src = {dataUrl}  alt="Random Image" width={260} height={220} className="mx-auto"/>
-/*
-
-
-
-*/
