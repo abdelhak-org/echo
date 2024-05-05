@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth , {DefaultSession} from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import clientPromise from "@/lib/mongodb";
 import bcrypt from "bcrypt";
@@ -8,6 +8,10 @@ interface User {
   password: string;
 
 }
+interface Session {
+  user: User , 
+  status :boolean ,
+}
 
 const handler = NextAuth({
   callbacks: {
@@ -15,14 +19,15 @@ const handler = NextAuth({
       if (user) {
         token.email = user.email;
       }
-      console.log("this is token", token);
       return token;
     },
-    async session({ session, token }) {
+    async session ({ session, token }) {
+      if(!session.user) {
+        return session
+      }
       if (token) {
          session.user.email  = token.email;
       }
-      console.log("this is session", session);
       return session;
     },
   },
@@ -30,39 +35,39 @@ const handler = NextAuth({
   session: {
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60, // 30 days
-  },
-  providers: [
+  }, 
+   providers: [
     CredentialsProvider({
       name: "credentials",
       
       credentials: {},
       
-      async authorize(credentials:User) {
-      
+      async authorize (credentials:User){
+        
         try {
+        
           const client = await clientPromise;
           const db = client.db("echodb");
           const users = db.collection("users");
           const user = await users.findOne({ email: credentials.email });
           if (!user) {
-            Response.json( "user does not exist" );
-            throw new Error("Invalid email or password");
+         
+            throw new Error("user does not exist");
           }
           
-          const res = await bcrypt.compare(
+          const isValid = await bcrypt.compare(
             credentials.password,
             user.password
           );
-          if (!res ) {
-            Response.json({ message: "Invalid email or password" });
-            throw new Error("Invalid email or password");
+          if (!isValid ) {
+            throw new Error("Invalid password");
           }
             
           return user;
 
 
-        } catch (error:any) {
-        Response.json({ message: "server error" });
+        } catch (error: any) {
+        Response.json({message :error.message});
         }
       },
     }),

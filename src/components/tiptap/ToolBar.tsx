@@ -1,5 +1,6 @@
 import React from "react";
 import { type Editor } from "@tiptap/core";
+import { BubbleMenu } from "@tiptap/react";
 import {
   Bold,
   Italic,
@@ -13,7 +14,6 @@ import {
   Code,
 } from "lucide-react";
 
-
 const ToolBar = ({
   editor,
   content,
@@ -22,12 +22,14 @@ const ToolBar = ({
   content: string;
 }) => {
   if (!editor) return null;
+
   return (
-    <div
-      className="flex justify-between items-center  gap-5 w-full flex-wrap border border-gray-700 p-2 bg-gray-950
+    <BubbleMenu editor={editor} tippyOptions={{ duration: 100 }}>
+      <div
+        className="flex justify-between  flex-rows 
+          gap-5 w-fit flex-wrap border border-gray-700 p-2 bg-gray-900
     px-4 py-3 rounded-tl-md rounded-tr-md "
-    >
-      <div className=" flex gap-5 items-center  justify-start w-full lg-w-10/20 flex-wrap">
+      >
         <button
           onClick={(e) => {
             e.preventDefault();
@@ -164,10 +166,10 @@ const ToolBar = ({
         >
           <Redo className="w-5 h-5 " />
         </button>
-
-    
+      
+     
       </div>
-    </div>
+    </BubbleMenu>
   );
 };
 

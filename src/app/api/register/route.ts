@@ -29,21 +29,26 @@ export async function POST(req: Request) {
     const parsedData = userSchema.safeParse(data);
     if (!parsedData.success) {
     
-    return Response.json({ error: "Invalid data" }, { status: 400 });
+    throw new Error("Invalid data");
     
     }
+
     const isExist = await users.findOne({ email: parsedData.data.email });
     if (isExist) {
-      return Response.json({ error: "User already exists" }, { status: 400 });
+      throw new Error("User already exists");
     }
+
     const hashedPassword = await bcrypt.hash(parsedData.data.password, 10);
+
     parsedData.data.password = hashedPassword;
+
     // insert the data into the database
     await users.insertOne(parsedData.data);
     //return Response
     return Response.json({ message: "you are  registered successfully" });
+
   } catch (error: any) {
-    return Response.json({ error: " Server Error"  }, { status: 500});
+    return Response.json({ error: error.message});
   } finally {
   }
 }

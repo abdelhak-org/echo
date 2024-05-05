@@ -3,9 +3,9 @@ import { MdOutlineDashboard } from "react-icons/md";
 import { AiOutlineProfile } from "react-icons/ai";
 import Link from 'next/link';
 
-const ControllMenu = () => {
+const ControllMenu = ()  =>   {
   return (
-    <aside className="w-1/6 h-full rounded-md border py-8 text-left px-4 bg-neutral-200 m-2 z-50">
+    <aside className="max-w-[360px] w-fit  h-full rounded-md border py-8 text-left px-4 bg-neutral-200 m-2 z-50">
         <Link href='/dashboard'>
       <div className='bg-neutral-950 px-2 py-2 rounded text-white flex items-center space-x-2'>
         <MdOutlineDashboard />

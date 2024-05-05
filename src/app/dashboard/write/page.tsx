@@ -71,8 +71,8 @@ const page = () => {
 
   return (
     <div
-      className=" max-w-[1534px] w-full min-h-screen flex justify-center items-center flex-col  shadow-md dark:bg-gray-950  
-    border p-8 rounded-md border-gray-300  bg-gray-100 "
+      className=" max-w-[1534px] w-full min-h-screen flex justify-start items-center flex-col  shadow-md dark:bg-gray-950  
+    border p-8 rounded-md border-gray-300  bg-neutral-300 "
     >
       <h4 className="text-black text-center  text-3xl font-sans underline font-bold   dark:text-gray-100 ">
         Write 
@@ -92,10 +92,10 @@ const page = () => {
                 </FormLabel>
                 <FormControl>
                   <Input
-                    className="w-full bg-gray-200  text-xl   border-transparent focus:ring-0  py-3 px-4 h-12
+                    className="w-full bg-white text-xl   border border-gray-300  focus:ring-0  py-3 px-4 h-12
                     focus:ring-gray-200 focus:ring-opacity-40 focus:ring-offset-0 
                       focus:border-gray-300 focus:ring-offset-white
-                    border-[1px] text-gray-900"
+                  text-gray-900"
                     placeholder="Title ..."
                     {...field}
                   />
@@ -116,10 +116,10 @@ const page = () => {
                   </FormLabel>
                   <FormControl>
                     <Input
-                      className="w-full bg-gray-200  text-xl   border-transparent focus:ring-0  py-3 px-4  h-12
+                      className="w-full bg-white  text-xl   border border-gray-300 focus:ring-0  py-3 px-4  h-12
                      focus:ring-gray-200 focus:ring-opacity-40 focus:ring-offset-0 
                      focus:border-gray-300 focus:ring-offset-white
-                     border-[1px] text-gray-900"
+                      text-gray-900"
                       placeholder=" Description ..."
                       {...field}
                     />
@@ -140,12 +140,7 @@ const page = () => {
                   </FormLabel>
                   <FormControl>
                     <Tiptap
-                      className="w-full bg-gray-200  text-xl   border-transparent focus:ring-0  py-3 px-4  h-12
-                      focus:ring-gray-200 focus:ring-opacity-40 focus:ring-offset-0 
-                      focus:border-gray-300 focus:ring-offset-white
-                      border-[1px] text-gray-900"
-                      placeholder="write your content here"
-                      content={field.value}
+                      content={field.value} 
                       handleContentChange={(newValue: string) =>
                         field.onChange(newValue)
                       }
@@ -167,7 +162,6 @@ const page = () => {
         </form>
       </Form>
 
-      <ToastContainer />
     </div>
   );
 };
