@@ -6,16 +6,17 @@ import SignUpButton from "./SignUpButton";
 const Navbar = () => {
   return (
     <nav
-      className="w-screen  h-[75px] dark:text-neutral-100 dark:bg-neutral-900 border 
-      bg-neutral-50 text-neutral-900"
+      className= "w-screen  h-[55px] bg-neutral-950 text-white  "
     >
-      <div className="max-w-[1534px] w-full  h-full flex justify-between items-center   z-50 mx-auto px-4
+
+      <div className="max-w-[1534px] w-full h-full mx-auto
+        flex justify-between items-center px-4  
     ">
       <Link href="/">
-      <h4
-      className="text-3xl font-bold cursor-pointer  tracking-widest  "
-      >Echo 
-      </h4>
+      <h3
+      className="font-bold tracking-widest text-2xl cursor-pointer "
+      >ECHO
+      </h3>
       </Link>
       <div>
         <ModeToggle />

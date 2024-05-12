@@ -12,15 +12,18 @@ const LoginButton = () => {
   };
 
   if (status === "authenticated") {
-    return <Button variant={"outline"}  onClick={logOut}>Log Out</Button>;
+    return( <Button 
+    className=" font-bold text-neutral-200 text-[16px]"
+    variant={"link"}  onClick={logOut}>
+      Log Out 
+    </Button>);
 
   }
   return (
-  <button 
-  className="font-bold  text-md rounded-md border border-gray-700 text-gray-950 px-4 py-2 dark:text-gray-100 dark:bg-gray-900
-  hover:bg-gray-100 dark:hover:bg-gray-800
+  <Button variant={"link"} 
+  className=" font-bold text-neutral-200 text-[16px]
   "
-  onClick={()=> Router.push("/login")}>Log In</button>
+  onClick={()=> Router.push("/login")}>Log In</Button>
   );
 };
 

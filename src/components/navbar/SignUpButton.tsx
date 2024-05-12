@@ -4,17 +4,17 @@ import Link from "next/link";
 const SignUpButton = () => {
   const { data: session, status } = useSession();
 
-
+  if (status === "loading") return (<p className="text-xs font-sans "> Loading ...</p>);
   if (status === "authenticated") {
-    return <p className="text-xs font-sans "> loged in as :{session.user?.email}</p>;
+    return (<p className="text-xs font-sans "> Welcome ! {session.user?.name}</p>);
 
   }
 
 
   return( 
   <Button
-  className=" font-light  font-roboto px-4 py-3 text-sm "
-    variant={"outline"} >
+  className="text-neutral-500 font-sans text-[14px]   "
+    variant={"link"} >
     <Link href="/register">
       Sign Up
     </Link>
