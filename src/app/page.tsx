@@ -6,8 +6,8 @@ import HeroSection from "@/components/heroSection/HeroSection";
 export default function Home() {
 
   return (
-   <main className="min-h-screen ">
-   <HeroSection />
+   <main className="w-full h-full">
+   <HeroSection  />
    <Articles />
    </main>
   );

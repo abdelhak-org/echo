@@ -64,7 +64,9 @@ const RegisterForm = () => {
 
 
   return (
-    <div  className=" flex justify-center items-center flex-col  shadow-md dark:bg-neutral-950  
+    <div  className="
+    
+    flex justify-center items-center flex-col  shadow-md dark:bg-neutral-950  
     border p-8 rounded-md border-neutral-300 w-[760px]  bg-neutral-100 ">
       <h4 className="text-black text-center  text-3xl font-sans underline font-bold my-2  dark:text-neutral-100  ">Sign up </h4>
       <Form {...form}>

@@ -40,7 +40,7 @@ const LoginForm: NextPage = () => {
 
   const onSubmit = async (values: LoginCredentials) => {
     try {
-      const res : any = await signIn("credentials", {
+      const res  = await signIn("credentials", {
         email: values.email,
         password: values.password,
         redirect: false,

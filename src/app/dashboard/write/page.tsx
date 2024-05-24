@@ -1,4 +1,3 @@
-
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -71,11 +70,11 @@ const page = () => {
 
   return (
     <div
-      className=" max-w-[1534px] w-full min-h-screen flex justify-start items-center flex-col  shadow-md dark:bg-gray-950  
-    border p-8 rounded-md border-gray-300  bg-neutral-300 "
+      className="  flex space-y-4 flex-col  shadow-md dark:bg-gray-950 
+    border p-4 rounded-md border-gray-300  "
     >
       <h4 className="text-black text-center  text-3xl font-sans underline font-bold   dark:text-gray-100 ">
-        Write 
+        Write
       </h4>
       <Form {...form}>
         <form
@@ -140,7 +139,7 @@ const page = () => {
                   </FormLabel>
                   <FormControl>
                     <Tiptap
-                      content={field.value} 
+                      content={field.value}
                       handleContentChange={(newValue: string) =>
                         field.onChange(newValue)
                       }
@@ -151,47 +150,22 @@ const page = () => {
               );
             }}
           />
-          
-          <Button
-            className="font-semibold w-full text-lg py-3 px-4"
-            size="lg"
-            type="submit"
-          >
-            Submit
-          </Button>
+          <div className="w-full h-fit flex justify-end ">
+            <Button
+              className="font-semibold  text-lg py-3 px-4 "
+              size="lg"
+              type="submit"
+            >
+              Submit
+            </Button>
+          </div>
         </form>
       </Form>
-
     </div>
   );
 };
 
 export default page;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*
 'use client'

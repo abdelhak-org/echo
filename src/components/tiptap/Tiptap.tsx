@@ -14,7 +14,7 @@ const Tiptap = ({ content, handleContentChange }:TiptapProps) => {
     extensions: [StarterKit  ],
     editorProps: {
       attributes: {
-        class:" flex flex-col px-4 py-3 justify-start  border-b border-r border-l border-gray-100 text-gray-700 items-start w-full min-h-60  gap-3 font-medium text-[16px] pt-4 rounded-bl-md outline-none  ",
+        class:"flex flex-col p-4   text-neutral-700  w-full  outline-none  tracking-wide font-sans  text-[15px] ",
       },
     },
     onUpdate: ({ editor }) => {
@@ -22,7 +22,7 @@ const Tiptap = ({ content, handleContentChange }:TiptapProps) => {
     },
   });
   return (
-    <div className=" w-full h-fit flex flex-col space-y-8 p-4 border-none ">
+    <div className=" w-full grow flex flex-col space-y-4  border-none   ">
       <ToolBar editor={editor} content={content} />
       <EditorContent 
       editor={editor}
@@ -32,7 +32,7 @@ const Tiptap = ({ content, handleContentChange }:TiptapProps) => {
         borderRadius:"8px" ,
          border:"1px solid  #ccc",
          overflow:"wrap",
-          
+           minHeight:"200px",
          
          }} />
     </div>

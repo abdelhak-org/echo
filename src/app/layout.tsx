@@ -35,8 +35,8 @@ export default function RootLayout({
   params:{ session: any}
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} `}>
-      <body className="w-screen" >
+      <html lang="en" className={`${inter.variable} `}>
+      <body className="w-screen  min-h-screen flex flex-col" > 
       <ThemeProvider
             attribute="class"
             defaultTheme="system"

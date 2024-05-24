@@ -8,9 +8,8 @@ import { getPosts } from "@/actions/posts";
 const Articles  = async () => {
     
   const posts = await getPosts();
-  console.log("articles", posts )
   return (
-    <section className="max-w-[1080px] w-full  min-h-screen mx-auto  p-4 ">
+    <section className="max-w-[1080px] w-full mx-auto  p-4 ">
       {
         posts?.map((post:Post, index:number ) => (
         <PostCard

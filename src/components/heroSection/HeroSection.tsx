@@ -7,10 +7,10 @@ import React from 'react'
 const HeroSection = () => {
       const {data:session, status } = useSession();
   return (
-   <section className="w-screen h-[600px] relative ">
+   <section className={ `w-full overflow-hidden relative h-[550px]` } >
   <div className='w-full h-full top-0 right-0'>
     <img src = "https://source.unsplash.com/1600x900/?nature,water"
-     alt="hero" className="w-full h-full object-cover" />
+     alt="hero" className="w-full overflow-hidden  object-cover" />
   </div>
   <div className=" bg-neutral-900/60 p-8 rounded-md 
   absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center  ">
