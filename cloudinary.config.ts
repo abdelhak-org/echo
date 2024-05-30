@@ -1,9 +1,10 @@
-import  { config }  from 'cloudinary';
+import { v2 as cloudinary } from 'cloudinary';
 
-config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+// Set up your cloudinary config here
+cloudinary.config({
+  cloud_name:"drxurev4o",
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-export default config;
+export default cloudinary;

@@ -8,12 +8,11 @@ export async function getPosts() {
   try {
     client = await clientPromise;
     db = await client.db("echodb");
-   const  postsCollection = await  db.collection("posts");
-    const posts:Posts = await postsCollection.find().toArray();
-     console.log("(db)",db)
+    const  postsCollection = await  db.collection("posts");
+    const posts:Posts = await postsCollection.find().toArray();0
     return posts
 } catch (error: any) {
-    console.log("error==>", error)
+  Response.json({message: error.message})
 } finally {
 }
  };
@@ -25,12 +24,12 @@ export async function getPosts() {
     try {
       client = await clientPromise;
       db = await client.db("echodb");
-     const  postsCollection = await  db.collection("posts");
-     const result = await postsCollection.insertOne(post);
-     console.log("result",result)
-     return result
+      const  postsCollection = await  db.collection("posts");
+      const result = await postsCollection.insertOne(post);
+      
+      return result
   } catch (error: any) {
-      console.log("error==>", error)
+     Response.json({message: error.message})
   } finally {
   }
    }

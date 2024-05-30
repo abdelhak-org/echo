@@ -1,33 +1,41 @@
-import NextAuth , {DefaultSession} from "next-auth";
+import NextAuth  from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import clientPromise from "@/lib/mongodb";
 import bcrypt from "bcrypt";
-
-interface User {
-  email: string;
-  password: string;
-
-}
+import { AuthOptions} from "@/types/interfaces";
+import { User } from "@/types/interfaces";
 interface Session {
   user: User , 
   status :boolean ,
 }
 
-const handler = NextAuth({
+export const authOptions:AuthOptions = {
+
   callbacks: {
-    async jwt({ token, user }){
+    async jwt({ token, user }: { token: User; user: User }){
       if (user) {
         token.email = user.email;
+        token.userId = user.userId;
+        token.userName = user.userName;
+        token.src = user.src;
+      
+      
       }
+      console.log("token ...nextauth ",token);
       return token;
     },
-    async session ({ session, token }) {
+    async session ({ session, token }:{session:Session, token:User}) {
       if(!session.user) {
         return session
       }
       if (token) {
-         session.user.email  = token.email;
-      }
+            session.user.email  = token.email;
+            session.user.userId = token.userId;
+            session.user.userName = token.userName;
+            session.user.src = token.src;
+            
+      } 
+      console.log( "session ...nextauth ",session);
       return session;
     },
   },
@@ -62,9 +70,8 @@ const handler = NextAuth({
           if (!isValid ) {
             throw new Error("Invalid password");
           }
-            
           return user;
-
+           
 
         } catch (error: any) {
         Response.json({message :error.message});
@@ -75,5 +82,7 @@ const handler = NextAuth({
   pages: {
     signIn: "/login",
   },
-});
+};
+
+const handler = NextAuth(authOptions); 
 export { handler as GET, handler as POST };

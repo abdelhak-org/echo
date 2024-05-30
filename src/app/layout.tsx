@@ -2,7 +2,7 @@
 
 import { ThemeProvider } from "@/components/theme-provider"
 //import type { Metadata } from "next";
-import { Inter , Roboto_Mono , Nova_Script } from "next/font/google";
+import { Inter  } from "next/font/google";
 
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
@@ -14,19 +14,8 @@ const inter = Inter({
   display: 'swap',
   variable: '--font-inter',
 })
-const roboto_mono = Roboto_Mono({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-roboto-mono',
-  weight: ['400', '500', '700'],
-})
 
-const script = Nova_Script({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-nova-script',
-  weight: '400',
-})
+
 export default function RootLayout({
   children ,  params: { session , ...params },
 
@@ -35,11 +24,11 @@ export default function RootLayout({
   params:{ session: any}
 }>) {
   return (
-      <html lang="en" className={`${inter.variable} `}>
+      <html lang="en" className={inter.className}>
       <body className="w-screen  min-h-screen flex flex-col" > 
       <ThemeProvider
             attribute="class"
-            defaultTheme="system"
+            defaultTheme="light"
             enableSystem
             disableTransitionOnChange
           >

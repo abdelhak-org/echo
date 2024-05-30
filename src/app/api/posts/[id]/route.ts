@@ -1,10 +1,10 @@
 import clientPromise from "@/lib/mongodb";
 import { ObjectId  } from "mongodb";
-import { Posts , Post } from "@/types/interfaces";
 
-export async function GET(_request: Request, {params}:{params:{id:string}} ):Promise<Response> 
-{ 
-      try {
+
+export async function GET(_request: Request, {params}:{params:{id:string}} ):Promise<Response>{
+
+try {
          const client = await clientPromise;
          const db =    client.db("echodb");
          const collection  = db.collection("posts");
@@ -22,6 +22,7 @@ export async function GET(_request: Request, {params}:{params:{id:string}} ):Pro
       }
    
    export async function DELETE(_request: Request, {params}:{params:{id:string}} )
+
    {
    const postId = new ObjectId(params.id);
    
@@ -30,6 +31,7 @@ export async function GET(_request: Request, {params}:{params:{id:string}} ):Pro
       const db =  client.db("echodb");
       
       const posts =  db.collection("posts");
+
       const post = await posts.findOneAndDelete({_id: postId});
       if(!post){
          throw new Error("Post not found")
@@ -40,8 +42,6 @@ export async function GET(_request: Request, {params}:{params:{id:string}} ):Pro
    } finally {
    }  
 }
-
-
 
 
 

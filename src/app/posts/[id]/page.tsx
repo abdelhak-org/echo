@@ -8,7 +8,7 @@ import { Post } from "@/types/interfaces"; // Import the 'Post' type from the ap
 const PostView = () => {
   const params = useParams();
 
-  const [post, setPost] = useState<Post | undefined>(undefined);
+  const [post, setPost] = useState<Post >();
   const fetchPost = async () => {
     try {
   
@@ -29,8 +29,8 @@ const PostView = () => {
 
 
   return (
-    <article className="w-full min-h-screen px-4 py-8">
-      <h3 className="text-4xl font-bold capitalize my-8 mx-auto w-fit font-sans text-neutral-900">
+    <article className="w-full grow px-4 py-8">
+      <h3 className="text-2xl font-bold capitalize my-8 mx-auto w-fit font-sans text-neutral-900">
         {post?.title}
       </h3>
       <h5 className="text-xl font-bold font-sans capitalize my-8 mx-auto w-fit text-neutral-900/80">

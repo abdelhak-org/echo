@@ -2,16 +2,18 @@ import clientPromise from "../../../lib/mongodb";
 import bcrypt from "bcrypt";
 import { z } from "zod";
 
-import {Users} from "../../../types/interfaces";
 
 const userSchema = z.object({
+  userId :z.string(),
+  src : z.string().optional(),
+  userName: z.string(),
   email: z.string().email(),
   password: z.string().min(6),
 });
 
-let client: any;
+let client:any;
 let db: any;
-let users: any;
+let users;
 // GET /api/register
 
 
@@ -46,7 +48,7 @@ export async function POST(req: Request) {
     await users.insertOne(parsedData.data);
     //return Response
     return Response.json({ message: "you are  registered successfully" });
-
+    
   } catch (error: any) {
     return Response.json({ error: error.message});
   } finally {

@@ -2,8 +2,11 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div className='  h-screen  bg-yellow-500 text-center'>
-      inbox
+    <div className=" bg-neutral-200 rounded-md py-8">
+      <h1 className="text-3xl text-center my-8 font-bold tracking-wider">
+        Inbox me
+      </h1>
+    
     </div>
   )
 }

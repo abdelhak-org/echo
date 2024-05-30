@@ -1,6 +1,7 @@
 import { Skeleton } from "../ui/skeleton";
 
-export function Loading() {
+export default  function Loading() {
+
   return (
     <div className="w-full h-full  flex justify-start items-center flex-col space-y-3  by-12">
       <Skeleton className="h-[125px] w-[450px] rounded-xl bg-neutral-300" />

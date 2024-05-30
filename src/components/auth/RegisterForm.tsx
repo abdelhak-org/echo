@@ -15,8 +15,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
+import { v4 as uuidv4 } from  'uuid';
 
 const formSchema = z.object({
+  userId:z.string(),
+  userName:z.string(),
   email: z.string().email(),
   password: z.string().min(6).max(100),
 });
@@ -28,6 +31,8 @@ const RegisterForm = () => {
   const Router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     defaultValues: {
+      userId:uuidv4(),
+      userName:"" , 
       email: "",
       password: "",
     },
@@ -45,32 +50,56 @@ const RegisterForm = () => {
       });
       if (response.ok) {
       toast.success("Account Created Successfully");
+      form.reset();
        Router.push("/login");
       } else {
         toast.error("Account Creation Failed");
-        const data = await response.json();
-        throw new Error(data.error);
+        throw new Error(" Account Ceation Failed ");
       }
     } catch (error:any) {
-      console.error(error);
+      console.error(error.message);
     }
     
     }
 
   function onSubmit(values:RegisterCredentials) {
-    handleRegister(values)
+    console.log(values)
+    handleRegister(values);
     
   }
 
 
   return (
-    <div  className="
-    
-    flex justify-center items-center flex-col  shadow-md dark:bg-neutral-950  
+    <div  className=" flex justify-center items-center flex-col  shadow-md dark:bg-neutral-950  
     border p-8 rounded-md border-neutral-300 w-[760px]  bg-neutral-100 ">
-      <h4 className="text-black text-center  text-3xl font-sans underline font-bold my-2  dark:text-neutral-100  ">Sign up </h4>
+      <h4 className="text-black text-center my-2  text-3xl font-sans  font-bold   dark:text-gray-100  ">Create an Account  </h4>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 font-roboto w-full ">
+        <FormField
+            control={form.control}
+            name="userName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-neutral-900 dark:text-neutral-300 text-xl ">UserName</FormLabel>
+                <FormControl>
+                  <Input
+                    className="w-full bg-neutral-200  text-xl   border-transparent focus:ring-0  py-3 px-4 h-12
+                    focus:ring-neutral-200 focus:ring-opacity-40 focus:ring-offset-0 
+                      focus:border-neutral-300 focus:ring-offset-white
+                    border-[1px] text-neutral-900"
+                    placeholder="Enter your Email"
+                    {...field}
+                  />
+                </FormControl>
+
+                <FormMessage /> 
+              </FormItem>
+            )}
+          />
+
+
+
+
           <FormField
             control={form.control}
             name="email"
@@ -100,11 +129,11 @@ const RegisterForm = () => {
                 <FormLabel className="text-neutral-700 dark:text-neutral-300 text-xl">Password</FormLabel>
                 <FormControl>
                   <Input
-                     className="w-full bg-neutral-200  text-xl   border-transparent focus:ring-0  py-3 px-4  h-12
-                     focus:ring-neutral-200 focus:ring-opacity-40 focus:ring-offset-0 
-                     focus:border-neutral-300 focus:ring-offset-white
-                     border-[1px] text-neutral-900"
-                    placeholder="Enter your Password"
+                      className="w-full bg-neutral-200  text-xl   border-transparent focus:ring-0  py-3 px-4  h-12
+                      focus:ring-neutral-200 focus:ring-opacity-40 focus:ring-offset-0 
+                      focus:border-neutral-300 focus:ring-offset-white
+                      border-[1px] text-neutral-900"
+                      placeholder="Enter your Password"
                     {...field}
                   />
                 </FormControl>
