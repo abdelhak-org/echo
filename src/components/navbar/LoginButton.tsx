@@ -13,7 +13,7 @@ const LoginButton = () => {
 
   if (status === "authenticated") {
     return( <Button 
-    className=" font-bold text-neutral-200 text-[16px]"
+    className=" font-bold text-neutral-200 text-[16px] cursor-pointer"
     variant={"link"}  onClick={logOut}>
       Log Out 
     </Button>);
@@ -21,7 +21,7 @@ const LoginButton = () => {
   }
   return (
   <Button variant={"link"} 
-  className=" font-bold text-neutral-200 text-[16px]
+  className=" font-bold text-neutral-200 text-[16px] cursor-pointer
   "
   onClick={()=> Router.push("/login")}>Log In</Button>
   );

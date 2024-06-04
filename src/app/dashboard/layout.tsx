@@ -3,7 +3,7 @@
 import ControllMenu from "@/components/dashboard/ControllMenu";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { Loading } from "@/components/dashboard/Loading";
+import  Loading  from "../../components/dashboard/Loading";
 
 
 

@@ -12,7 +12,7 @@ interface Session {
 export const authOptions:AuthOptions = {
 
   callbacks: {
-    async jwt({ token, user }: { token: User; user: User }){
+    async jwt({ token, user  } : { token: User; user: User  }){
       if (user) {
         token.email = user.email;
         token.userId = user.userId;
@@ -21,12 +21,17 @@ export const authOptions:AuthOptions = {
       
       
       }
+    
       console.log("token ...nextauth ",token);
       return token;
     },
-    async session ({ session, token }:{session:Session, token:User}) {
+    async session ({ session, token , trigger }:{session:Session, token:User ,trigger:string}) {
       if(!session.user) {
         return session
+      }
+      if (trigger === "update" && session?.user ) {
+        // Note, that `session` can be any arbitrary object, remember to validate it!
+        session.user.src = "";
       }
       if (token) {
             session.user.email  = token.email;

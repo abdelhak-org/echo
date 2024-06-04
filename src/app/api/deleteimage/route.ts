@@ -1,10 +1,9 @@
 import clientPromise from "@/lib/mongodb";
-
-export async function PUT(req: Request) {
-    const { url  ,userId} = await req.json();
-    console.log("URL",url)
-    console.log("USERID",userId)
+import cloudinary from 'cloudinary';
+export async function DELETE(req: Request) {
+    const {userId  } = await req.json();
     try {
+      
         const client = await clientPromise;
         const db = await client.db("echodb");
         const users =await   db.collection("users");
@@ -12,7 +11,7 @@ export async function PUT(req: Request) {
         if (!user) {
             return Response.json({error: "User not found"});
         }
-        await users.updateOne({ userId }, { $set: {src: url } });
+        await users.updateOne({ userId }, { $set: {src: "" } });
         return Response.json({ message: "User updated successfully" });
 
     } catch (error:any) {
