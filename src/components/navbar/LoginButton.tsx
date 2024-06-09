@@ -21,7 +21,7 @@ const LoginButton = () => {
   }
   return (
   <Button variant={"link"} 
-  className=" font-bold text-neutral-200 text-[16px] cursor-pointer
+  className=" font-bold text-neutral-700 text-[16px] cursor-pointer
   "
   onClick={()=> Router.push("/login")}>Log In</Button>
   );

@@ -1,24 +1,27 @@
-import Link from "next/link";
+"use client";
+import React, { useState } from "react";
 import { ModeToggle } from "../ModeToggle";
 import LoginButton from "./LoginButton";
 import SignUpButton from "./SignUpButton";
-import logo from "../../../public/logo.webp";
-import Image from "next/image";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <nav className="w-full h-[55px] bg-neutral-950 text-white z-50">
-      <div className="container w-full h-full mx-auto flex justify-between items-center">
-        <Link href='/' suppressHydrationWarning  >
-        <h3 className="font-bold tracking-widest text-2xl cursor-pointer font-mono">
+    <nav className=" flex  justify-center items-center  w-screen  bg-white shadow-md rounded-md  h-16  z-50 font-sans">
+      <div className="max-w-[1534px] flex w-full justify-between px-8   ">
+        <Link href="/">
+
+        <h3 className=" hidden md:block px-8 py-2 font-semibold ">
           Echo Blog
         </h3>
         
         </Link>
-        <ModeToggle />
-          <div className="flex space-x-4 items-center">
-          <SignUpButton />
-          <LoginButton />
+        
+        <ModeToggle/>
+
+        <div className=" items-center justify-evenly font-semibold flex space-x-2 flex-row">
+          <SignUpButton/>
+          <LoginButton/>
         </div>
       </div>
     </nav>

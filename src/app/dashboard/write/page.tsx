@@ -16,29 +16,33 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import Tiptap from "@/components/tiptap/Tiptap";
+import { getServerSession } from "next-auth";
+import { useSession } from "next-auth/react";
 
 const formSchema = z.object({
+  userId :z.string() ,
   title: z.string(),
   description: z.string(),
   content: z.string(),
-  createdAt: z.string(),
 });
 
-export type RegisterCredentials = z.infer<typeof formSchema>;
+export type   postSchema  = z.infer<typeof formSchema>;
 
 const page = () => {
+
+  const {data:session , status } =  useSession()
   const Router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     defaultValues: {
+      userId : "" ,
       title: "",
       description: "",
       content: "",
-      createdAt: new Date().toString(),
     },
     resolver: zodResolver(formSchema),
   });
 
-  const handlePost = async (data: RegisterCredentials) => {
+  const handlePost = async (data: postSchema  ) => {
     try {
       const response = await fetch("/api/posts", {
         method: "POST",
@@ -59,10 +63,12 @@ const page = () => {
     }
   };
 
-  async function submitHandler(values: RegisterCredentials) {
+  async function submitHandler(values: postSchema) {
     try {
-      const res = await handlePost(values);
-      console.log(res);
+      if (!session) throw new Error("user must be loged in  in ") ;
+  
+      const postData = {...values , userId:session?.user?.userId}
+            await handlePost(postData);
     } catch (error) {
       console.error(error);
     }
@@ -161,6 +167,7 @@ const page = () => {
           </div>
         </form>
       </Form>
+      <ToastContainer style={{position:"absolute" , right:"16px"}}/>
     </div>
   );
 };

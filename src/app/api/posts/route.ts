@@ -7,8 +7,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 // zod schema for the post
 const postSchema = z.object({
+  userId: z.string(),
   title: z.string().min(5),
-  user: z.object({}),
   description: z.string().min(10),
   content: z.string().min(10),
   createdAt: z.string().optional(),
@@ -21,8 +21,8 @@ let posts: Posts | any;
 
 /// api to get all posts
 export async function GET(_req: Request) {
-  const session = await getServerSession( authOptions);
-console.log("Session===========", session)
+//  const session = await getServerSession( authOptions);
+
   try {
     client = await clientPromise;
     db = client.db("echodb");
@@ -42,11 +42,7 @@ console.log("Session===========", session)
 //################ api to add a post ############
 
 export async function POST(req: Request) {
-  const session = await getServerSession( authOptions);
-  
-  if (!session) {
-    throw new Error("Unauthorized");
-   }
+ // const session = await getServerSession( authOptions);
 
   try {
     // connect to the database
@@ -55,11 +51,13 @@ export async function POST(req: Request) {
     posts = db.collection("posts");
     
    const data = await req.json();
-    const parsedData = postSchema.safeParse(data);
-    if (!parsedData.success) {
-      throw new Error("Invalid Data");
-    }
-    await posts.insertOne({...parsedData.data , user: session?.user});
+   const parsedData = postSchema.safeParse(data);
+   console.log("parsedData ==>",parsedData)
+   if (!parsedData.success) {
+     throw new Error("Invalid Data");
+   }
+   console.log("parsed data #####" , parsedData.data)
+    await posts.insertOne(parsedData.data );
     //return Response
     return Response.json({ message: "Post Added Successfully" });
   } catch (error: any) {

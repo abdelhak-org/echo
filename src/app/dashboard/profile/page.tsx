@@ -41,19 +41,23 @@ const Page = () => {
     return <ImageUploader setPublicId={setPublicId} session={session} />;
   }
   return (
-    <div className="text-center text-2xl font-semibold mt-4 mx-auto border p-4 relative shadow-md rounded-md">
+    <div className="w-full h-full py-24 ">
+
+    <div className=" w-60 h-60  text-center text-2xl font-semibold  mx-auto  p-4 relative border border-neutral-500/40
+     shadow-md rounded-md   ">
       <Image
         src={imageUrl}
         width={100}
         height={100}
         alt="profile"
-        className="rounded-full w-40 h-40"
+        className="w-full h-full w-45 h-45 rounded-full shadow-md border border-blue-600"
       />
 
       <FaRegEdit
-      className="absolute bottom-1 right-1 text-2xl cursor-pointer text-neutral-600"
+      className="absolute bottom-1 right-1 text-2xl cursor-pointer text-blue-600"
       onClick={removeImage} />
     </div>
+      </div>
   );
 };
 

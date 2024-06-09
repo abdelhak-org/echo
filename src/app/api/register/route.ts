@@ -16,7 +16,6 @@ let db: any;
 let users;
 // GET /api/register
 
-
 // POST /api/register
 export async function POST(req: Request) {
   try {
