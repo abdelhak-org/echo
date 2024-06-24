@@ -7,11 +7,11 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <nav className=" flex  justify-center items-center  w-screen  bg-white shadow-md rounded-md  h-16  z-50 font-sans">
+    <nav className=" flex  justify-center items-center  w-screen  bg-white shadow-md rounded-md  h-16  z-50 font-sans dark:bg-transparent">
       <div className="max-w-[1534px] flex w-full justify-between px-8   ">
         <Link href="/">
 
-        <h3 className=" hidden md:block px-8 py-2 font-semibold ">
+        <h3 className=" hidden md:block px-8 py-2 font-semibold dark:text-white ">
           Echo Blog
         </h3>
         

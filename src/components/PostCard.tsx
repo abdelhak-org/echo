@@ -34,19 +34,19 @@ const PostCard = ({
 }: Post) => {
   return (
     <div
-      className="w-full max-w-[1534px]  md:h-[270px] flex flex-col  md:flex-row  border overflow-hidden
-     border-neutral-200 rounded-md shadow-md my-4 "
+      className="w-full max-w-[1534px]  md:h-[270px] flex flex-col  md:flex-row  border overflow-hidden  dark:bg-neutral-900
+     border-neutral-700 rounded-md shadow-lg my-4 "
     >
-      <div className="w.full  md:w-1/5 h-full overflow-hidden rounded-md ">
+      <div className="w.full  md:w-1/5 h-full overflow-hidden rounded-md dark:bg-neutral-900">
         <img
           src="https://res.cloudinary.com/drxurev4o/image/upload/v1717090608/profile/mvvhhenx1nsooor4lhs7.jpg"
           alt="cardImg"
           className="w-full h-full object-cover  rounded-md"
         />
       </div>
-      <Card className="w-full md:w-4/5 flex flex-col justify-between border-0 ">
+      <Card className="w-full md:w-4/5 flex flex-col justify-between border-0  dark:bg-neutral-900  ">
         <CardHeader className="">
-          <CardTitle className="font-sans font-bold text-[18px] tracking-wide text-neutral-950 ">
+          <CardTitle className="font-sans font-bold text-[18px] tracking-wide text-neutral-950 dark:text-neutral-200">
             <Link href={`http://localhost:3000/posts/${id}`}>{title}</Link>
           </CardTitle>
           <CardDescription className="">
@@ -59,7 +59,7 @@ const PostCard = ({
           dangerouslySetInnerHTML={{
             __html: content.substring(0, 400) + "...",
           }}
-          className="text-[14px] w-full  "
+          className="text-[14px] w-full dark:text-neutral-300  "
         />
 
         <CardFooter className=" flex space-x-4">

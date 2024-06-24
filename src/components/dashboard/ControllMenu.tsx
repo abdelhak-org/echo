@@ -3,7 +3,7 @@ import { MdOutlineDashboard } from "react-icons/md";
 import { AiOutlineProfile } from "react-icons/ai";
 import Link from "next/link";
 import { FaHome } from "react-icons/fa";
-import { SiWritedotas , SiGoogleanalytics } from "react-icons/si";
+import { SiWritedotas, SiGoogleanalytics } from "react-icons/si";
 import { IoSettingsOutline } from "react-icons/io5";
 import { MdOutlineEmail } from "react-icons/md";
 
@@ -20,7 +20,7 @@ const ControllMenu = () => {
       link: "/dashboard/write",
     },
     {
-      icon: <IoSettingsOutline  size={22}/>,
+      icon: <IoSettingsOutline size={22} />,
       title: "Settings",
       link: "/dashboard/setting",
     },
@@ -34,27 +34,27 @@ const ControllMenu = () => {
       title: "Inbox",
       link: "/dashboard/inbox",
     },
-  
   ];
   return (
     <aside className="w-full   duration-200 transition-all  px-2  max-w-[260px] min-w-[220px] grow  rounded-md border py-8 text-left md:px-4 bg-neutral-200 m-2 z-50">
-        <div className="bg-neutral-950 px-2 py-3 rounded text-white flex items-center space-x-2">
-          <FaHome size={24} />
-          <h3 className="font-semibold ">Dashboard</h3>
-        </div>
+      <div className="bg-neutral-950 px-2 py-3 rounded text-white flex items-center space-x-2">
+        <FaHome size={24} />
+        <h3 className="font-semibold ">Dashboard</h3>
+      </div>
       <ul>
         {items.map((item, index) => {
           return (
-            <li 
-            key={index}
-            className="px-2 py-3  hover:bg-neutral-950 hover:text-white rounded-md cursor-pointer my-2 flex items-center space-x-4  ">
-              {item.icon}
-              <Link
-              className="   "
-               key={index} href={item.link}>
-                {item.title}
-              </Link>
-            </li>
+            <Link key={index} href={item.link}>
+              <li
+                key={index}
+                className="px-2 py-3  hover:bg-neutral-950 hover:text-white rounded-md cursor-pointer my-2 flex items-center space-x-4  "
+              >
+                <p>{item.icon} </p>
+                <span className="">
+                 {item.title}
+                </span> 
+              </li>
+            </Link>
           );
         })}
       </ul>
