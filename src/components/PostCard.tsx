@@ -34,17 +34,17 @@ const PostCard = ({
 }: Post) => {
   return (
     <div
-      className="w-full max-w-[1534px]  md:h-[270px] flex flex-col  md:flex-row  border overflow-hidden  dark:bg-neutral-900
-     border-neutral-700 rounded-md shadow-lg my-4 "
+      className="w-full max-w-[1534px]  md:h-[270px] flex flex-col  md:flex-row   overflow-hidden  dark:bg-neutral-900
+      rounded-md shadow-lg my-4 space-x-4"
     >
-      <div className="w.full  md:w-1/5 h-full overflow-hidden rounded-md dark:bg-neutral-900">
+      <div className="w-full  md:w-1/5 h-full overflow-hidden rounded-md dark:bg-neutral-900 ">
         <img
-          src="https://res.cloudinary.com/drxurev4o/image/upload/v1717090608/profile/mvvhhenx1nsooor4lhs7.jpg"
+          src="https://res.cloudinary.com/drxurev4o/image/upload/v1719504845/mobile-info/photo-1718907008648-aa9801d2b5e1_eloejh.jpg"
           alt="cardImg"
           className="w-full h-full object-cover  rounded-md"
         />
       </div>
-      <Card className="w-full md:w-4/5 flex flex-col justify-between border-0  dark:bg-neutral-900  ">
+      <Card className="w-full md:w-4/5 flex flex-col justify-between border  dark:bg-neutral-900  ">
         <CardHeader className="">
           <CardTitle className="font-sans font-bold text-[18px] tracking-wide text-neutral-950 dark:text-neutral-200">
             <Link href={`http://localhost:3000/posts/${id}`}>{title}</Link>
