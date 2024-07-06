@@ -1,15 +1,10 @@
 import { ObjectId } from "mongodb";
 
+
 export interface Post {
     userId?:number | string;
     _id?:any
-    user  :{
-        userId:number | string;
-        src?: string;
-        userName: string;
-        email: string;
-    
-    } ,
+    id:number | string;  
     title: string;
     description?: string;
     content: string;
@@ -17,7 +12,6 @@ export interface Post {
     updatedAt?: string;
     comments?: Comment[];
     likes?: number;
-    dislikes?: number;
 
 }
 export interface Comment {
@@ -27,7 +21,6 @@ export interface Comment {
     createdAt?: string;
     updatedAt?: string;
     likes?: number;
-    dislikes?: number;
 
 }
 
@@ -41,6 +34,8 @@ export interface User {
     src?: string;
     userName: string;
     email: string;
+    password?: string;
+    image?: string;
 }
 
 export type Users  =  User[];

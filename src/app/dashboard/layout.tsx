@@ -15,21 +15,11 @@ export default function DashboardLayout({
 }) {
   const { data: session, status  , update} :{data:any , status :string , update:()=> void  }= useSession();
   const router = useRouter();
-  const loading = status === 'loading';
-  const authenticated = status === 'authenticated';
   const unauthenticated = status === 'unauthenticated';
-    if(loading) {
-      return (
-              <div className="w-full grow text-center flex justify-center items-center">
-                <Loading />
-                
-              </div>
-              )
-    }
-  
+   
     if (unauthenticated ) router.push('/auth/login');
   
-    if(authenticated){
+    
 
   return (
       <section className="container  grow  mx-auto p-4 border flex   roundeded-md  " >
@@ -47,4 +37,4 @@ export default function DashboardLayout({
 
   );
 } ;
-}
+
