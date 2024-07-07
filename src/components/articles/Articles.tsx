@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const Articles = async () => {
   const posts = await getPosts();
-
+  
   return (
     <section className="max-w-[1080px] w-full mx-auto pt-0 px-2 relative z-50">
       <div className="mx-auto max-w-2xl lg:text-center py-12 flex flex-col">
@@ -33,7 +33,6 @@ const Articles = async () => {
             content={post.content}
             createdAt={post.createdAt}
             likes={post.likes}
-            dislikes={post.dislikes}
           />
         ))}
       </div>

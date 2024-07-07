@@ -1,4 +1,3 @@
-import { url } from "inspector";
 import cloudinary from "../../cloudinary.config";
 
 export async function uploadImg(formData: FormData) {

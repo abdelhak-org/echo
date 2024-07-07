@@ -1,7 +1,27 @@
 import React from 'react'
+import  {useState , useEffect} from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
 const Pagination = () => {
+   const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(5);
+    const [totalPosts, setTotalPosts] = useState(30);
+    const [posts, setPosts] = useState([]);
+    useEffect(()=>{
+      const fetchPosts = async () => {
+        try {
+          const response = await fetch(`http://localhost:3000/api/search?page=${currentPage}&&limit=${totalPages}`);
+          const data = await response.json();
+          setPosts(data.posts);
+          setTotalPosts(data.totalPosts);
+          console.log(data.posts)
+        } catch (error:any) {
+          console.log(error.message)
+        }
+      };
+
+       
+    },[])
   return (
     <div className="  flex items-center justify-between border-t mt-12 border-neutral-200 bg-white px-4 py-3 sm:px-6">
     <div className="flex flex-1 justify-between sm:hidden">
@@ -22,8 +42,8 @@ const Pagination = () => {
       <div>
         <p className="text-sm text-neutral-700">
           Showing <span className="font-medium">1</span> to{" "}
-          <span className="font-medium">10</span> of{" "}
-          <span className="font-medium">97</span> results
+          <span className="font-medium">5</span> of{" "}
+          <span className="font-medium">100</span> results
         </p>
       </div>
       <div>
@@ -31,6 +51,7 @@ const Pagination = () => {
           className="isolate inline-flex -space-x-px rounded-md shadow-sm"
           aria-label="Pagination"
         >
+        
           <a
             href="#"
             className="relative inline-flex items-center rounded-l-md px-2 py-2 text-neutral-400 ring-1 ring-inset ring-neutral-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"

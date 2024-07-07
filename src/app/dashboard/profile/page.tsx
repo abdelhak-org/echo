@@ -21,7 +21,7 @@ const Page = () => {
 
   const { userId , src } = session.user;
   return (
-    <div className="w-full h-full py-24 flex flex-col items-center justify-center bg-neutral-500 rounded-md">
+    <div className="w-full h-full py-24 flex flex-col items-center justify-center bg-neutral-200 rounded-md">
       {src ? (
         <ProfileCard url={src}  />
       ) : (

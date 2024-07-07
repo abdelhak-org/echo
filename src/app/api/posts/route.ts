@@ -13,7 +13,6 @@ const postSchema = z.object({
   content: z.string().min(10),
   createdAt: z.string().optional(),
   likes: z.number().optional(),
-  dislikes: z.number().optional(),
 });
 let client;
 let db: Db;
