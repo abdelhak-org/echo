@@ -42,13 +42,13 @@ const LoginForm: NextPage = () => {
         password: values.password,
         redirect: false,
       });
-      if (res  ) {
-          toast.success("LOGGED IN");
-          Router.push("/dashboard/profile");
+      if ( res    ) {
+        toast.success("LOGGED IN" );
+        Router.push("/dashboard/profile");
       } else {
-        toast.error("INVALID CREDENTIALS");
-      }
-    } catch (error: any) {
+          toast.error("INVALID CREDENTIALS");
+        }
+      } catch (error: any) {
       toast.error("SERVER ERROR");
     }
   };

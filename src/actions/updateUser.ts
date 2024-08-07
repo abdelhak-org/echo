@@ -10,7 +10,10 @@ export async function updateUser(userId:String ,  url:String , public_id:String)
             return Response.json({error: "User not found"});
         }
         await users.updateOne({ userId  }, { $set: {src: url ,image:public_id } });
-        return Response.json({ message: "User updated successfully" });
+        const newuser = await users.findOne({ userId :userId });
+
+        console.log("user is updated ", newuser )
+        return Response.json({ message: "User updated successfully" , user:newuser});
 
     } catch (error:any) {
         

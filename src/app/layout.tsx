@@ -1,7 +1,7 @@
   'use client'
 
   import { ThemeProvider } from "@/components/theme-provider"
-  //import type { Metadata } from "next";
+  import type { Metadata } from "next";
 
   import "./globals.css";
   import Navbar from "@/components/navbar/Navbar";
@@ -13,10 +13,10 @@
   export default function RootLayout({
     children ,  params: { session , ...params },
 
-  }: Readonly<{
+  }: Readonly <{
     children: React.ReactNode;
     params:{ session: any}
-  }>) {
+  }> ) {
     return (
         <html lang="en" className={`${inter.className} antialiased`}>
         <body className="w-screen  min-h-screen flex flex-col" > 

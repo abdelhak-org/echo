@@ -18,9 +18,8 @@ export default function DashboardLayout({
   const loading = status === 'loading';
   const unauthenticated = status === 'unauthenticated';
     
+    if (!session || unauthenticated ) router.push('/login');
     if (loading) return <Loading />;
-    if (unauthenticated ) router.push('/login');
-    if (!session) return null;
     
 
   return (

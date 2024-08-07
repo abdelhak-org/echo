@@ -8,6 +8,8 @@ export default  function Loading() {
       <div className="space-y-2">
         <Skeleton className="h-4 w-[450px] bg-neutral-300 " />
         <Skeleton className="h-4 w-[450px] bg-neutral-300 " />
+        <Skeleton className="h-4 w-[450px] bg-neutral-300 " />
+
       </div>
     </div>
   )

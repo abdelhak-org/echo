@@ -1,29 +1,21 @@
-"use client";
 
-import { useState, useEffect } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useParams } from "next/navigation";
 import { Post } from "@/types/interfaces"; // Import the 'Post' type from the appropriate module
-import Image from "next/image";
 
-const PostView = () => {
-  const params = useParams();
-
-  const [post, setPost] = useState<Post>();
+const PostView = async ({ params }: { params: { id: string } }) => {
   const fetchPost = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/api/posts/${params?.id}`);
-      const data = await res.json();
-      console.log("data =>", data);
-      setPost(data.post);
+  
+        const res = await fetch(`http://localhost:3000/api/posts/${params?.id}`);
+        const data = await  res.json();
+        return data.post;
+      
     } catch (error: any) {
       console.error(error);
     }
   };
 
-  useEffect(() => {
-    fetchPost();
-  }, [params]);
+   const post = await fetchPost();
 
   return (
     <article className="w-full grow px-4 py-8">
@@ -55,8 +47,9 @@ const PostView = () => {
 
       <p
         className="text-[15px] index-2 font-normal text-neutral-900/80 mx-auto max-w-[800px] text-left font-sans"
-        dangerouslySetInnerHTML={{ __html: post?.content }}
-      ></p>
+        dangerouslySetInnerHTML={{__html : post?.content }}
+      >
+      </p>
     </article>
   );
 };

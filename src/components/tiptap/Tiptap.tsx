@@ -20,7 +20,6 @@ const Tiptap = ({ content, handleContentChange }:TiptapProps) => {
     onUpdate: ({ editor }) => {
       handleContentChange(editor.getHTML());
       const jsonFile = editor.getJSON() ;
-      console.log(jsonFile , "==> json FILE")
     },
   });
   return (

@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -16,25 +15,29 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import Tiptap from "@/components/tiptap/Tiptap";
-import { getServerSession } from "next-auth";
 import { useSession } from "next-auth/react";
 
 const formSchema = z.object({
-  userId :z.string() ,
+  userId: z.string(),
   title: z.string(),
   description: z.string(),
   content: z.string(),
 });
 
-export type   postSchema  = z.infer<typeof formSchema>;
+export type postSchema = z.infer<typeof formSchema>;
+interface User {
+  name?: string | null | undefined;
+  email?: string | null | undefined;
+  image?: string | null | undefined;
+  userId: string | null | undefined;
+}
 
 const page = () => {
-
-  const {data:session , status } =  useSession()
+  const { data: session, status } = useSession();
   const Router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     defaultValues: {
-      userId : "" ,
+      userId: "",
       title: "",
       description: "",
       content: "",
@@ -42,9 +45,9 @@ const page = () => {
     resolver: zodResolver(formSchema),
   });
 
-  const handlePost = async (data: postSchema  ) => {
+  const handlePost = async (data: postSchema) => {
     try {
-      const response = await fetch("/api/posts", {
+      const response = await fetch("http://localhost:3000/api/posts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -64,12 +67,13 @@ const page = () => {
   };
 
   async function submitHandler(values: postSchema) {
+    const user = session?.user as User;
     try {
-      if (!session) throw new Error("user must be loged in  in ") ;
-  
-      const postData = {...values , userId:session?.user?.userId }
-            await handlePost(postData);
-            form.reset();
+      if (!session) throw new Error("user must be loged in ");
+
+      const postData = { ...values, userId: user.userId as string };
+      await handlePost(postData);
+      form.reset();
     } catch (error) {
       console.error(error);
     }
@@ -80,7 +84,7 @@ const page = () => {
       className="  flex space-y-4 flex-col  shadow-md dark:bg-gray-950 
     border p-4 rounded-md border-gray-300  "
     >
-      <h4 className="text-black text-center  text-3xl font-sans underline font-bold   dark:text-gray-100 ">
+      <h4 className="text-black text-center  text-3xl font-sans underline font-semibold  dark:text-gray-100 ">
         Write
       </h4>
       <Form {...form}>
@@ -122,9 +126,9 @@ const page = () => {
                   </FormLabel>
                   <FormControl>
                     <Input
-                      className="w-full bg-white  text-xl   border border-gray-300 focus:ring-0  py-3 px-4  h-12
-                     focus:ring-gray-200 focus:ring-opacity-40 focus:ring-offset-0 
-                     focus:border-gray-300 focus:ring-offset-white
+                        className="w-full bg-white  text-xl   border border-gray-300 focus:ring-0  py-3 px-4  h-12
+                      focus:ring-gray-200 focus:ring-opacity-40 focus:ring-offset-0 
+                      focus:border-gray-300 focus:ring-offset-white
                       text-gray-900"
                       placeholder=" Description ..."
                       {...field}
@@ -135,7 +139,7 @@ const page = () => {
               );
             }}
           />
-           
+
           <FormField
             control={form.control}
             name="content"
@@ -169,10 +173,9 @@ const page = () => {
           </div>
         </form>
       </Form>
-      <ToastContainer style={{position:"absolute" , right:"16px"}}/>
+      <ToastContainer style={{ position: "absolute", right: "16px" }} />
     </div>
   );
 };
 
 export default page;
-

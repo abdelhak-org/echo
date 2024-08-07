@@ -5,7 +5,6 @@ import { Edit3Icon } from "lucide-react";
 import DefaultProfileCard from "./DefaultProfileCard";
 import { useSession } from "next-auth/react";
 const EditButton = () => {
-  const [showInput, setShowInput] = React.useState<boolean>(false);
   const { data: session } = useSession();
   const id = session?.user?.userId as string  ;
   const public_id = session?.user?.image as string ;

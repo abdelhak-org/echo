@@ -1,4 +1,7 @@
-export  const   updateUser = async (url ,userId) => {
+
+
+
+export  const   updateUser = async (url:string ,userId:string) => {
     const res = await fetch("/api/updateuser", {
       method: "PUT",
       headers: {
@@ -7,8 +10,7 @@ export  const   updateUser = async (url ,userId) => {
       body: JSON.stringify({ url , userId: session?.user?.userId}),
     });
     if (res.ok) {
-      signOut();
-      router.push("/login");
+     // update user
     }
     
   }

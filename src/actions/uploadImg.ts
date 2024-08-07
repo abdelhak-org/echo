@@ -12,10 +12,9 @@ export async function uploadImg(formData: FormData) {
           return;
         }
         resolve(result);
-        console.log(result?.secure_url);
       }).end(buffer);
     });
-
+    return  res
   } catch (error:any) {
       return Response.json({ error: error.message });
   }

@@ -4,24 +4,37 @@ import clientPromise from "@/lib/mongodb";
 import bcrypt from "bcrypt";
 import { AuthOptions } from "@/types/interfaces";
 import { User } from "@/types/interfaces";
+import { userAgent } from "next/server";
+import { userInfo } from "os";
 
 interface Session {
   user: User;
-  status: boolean;
+  status: string;
 }
 
 export const authOptions: AuthOptions = {
   callbacks: {
-    async jwt({ token, user }: { token: User; user: User }) {
+
+    // jwt function
+    async jwt({ token, user ,trigger, session }: { token: any; user: User  , trigger :any ,session:any}) {
       if (user) {
+      
         token.userId = user.userId;
         token.userName = user.userName;
         token.email = user.email;
         token.image = user.image;
         token.src = user.src;
+      
       }
-      return token;
+      if (trigger === "update" && session) {
+        // Note, that `session` can be any arbitrary object, remember to validate it!
+        token.src = session.src
+      }
+      console.log(token , "token is updated")
+      return token
     },
+
+    // session 
     async session({
       session,
       token,
@@ -34,10 +47,7 @@ export const authOptions: AuthOptions = {
       if (!session.user) {
         return session;
       }
-      if (trigger === "update" && session?.user) {
-        // Note, that `session` can be any arbitrary object, remember to validate it!
-        session.user.src = "";
-      }
+     
       if (token) {
         session.user.userId = token.userId;
         session.user.userName = token.userName;
@@ -56,7 +66,7 @@ export const authOptions: AuthOptions = {
     CredentialsProvider({
       name: "credentials",
       credentials: {},
-      async authorize(credentials: User) {
+      async authorize (credentials: User ) {
         try {
           const client = await clientPromise;
           const db = client.db("echodb");
@@ -70,9 +80,11 @@ export const authOptions: AuthOptions = {
             user.password
           );
           if (!isValid) {
-            throw new Error("Invalid password");
+           return Promise.resolve(null)
           }
-          return user;
+          
+          return Promise.resolve(user);
+        
         } catch (error: any) {
           Response.json({ message: error.message });
         }
@@ -85,4 +97,4 @@ export const authOptions: AuthOptions = {
 };
 
 const handler = NextAuth(authOptions as any);
-export { handler as GET, handler as POST };
+export { handler as GET, handler as POST  };

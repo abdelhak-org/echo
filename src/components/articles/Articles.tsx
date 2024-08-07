@@ -8,7 +8,7 @@ const Articles = async () => {
   const posts = await getPosts();
   
   return (
-    <section className="max-w-[1080px] w-full mx-auto pt-0 px-2 relative z-50">
+    <section className="max-w-[1080px] w-full mx-auto pt-0 px-2 py-8 relative z-50">
       <div className="mx-auto max-w-2xl lg:text-center py-12 flex flex-col">
         <Image
           src={logo}
@@ -23,7 +23,7 @@ const Articles = async () => {
         </h2>
       </div>
 
-      <div className="w-full h-fit">
+      <div className="w-full h-fit py-4">
         {posts?.map((post: Post, index: number) => (
           <PostCard
             key={index}
