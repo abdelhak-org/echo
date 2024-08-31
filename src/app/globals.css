@@ -86,16 +86,8 @@
   }
 }
 
-p{
-  font-size:  15px;
-  text-indent: 8px;
-  margin-top: 8px;
-}
-h3 {
-  font-family: 18px ;
-  font-weight: bold ;
-
-}
-li {
-  font-weight: 600;
+.tiptap p {
+  font-size: 15px;
+  text-indent: 4px;
+ 
 }

@@ -27,9 +27,9 @@ const {  data:session  , status , update }  = useSession()
 
 
 
-  const { userId , src } = user;
+  const { userId , src , image } = user;
   console.log(user , "[user is :]")
-  console.log(url ,"[url is : ]")
+
   return (
     <div className="w-full h-full py-12 flex flex-col items-center justify-center rounded-md">
           
@@ -38,6 +38,7 @@ const {  data:session  , status , update }  = useSession()
           userId ={userId as string}
           setUrl ={setUrl as ()=> void} 
           update ={update as ()=> void}
+          image = {image as string}
           
           />
           

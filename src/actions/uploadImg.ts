@@ -14,6 +14,7 @@ export async function uploadImg(formData: FormData) {
         resolve(result);
       }).end(buffer);
     });
+
     return  res
   } catch (error:any) {
       return Response.json({ error: error.message });

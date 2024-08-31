@@ -9,7 +9,7 @@ export async function getPosts() {
     client = await clientPromise;
     db = await client.db("echodb");
     const  postsCollection = await  db.collection("posts");
-    const posts:Posts = await postsCollection.find().toArray();
+    const posts:Posts = await postsCollection.find().limit(4).toArray();
     if (!posts ) {
       throw new Error("no posts found")
     }

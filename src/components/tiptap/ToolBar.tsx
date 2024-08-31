@@ -12,6 +12,8 @@ import {
   Undo,
   Redo,
   Code,
+  ImageIcon,
+  PenIcon,
 } from "lucide-react";
 
 const ToolBar = ({
@@ -125,21 +127,9 @@ const ToolBar = ({
               : " text-gray-400"
           }
         >
-          <Quote className="w-5 h-5 " />
+          <Quote className=" w-5 h-5 " />
         </button>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            editor.chain().focus().setCode().run();
-          }}
-          className={
-            editor.isActive("code")
-              ? "bg-gray-700 text-white p-2 rounded-lg"
-              : " text-gray-400"
-          }
-        >
-          <Code className="w-5 h-5 " />
-        </button>
+
         <button
           onClick={(e) => {
             e.preventDefault();
@@ -166,8 +156,36 @@ const ToolBar = ({
         >
           <Redo className="w-5 h-5 " />
         </button>
-      
-     
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            editor.commands.setImage({
+              src: "https://res.cloudinary.com/drxurev4o/image/upload/v1723048633/echo/profile/ddvgzyxovtsxhjztw9bf.jpg",
+              alt: "image title",
+              title: "image title",
+            });
+          }}
+          className={
+            editor.isActive("setimage")
+              ? "bg-gray-700 text-white p-2 rounded-lg"
+              : " text-gray-400"
+          }
+        >
+          <ImageIcon className="w-5 h-5 " />
+        </button>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            editor.commands.setParagraph();
+          }}
+          className={
+            editor.isActive("paragraph")
+              ? "bg-gray-700 text-white p-2 rounded-lg"
+              : " text-gray-400"
+          }
+        >
+          <PenIcon className="w-5 h-5 " />
+        </button>
       </div>
     </BubbleMenu>
   );

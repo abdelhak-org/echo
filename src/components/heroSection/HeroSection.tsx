@@ -9,9 +9,9 @@ const HeroSection = () => {
 
        
   return (
-    <section className="relative  px-6 pt-14  lg:px-8 grow ">
+    <section className="relative  px-6 py-8  lg:px-8 grow border border-transparent border-b-slate-300/50">
  
-    <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+    <div className="mx-auto max-w-2xl py-24 sm:py-48 lg:py-32 ">
       <div className="hidden sm:mb-8 sm:flex sm:justify-center">
         <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-neutral-600 dark:text-neutral-400 ring-1 ring-gray-900/10 hover:ring-neutral-900/20 ">
           Announcing our next round of funding.{' '}
@@ -43,7 +43,6 @@ const HeroSection = () => {
       </div>
     </div>
   
-     <hr className="w-60  h-1 mt-16 mb-8 bg-blue-500/50 dark:bg-neutral-200 mx-auto" />
   </section>
   )
 }

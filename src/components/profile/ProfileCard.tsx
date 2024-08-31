@@ -6,10 +6,11 @@ interface ProfileCardProps {
   url: string;
   userId: string;
   setUrl: () => void;
-  update :()=> void
+  update :()=> void ;
+  image: string
 }
 
-const ProfileCard = ({ url, userId, setUrl  , update}:ProfileCardProps) => {
+const ProfileCard = ({ url, userId, setUrl  , update , image}:ProfileCardProps) => {
 
   const onChangeHandler = async (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
@@ -18,6 +19,8 @@ const ProfileCard = ({ url, userId, setUrl  , update}:ProfileCardProps) => {
     const formData = new FormData();
     formData.append('image', file);
     formData.append('userId', userId || '');
+    formData.append('public_id', image || '');
+
     const res = await fetch(`/api/register/${userId}/uploadimage`, {
       method: 'POST',
       body: formData,
@@ -29,7 +32,7 @@ const ProfileCard = ({ url, userId, setUrl  , update}:ProfileCardProps) => {
   };
 
   return (
-    <div className="w-60 h-60 rounded-full overflow-hidden p-2 bg-neutral-500 relative group flex justify-center items-center">
+    <div className="w-60 h-60 rounded-full overflow-hidden  p-2 border border-gray-300 relative group flex justify-center items-center">
       <Image
         src={url || 'https://res.cloudinary.com/drxurev4o/image/upload/v1720356413/echo/profile/a7o6ebisscvkkzfrmnnu.jpg'}
         alt="profile"
