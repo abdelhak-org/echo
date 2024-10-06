@@ -3,6 +3,7 @@
   import { Post, Posts, Users } from "@/types/interfaces";
   import { z } from "zod";
   import { Db } from "mongodb";
+
   // zod schema for the post
   const postSchema = z.object({
     userId: z.string(),
@@ -11,6 +12,10 @@
     content: z.string().min(10),
     createdAt: z.string().optional(),
     likes: z.number().optional(),
+    author:z.object({
+      name:z.string(),
+      src:z.string()
+    })
   });
   let client;
   let db: Db;
@@ -43,7 +48,7 @@
 
     export async function POST(req: Request) {
     // const session = await getServerSession( authOptions);
-
+    
       try {
         // connect to the database
         client = await clientPromise;
@@ -51,12 +56,11 @@
         posts = db.collection("posts");
         
       const data = await req.json();
+    
       const parsedData = postSchema.safeParse(data);
-      console.log("parsedData ==>",parsedData)
       if (!parsedData.success) {
         throw new Error("Invalid Data");
       }
-      console.log("parsed data #####" , parsedData.data)
         await posts.insertOne(parsedData.data );
         //return Response
         return Response.json({ message: "Post Added Successfully" });

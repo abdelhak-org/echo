@@ -29,9 +29,9 @@ const PostView = async ({ params }: { params: { id: string } }) => {
         </p>
       </div>
 
-      <div className="w-[670px] h-fit mx-auto relative my-4 px-2 flex items-center">
+      <div className="w-[670px] h-fit mx-auto relative  px-2 flex items-center">
         <Avatar className="mr-4">
-          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+          <AvatarImage src={post?.author?.src } alt="@shadcn" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
       </div>

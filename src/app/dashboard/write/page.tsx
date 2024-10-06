@@ -22,6 +22,10 @@ const formSchema = z.object({
   title: z.string(),
   description: z.string(),
   content: z.string(),
+  author:z.object({
+    name:z.string(),
+    src:z.string()
+  })
 });
 
 export type postSchema = z.infer<typeof formSchema>;
@@ -30,6 +34,10 @@ interface User {
   email?: string | null | undefined;
   image?: string | null | undefined;
   userId: string | null | undefined;
+  author:{
+    name:string | null | undefined;
+    src:string | null | undefined;
+  }
 }
 
 const page = () => {
@@ -41,11 +49,16 @@ const page = () => {
       title: "",
       description: "",
       content: "",
+      author:{
+        name:session?.user?.userName as string,
+        src:session.user.src as string 
+      }
     },
     resolver: zodResolver(formSchema),
   });
 
   const handlePost = async (data: postSchema) => {
+    console.log(data , "data ........<<<<<<<<<<<<<")
     try {
       const response = await fetch("http://localhost:3000/api/posts", {
         method: "POST",

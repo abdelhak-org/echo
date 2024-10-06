@@ -12,6 +12,10 @@ export interface Post {
     updatedAt?: string;
     comments?: Comment[];
     likes?: number;
+    author:{
+        name:string;
+        src:string
+    }
 
 }
 export interface Comment {

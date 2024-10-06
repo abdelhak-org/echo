@@ -18,6 +18,7 @@ const PostCard = ({
   content,
   createdAt = new Date().toLocaleString(),
   likes = 10,
+  author
 }: Post) => {
   return (
     <div className="w-full max-w-[1534px] md:min-h-[270px] flex flex-col md:flex-row overflow-hidden dark:bg-neutral-900 rounded-md shadow-lg my-4 space-x-4">
@@ -48,7 +49,7 @@ const PostCard = ({
         <CardFooter className="flex space-x-4">
           <Avatar>
             <AvatarImage
-              src="https://res.cloudinary.com/drxurev4o/image/upload/v1722752117/echo/profile/w5p1s0hj0uqshk5zqlzo.jpg"
+              src={author?.src }
               alt="@shadcn"
             />
             <AvatarFallback>CN</AvatarFallback>
