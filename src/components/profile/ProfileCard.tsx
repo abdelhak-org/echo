@@ -7,10 +7,11 @@ interface ProfileCardProps {
   userId: string;
   setUrl: () => void;
   update :()=> void ;
-  image: string
+  image: string;
+  imgType :string;
 }
 
-const ProfileCard = ({ url, userId, setUrl  , update , image}:ProfileCardProps) => {
+const ProfileCard = ({ url, userId, setUrl  , update , image , imgType}:ProfileCardProps) => {
 
   const onChangeHandler = async (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
@@ -20,6 +21,7 @@ const ProfileCard = ({ url, userId, setUrl  , update , image}:ProfileCardProps) 
     formData.append('image', file);
     formData.append('userId', userId || '');
     formData.append('public_id', image || '');
+    formData.append('imgType', imgType)
 
     const res = await fetch(`/api/register/${userId}/uploadimage`, {
       method: 'POST',

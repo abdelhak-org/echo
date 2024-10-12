@@ -39,6 +39,7 @@ const {  data:session  , status , update }  = useSession()
           setUrl ={setUrl as ()=> void} 
           update ={update as ()=> void}
           image = {image as string}
+          imgType  ="profile"
           
           />
           

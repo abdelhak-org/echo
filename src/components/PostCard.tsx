@@ -40,11 +40,12 @@ const PostCard = ({
         </CardHeader>
         
         <CardContent
-          dangerouslySetInnerHTML={{
-            __html: content.substring(0, 400) + "...",
-          }}
+         
           className="text-[14px] w-full dark:text-neutral-300"
-        />
+        >
+         description
+         
+               </CardContent>
 
         <CardFooter className="flex space-x-4">
           <Avatar>

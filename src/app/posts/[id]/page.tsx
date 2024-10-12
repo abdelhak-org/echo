@@ -47,9 +47,9 @@ const PostView = async ({ params }: { params: { id: string } }) => {
 
       <p
         className="text-[15px] index-2 font-normal text-neutral-900/80 mx-auto max-w-[800px] text-left font-sans"
-        dangerouslySetInnerHTML={{__html : post?.content }}
       >
-      </p>
+          
+        </p>
     </article>
   );
 };

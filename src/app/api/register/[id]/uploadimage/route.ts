@@ -13,6 +13,7 @@ export async function POST(req: Request, res: Response) {
     const formData = await req.formData();
     const userId = formData.get("userId") as String;
     const public_id1 =  formData.get("public_id") as String;
+    const imgType = formData.get("imgType") as string 
         const res = await uploadImg(formData)
         
         if(!res) throw new Error("no Response")
