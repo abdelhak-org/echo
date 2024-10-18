@@ -6,9 +6,8 @@ const SignUpButton = () => {
 
  // if (status === "loading") return (<p className="text-xs font-sans "> Loading ...</p>);
   if (status === "authenticated") {
-    console.log(session.user?.userName);
     return (
-    <p className="text-xs font-sans "> Welcome ! {session.user?.userName}</p>
+    <p className="text-xs font-sans mr-4 "> Welcome ! {session.user?.userName}</p>
   );
 
   }

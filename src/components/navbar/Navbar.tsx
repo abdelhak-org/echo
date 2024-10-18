@@ -5,6 +5,7 @@ import LoginButton from "./LoginButton";
 import SignUpButton from "./SignUpButton";
 import Link from "next/link";
 import { Button } from "../ui/button";
+import ProfileMenu from "./ProfileMenu";
 const Navbar = () => {
   return (
     <nav className=" flex   justify-center items-center  w-screen  bg-white shadow-md rounded-md  h-16  z-50 font-sans dark:bg-transparent">
@@ -17,7 +18,7 @@ const Navbar = () => {
         
         <ModeToggle />
         
-        <div className=" items-center justify-evenly font-semibold flex space-x-2 flex-row">
+        <div className=" items-center justify-evenly font-semibold flex space-x-4 flex-row">
           <Link href="/posts">
             <Button
               className="text-neutral-500 font-sans text-[14px]   "
@@ -27,7 +28,7 @@ const Navbar = () => {
             </Button>
           </Link>
           <SignUpButton />
-          <LoginButton />
+          <ProfileMenu/>
         </div>
       </div>
     </nav>

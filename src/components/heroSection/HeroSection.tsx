@@ -12,17 +12,10 @@ const HeroSection = () => {
     <section className="relative  px-6 py-8  lg:px-8 grow border border-transparent border-b-slate-300/50">
  
     <div className="mx-auto max-w-2xl py-24 sm:py-48 lg:py-32 ">
-      <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-        <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-neutral-600 dark:text-neutral-400 ring-1 ring-gray-900/10 hover:ring-neutral-900/20 ">
-          Announcing our next round of funding.{' '}
-          <a href="/" className="font-semibold text-blue-600 dark:text-blue-400">
-            <span className="absolute inset-0" />
-            Read more <span >&rarr;</span>
-          </a>
-        </div>
-      </div>
+      
       <div className="text-center">
-        <h1 className="text-4xl font-bold tracking-tight text-neutral-900 sm:text-6xl dark:text-neutral-300">
+        <h1 className="text-4xl font-bold tracking-tight text-neutral-900 sm:text-6xl font-serif
+         dark:text-neutral-300">
         Echo Blog: Amplifying Voices, Sharing Stories
         </h1>
         <p className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-400">
