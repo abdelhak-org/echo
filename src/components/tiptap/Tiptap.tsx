@@ -1,6 +1,7 @@
 "use client";
 
-import { useEditor, EditorContent } from "@tiptap/react";
+import React, { useEffect } from "react";
+import { useEditor, EditorContent} from "@tiptap/react";
 import Paragraph from "@tiptap/extension-paragraph";
 import Heading from "@tiptap/extension-heading";
 import StarterKit from "@tiptap/starter-kit";
@@ -8,13 +9,15 @@ import Strike from "@tiptap/extension-strike";
 import History from "@tiptap/extension-history";
 import Image from "@tiptap/extension-image";
 import BulletList from '@tiptap/extension-bullet-list'
-import ListItem from '@tiptap/extension-list-item'
 import ToolBar from "./ToolBar";
 interface TiptapProps {
   content: string;
   handleContentChange: (content: string) => void;
 }
 const Tiptap = ({ content, handleContentChange }: TiptapProps) => {
+  const [isEditable, setIsEditable] = React.useState(true)
+
+
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -59,14 +62,26 @@ const Tiptap = ({ content, handleContentChange }: TiptapProps) => {
       },
     },
     onUpdate: ({ editor }) => {
-      handleContentChange(editor.getHTML());
-      const jsonFile = editor.getJSON();
+      const json = editor.getJSON();
+      handleContentChange(JSON.stringify(json));
     },
   });
+
+  useEffect(() => {
+    if (editor) {
+      editor.setEditable(isEditable)
+    }
+  }, [isEditable, editor])
+
   return (
-    <div className=" w-full grow flex flex-col space-y-4  border-none   ">
-      <ToolBar editor={editor} content={content} />
-      <EditorContent
+    <div className=" w-full  flex flex-col grow   space-y-4  ">
+    
+
+      <ToolBar editor={editor} content={content}  />
+      <div 
+      className="min-h-[260px] mt-16"
+      >
+       <EditorContent
         editor={editor}
         style={{
           whiteSpace: "pre-line",
@@ -75,8 +90,10 @@ const Tiptap = ({ content, handleContentChange }: TiptapProps) => {
           border: "1px solid  #ccc",
           overflow: "wrap",
           minHeight: "200px",
+
         }}
-      />
+        />
+        </div>
     </div>
   );
 };

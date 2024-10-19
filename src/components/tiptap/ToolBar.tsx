@@ -1,6 +1,6 @@
 import React from "react";
 import { type Editor } from "@tiptap/core";
-import { BubbleMenu } from "@tiptap/react";
+import { BubbleMenu ,FloatingMenu} from "@tiptap/react";
 import {
   Bold,
   Italic,
@@ -26,11 +26,15 @@ const ToolBar = ({
   if (!editor) return null;
 
   return (
-    <BubbleMenu editor={editor} tippyOptions={{ duration: 100 }}>
+    <>
+    
+     
+{    //  <FloatingMenu editor={editor} tippyOptions={{ duration: 100 }}>
+}    
       <div
-        className="flex justify-between  flex-rows 
-          gap-5 w-fit flex-wrap border border-gray-700 p-2 bg-gray-900
-    px-4 py-3 rounded-tl-md rounded-tr-md "
+        className="flex w-full h-fit my-2 justify-between  flex-rows 
+          gap-5 w-full flex-wrap border border-gray-700 p-2 bg-gray-800
+         px-4 py-3 rounded-tl-md rounded-tr-md "
       >
         <button
           onClick={(e) => {
@@ -187,7 +191,17 @@ const ToolBar = ({
           <PenIcon className="w-5 h-5 " />
         </button>
       </div>
-    </BubbleMenu>
+{ //   </FloatingMenu>
+}     
+
+
+  
+    
+    
+    </>
+
+      
+    
   );
 };
 

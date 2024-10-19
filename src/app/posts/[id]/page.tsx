@@ -1,4 +1,4 @@
-
+' use client '
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Post } from "@/types/interfaces"; // Import the 'Post' type from the appropriate module
 
@@ -15,8 +15,8 @@ const PostView = async ({ params }: { params: { id: string } }) => {
     }
   };
 
-   const post = await fetchPost();
-
+   const post:Post  = await fetchPost();
+    console.log(post)
   return (
     <article className="w-full grow px-4 py-8">
 
@@ -45,11 +45,13 @@ const PostView = async ({ params }: { params: { id: string } }) => {
         />
       </div>
 
-      <p
-        className="text-[15px] index-2 font-normal text-neutral-900/80 mx-auto max-w-[800px] text-left font-sans"
-      >
+      < p
+        className="text-[15px] index-2 font-normal text-neutral-900/80 mx-auto
+         max-w-[800px] text-left font-sans"
+          />
+      
           
-        </p>
+        
     </article>
   );
 };

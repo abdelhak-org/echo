@@ -1,3 +1,4 @@
+
 import {
   Card,
   CardContent,
@@ -20,6 +21,7 @@ const PostCard = ({
   likes = 10,
   author
 }: Post) => {
+  console.log(content)
   return (
     <div className="w-full max-w-[1534px] md:min-h-[270px] flex flex-col md:flex-row overflow-hidden dark:bg-neutral-900 rounded-md shadow-lg my-4 space-x-4">
       <div className="w-full md:w-1/5 h-full overflow-hidden rounded-md dark:bg-neutral-900">
@@ -40,11 +42,10 @@ const PostCard = ({
         </CardHeader>
         
         <CardContent
-         
+           
           className="text-[14px] w-full dark:text-neutral-300"
         >
-         description
-         
+      
                </CardContent>
 
         <CardFooter className="flex space-x-4">

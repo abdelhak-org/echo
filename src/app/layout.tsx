@@ -6,7 +6,7 @@
   import Footer from "@/components/footer/Footer";
   import { inter } from '@/ui/fonts';
   import { SessionProvider } from "next-auth/react";
-   import customSessionProvider   from "@/providers/sessionProvider";
+  import { ThemeProvider } from "@/components/theme-provider";
   export default function RootLayout({
     children ,  params: { session , ...params },
 
@@ -19,12 +19,19 @@
     return (
        <html lang="en" className ={`${inter.className}  `} suppressHydrationWarning >
         <body className="w-screen  min-h-screen flex flex-col" > 
+        <ThemeProvider
+          attribute = 'class'
+          defaultTheme = 'light'
+          enableSystem
+          disableTransitionOnChange
+        > 
          <SessionProvider session={session}>
 
           <Navbar />
           {children}
           <Footer />
          </SessionProvider>
+        </ThemeProvider>
           </body>
       </html>
     );

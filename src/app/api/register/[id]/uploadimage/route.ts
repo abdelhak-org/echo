@@ -1,6 +1,5 @@
 import { updateUser } from "@/actions/updateUser";
 import { uploadImg } from "@/actions/uploadImg";
-import cloudinary from "../../../../../../cloudinary.config";
 interface resProps {
 
     secure_url:string;
@@ -12,14 +11,14 @@ export async function POST(req: Request, res: Response) {
     try {
     const formData = await req.formData();
     const userId = formData.get("userId") as String;
-    const public_id1 =  formData.get("public_id") as String;
-    const imgType = formData.get("imgType") as string 
+        // upload image 
         const res = await uploadImg(formData)
         
         if(!res) throw new Error("no Response")
-        const {secure_url , public_id } = res as resProps
+        const {secure_url , public_id  } = res as resProps
         const url = secure_url 
         const id =  public_id
+        // update user data 
         await updateUser(userId, url ,id);
         
         return Response.json({ msg: "image uploaded successfully", data:res });

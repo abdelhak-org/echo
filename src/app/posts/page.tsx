@@ -1,6 +1,7 @@
 import PostCard from "@/components/PostCard";
 import { Post } from "@/types/interfaces";
 import Link from "next/link";
+import { POST } from "../api/register/[id]/uploadimage/route";
 export const getData = async (perPage: number, page: number) => {
   try {
     const res = await fetch(
@@ -46,6 +47,7 @@ const Articles = async (searchParams: any) => {
             content={post.content}
             createdAt={post.createdAt}
             likes={post.likes}
+            author ={post.author}
           />
         ))}
         <div className="w-full flex justify-end space-x-4 items-center px-12 bg-slate-800 h-12 text-white text-center">
