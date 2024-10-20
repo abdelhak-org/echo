@@ -39,9 +39,17 @@ const ControllMenu = () => {
     },
   ];
   return (
-    <aside className="w-full    duration-200 transition-all  px-2  max-w-[260px] min-w-[220px] grow  rounded-md border py-8 text-left md:px-4 bg-neutral-200 m-2 z-50">
+    <aside className="w-full duration-200 transition-all  px-2  max-w-[260px] min-w-[220px] grow  rounded-md border py-8 text-left md:px-4 bg-neutral-200 m-2 z-50">
       <Link href="/dashboard">
-        <div className="bg-neutral-950  px-2 py-3 rounded text-white flex items-center space-x-2">
+        <div
+        
+        className={clsx(
+          "px-2 py-3 grow hover:text-neutral-50 rounded-md cursor-pointer my-2 flex items-center space-x-4 ",
+          {
+            "bg-neutral-700 text-neutral-50": pathname === '/dashboard',
+          }
+        )}        
+        >
           <FaHome size={24} />
           <h3 className="font-bold hidden md:block ">Dashboard</h3>
         </div>

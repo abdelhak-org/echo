@@ -4,8 +4,7 @@ import clientPromise from "@/lib/mongodb";
 import bcrypt from "bcrypt";
 import { AuthOptions } from "@/types/interfaces";
 import { User } from "@/types/interfaces";
-import { userAgent } from "next/server";
-import { userInfo } from "os";
+
 
 interface Session {
   user: User;
@@ -30,7 +29,6 @@ export const authOptions: AuthOptions = {
         // Note, that `session` can be any arbitrary object, remember to validate it!
         token.src = session.src
       }
-      console.log(token , "token is updated")
       return token
     },
 

@@ -74,26 +74,23 @@ const Tiptap = ({ content, handleContentChange }: TiptapProps) => {
   }, [isEditable, editor])
 
   return (
-    <div className=" w-full  flex flex-col grow   space-y-4  ">
+    <div className=" w-full h-full   flex flex-col    ">
     
 
       <ToolBar editor={editor} content={content}  />
-      <div 
-      className="min-h-[260px] mt-16"
-      >
+    
        <EditorContent
         editor={editor}
         style={{
           whiteSpace: "pre-line",
           backgroundColor: "white",
-          borderRadius: "8px",
+          borderRadius: "0px 0px 8px 8px",
           border: "1px solid  #ccc",
           overflow: "wrap",
-          minHeight: "200px",
+          minHeight: "240px",
 
         }}
         />
-        </div>
     </div>
   );
 };

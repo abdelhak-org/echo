@@ -4,7 +4,6 @@ import cloudinary from "../../../../../../cloudinary.config";
 export async function  POST(req:Request , Res:Response) {
       if(!req.body) return Response.json("No Image is Uploaded");
       const formData = req.formData() ;
-      console.log("formData",formData);
       if(!formData) return Response.json("No Image is Uploaded");
     //  const file = formData ? formData.get("image") : null;
     const arrayBuffer = await file?.arrayBuffer();
@@ -17,7 +16,6 @@ export async function  POST(req:Request , Res:Response) {
 
             }
             resolve(result);
-            console.log(result?.secure_url);
         }).end(buffer); 
     });
 

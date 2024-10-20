@@ -26,14 +26,10 @@ const ToolBar = ({
   if (!editor) return null;
 
   return (
-    <>
-    
-     
-{    //  <FloatingMenu editor={editor} tippyOptions={{ duration: 100 }}>
-}    
+    <>  
       <div
-        className="flex w-full h-fit my-2 justify-between  flex-rows 
-          gap-5 w-full flex-wrap border border-gray-700 p-2 bg-gray-800
+        className="flex w-full h-fit  justify-between  flex-rows 
+          gap-5 w-full flex-wrap border border-gray-700 p-2 bg-black
          px-4 py-3 rounded-tl-md rounded-tr-md "
       >
         <button
@@ -44,7 +40,7 @@ const ToolBar = ({
           className={
             editor.isActive("bold")
               ? "bg-gray-700 text-white p-2 rounded-lg"
-              : " text-gray-400"
+              : " text-gray-200"
           }
         >
           <Bold className="w-5 h-5 " />
@@ -58,7 +54,7 @@ const ToolBar = ({
           className={
             editor.isActive("italic")
               ? "bg-gray-700 text-white p-2 rounded-lg"
-              : " text-gray-400"
+              : " text-gray-200"
           }
         >
           <Italic className="w-5 h-5 " />
@@ -72,7 +68,7 @@ const ToolBar = ({
           className={
             editor.isActive("strike")
               ? "bg-gray-700 text-white p-2 rounded-lg"
-              : " text-gray-400"
+              : " text-gray-200"
           }
         >
           <Strikethrough className="w-5 h-5 " />
@@ -86,7 +82,7 @@ const ToolBar = ({
           className={
             editor.isActive("bulletList")
               ? "bg-gray-700 text-white p-2 rounded-lg"
-              : " text-gray-400"
+              : " text-gray-200"
           }
         >
           <List className="w-5 h-5 " />
@@ -100,7 +96,7 @@ const ToolBar = ({
           className={
             editor.isActive("orderedList")
               ? "bg-gray-700 text-white p-2 rounded-lg"
-              : " text-gray-400"
+              : " text-gray-200"
           }
         >
           <ListOrdered className="w-5 h-5 " />
@@ -114,7 +110,7 @@ const ToolBar = ({
           className={
             editor.isActive("heading", { level: 2 })
               ? "bg-gray-700 text-white p-2 rounded-lg"
-              : " text-gray-400"
+              : " text-gray-200"
           }
         >
           <Heading2 className="w-5 h-5 " />
@@ -128,7 +124,7 @@ const ToolBar = ({
           className={
             editor.isActive("blockquote")
               ? "bg-gray-700 text-white p-2 rounded-lg"
-              : " text-gray-400"
+              : " text-gray-200"
           }
         >
           <Quote className=" w-5 h-5 " />
@@ -142,7 +138,7 @@ const ToolBar = ({
           className={
             editor.isActive("undo")
               ? "bg-gray-700 text-white p-2 rounded-lg"
-              : " text-gray-400"
+              : " text-gray-200"
           }
         >
           <Undo className="w-5 h-5 " />
@@ -155,7 +151,7 @@ const ToolBar = ({
           className={
             editor.isActive("redo")
               ? "bg-gray-700 text-white p-2 rounded-lg"
-              : " text-gray-400"
+              : " text-gray-200"
           }
         >
           <Redo className="w-5 h-5 " />
@@ -172,7 +168,7 @@ const ToolBar = ({
           className={
             editor.isActive("setimage")
               ? "bg-gray-700 text-white p-2 rounded-lg"
-              : " text-gray-400"
+              : " text-gray-200"
           }
         >
           <ImageIcon className="w-5 h-5 " />
@@ -185,14 +181,12 @@ const ToolBar = ({
           className={
             editor.isActive("paragraph")
               ? "bg-gray-700 text-white p-2 rounded-lg"
-              : " text-gray-400"
+              : " text-gray-200"
           }
         >
           <PenIcon className="w-5 h-5 " />
         </button>
       </div>
-{ //   </FloatingMenu>
-}     
 
 
   

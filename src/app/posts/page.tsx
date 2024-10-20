@@ -5,8 +5,8 @@ import { POST } from "../api/register/[id]/uploadimage/route";
 export const getData = async (perPage: number, page: number) => {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/posts/?page=${page}&&limit=${perPage}`
-    );
+      `http://localhost:3000/api/posts/?page=${page}&&limit=${perPage}`,{method:'GET'}
+    )
     if (!res.ok) {
       throw new Error("Failed to fetch data");
     }
@@ -18,7 +18,7 @@ export const getData = async (perPage: number, page: number) => {
 };
 
 const Articles = async (searchParams: any) => {
-  let page = parseInt(searchParams.page, 10);
+  let page = parseInt(searchParams.searchParams.page, 10);
   page = !page || page < 1 ? 1 : page;
   let perPage = 2;
   const prevPage = page - 1 > 0 ? page - 1 : 1;
@@ -37,7 +37,7 @@ const Articles = async (searchParams: any) => {
 
   return (
     <section className="max-w-[1080px]  w-full grow mx-auto pt-0 px-2 py-8 relative z-50">
-      <div className="w-full h-fit py-4">
+      <div className="w-full grow py-4">
         {data.posts?.map((post: Post, index: number) => (
           <PostCard
             key={index}
@@ -50,7 +50,9 @@ const Articles = async (searchParams: any) => {
             author ={post.author}
           />
         ))}
-        <div className="w-full flex justify-end space-x-4 items-center px-12 bg-slate-800 h-12 text-white text-center">
+       
+      </div>
+      <div className="w-full h-16 flex justify-end space-x-4 items-center px-12 bg-slate-800 h-12 text-white text-center">
           {page === 1 ? (
             <div className="opacity-60" aria-disabled="true">
               Previous
@@ -79,7 +81,6 @@ const Articles = async (searchParams: any) => {
             </Link>
           )}
         </div>
-      </div>
     </section>
   );
 };

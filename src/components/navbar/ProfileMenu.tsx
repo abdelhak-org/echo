@@ -46,13 +46,13 @@ const ProfileMenu = () => {
       
       <Avatar
       onClick={()=> setIsOpen(!isOpen)}
-       className="relative   p-0 bg-white flex rounded-full cursor-pointer  text-sm focus:outline-none
+       className="relative   p-0 bg-white flex rounded-full cursor-pointer  text-sm  
        focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-100"
       >
       <AvatarImage
           src={session?.user?.src || 'https://res.cloudinary.com/drxurev4o/image/upload/v1729318533/echo/e5115279-62f7-423a-a084-af9f255f1617/profile/qe6jr17d40sfce6aqqux.png'} 
           alt={session?.user?.name || 'User Name'}
-       
+          className='w-full h-full object-cover object-center '
        />
       <AvatarFallback>CN</AvatarFallback>
     </Avatar>
@@ -65,12 +65,12 @@ const ProfileMenu = () => {
       <ul>
 
       <li>
-        <a href="dashboard/profile" className="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 border border-transparent border-b-gray-100">
+        <a href="/dashboard/profile" className="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 border border-transparent border-b-gray-100">
          Profile
         </a>
       </li>
       <li>
-        <a href="dashboard/settings" className="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100   border border-transparent border-b-gray-100">
+        <a href="/dashboard/setting" className="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100   border border-transparent border-b-gray-100">
           Settings
         </a>
       </li>
