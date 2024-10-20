@@ -16,7 +16,6 @@ const PostView = async ({ params }: { params: { id: string } }) => {
   };
 
    const post:Post  = await fetchPost();
-    console.log(post)
   return (
     <article className="w-full grow px-4 py-8">
 
@@ -31,8 +30,8 @@ const PostView = async ({ params }: { params: { id: string } }) => {
 
       <div className="w-[670px] h-fit mx-auto relative  px-2 flex items-center">
         <Avatar className="mr-4">
-          <AvatarImage src={post?.author?.src } alt="@shadcn" />
-          <AvatarFallback>CN</AvatarFallback>
+          <AvatarImage src={post?.author?.src|| 'https://res.cloudinary.com/drxurev4o/image/upload/v1720356413/echo/profile/a7o6ebisscvkkzfrmnnu.jpg' } alt="@shadcn" />
+          <AvatarFallback>{post.author.name[0]}</AvatarFallback>
         </Avatar>
       </div>
       <div className="w-[800px] h-60  mx-auto my-8  overflow-hidden rounded-md">
@@ -44,11 +43,16 @@ const PostView = async ({ params }: { params: { id: string } }) => {
           height={100}
         />
       </div>
-
-      < p
+       <div
         className="text-[15px] index-2 font-normal text-neutral-900/80 mx-auto
-         max-w-[800px] text-left font-sans"
-          />
+        max-w-[800px] text-left font-sans"
+        
+       dangerouslySetInnerHTML={{__html:post?.content}}
+       />
+
+       
+      
+       
       
           
         
