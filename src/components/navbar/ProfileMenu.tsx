@@ -27,8 +27,8 @@ const ProfileMenu = () => {
   
     if (status === 'unauthenticated') {
       return  (
-        <Button variant={"link"} 
-        className=" font-bold text-neutral-700 text-[16px] cursor-pointer dark:text-slate-200
+        <Button variant={"outline"} 
+        className="  text-gray-800 text-[14px] cursor-pointer dark:text-gray-100
         "
         onClick={()=> Router.push("/login")}>Log In</Button>
         );; 
@@ -41,22 +41,21 @@ const ProfileMenu = () => {
     <div
 
      ref= {myRef}    
-    className="relative ml-3 bg-white">
-    <div>
+    className="relative ml-3 bg- rounded-full border border-gray-400 p-[2px]  ">
+   
       
       <Avatar
       onClick={()=> setIsOpen(!isOpen)}
-       className="relative   p-0 bg-white flex rounded-full cursor-pointer  text-sm  
-       focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-100"
+       className="  cursor-pointer  text-sm rounded-full  
+       "
       >
       <AvatarImage
           src={session?.user?.src || 'https://res.cloudinary.com/drxurev4o/image/upload/v1729318533/echo/e5115279-62f7-423a-a084-af9f255f1617/profile/qe6jr17d40sfce6aqqux.png'} 
           alt={session?.user?.name || 'User Name'}
-          className='w-full h-full object-cover object-center '
+          className='w-full h-full object-cover rounded-full overflow-hidden object-center '
        />
       <AvatarFallback>CN</AvatarFallback>
     </Avatar>
-    </div>
     {
     isOpen && (
       <nav

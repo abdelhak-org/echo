@@ -1,4 +1,5 @@
-
+'use client'
+import React , {useState , useEffect} from "react";
 import {
   Card,
   CardContent,
@@ -21,16 +22,22 @@ const PostCard = ({
   likes = 10,
   author
 }: Post) => {
+    const [isClient , setIsClent] = useState(false)
+
+    useEffect(()=>{
+     setIsClent(true)
+    },[])
   return (
-    <div className="w-full max-w-[1534px] md:min-h-[270px] flex flex-col md:flex-row overflow-hidden dark:bg-neutral-900 rounded-md shadow-lg my-4 space-x-4">
-      <div className="w-full md:w-1/5 h-full overflow-hidden rounded-md dark:bg-neutral-900">
+    <div className="w-full max-w-[1534px] md:min-h-[270px] flex flex-col md:flex-row bg-white
+    overflow-hidden dark:bg-neutral-800 rounded-md shadow-lg my-4 space-x-4">
+      <div className="w-full md:w-1/5 h-full overflow-hidden rounded-md dark:bg-neutral-800">
         <img
           src="https://res.cloudinary.com/drxurev4o/image/upload/v1719504845/mobile-info/photo-1718907008648-aa9801d2b5e1_eloejh.jpg"
           alt="cardImg"
           className="w-full h-full object-cover rounded-md"
         />
       </div>
-      <Card className="w-full md:w-4/5 flex flex-col justify-between border dark:bg-neutral-900">
+      <Card className="w-full md:w-4/5 flex flex-col justify-between border dark:bg-neutral-800">
         <CardHeader>
           <CardTitle className="font-sans font-bold text-[18px] tracking-wide text-neutral-950 dark:text-neutral-200">
             <Link href={`http://localhost:3000/posts/${id}`}>{title}</Link>
@@ -38,11 +45,14 @@ const PostCard = ({
           <CardDescription>
             {description?.substring(0, 80) }
           </CardDescription>
-          <div
-          dangerouslySetInnerHTML={{ __html: content.split(" ").slice(0,80).join(" ")  }}
-         >
+          
+        { isClient && (<div
+           dangerouslySetInnerHTML={{ __html: content.split(" ").slice(0,80).join(" ")  }}
+          />)
+        }
+          
         
-          </div>
+      
         </CardHeader>
         
         <CardContent

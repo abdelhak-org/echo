@@ -1,9 +1,10 @@
+'use client'
 import React from 'react'
-import {v2 as cloudinary} from 'cloudinary';
 
 /**
  * 
  * 
+import {v2 as cloudinary} from 'cloudinary';
 
 (async function() {
   

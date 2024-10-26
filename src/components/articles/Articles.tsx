@@ -7,9 +7,10 @@ const Articles = async () => {
   if (!posts) return null;
 
   return (
-    <section className="max-w-[1080px] w-full mx-auto pt-0 px-2 py-8 relative z-50">
-      <div className="mx-auto max-w-2xl lg:text-center py-12 flex flex-col fill-teal-400">
-        <h2 className="mt-2 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl underline underline-offset-4 ">
+    <section className="max-w-[1080px] w-full mx-auto pt-0 px-2 py-8 ">
+      <div className="mx-auto max-w-2xl lg:text-center py-12  flex justify-center items-center">
+        <h2 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100
+             sm:text-4xl underline underline-offset-8 font-serif ">
           Articles
         </h2>
       </div>

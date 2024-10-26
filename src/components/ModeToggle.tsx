@@ -16,14 +16,24 @@ export function ModeToggle() {
     if(!isClient) return  ;
     if(theme === "dark" ){
    return (
-    <Button onClick={() => setTheme("light")}>
-    <FiSun/>
+    <Button
+    className="bg-transparent  hover:bg-gray-800"
+    onClick={() => setTheme("light")}>
+    <FiSun
+    color="white"
+    size={24}
+    />
     </Button>
    )
   }
   return (
-        <Button onClick={() => setTheme("dark")}>
-        <BsMoonStarsFill />
+        <Button
+        
+        className="bg-transparent text-gray-800 hover:bg-gray-300"
+        onClick={() => setTheme("dark")}>
+        <BsMoonStarsFill
+        size={24}
+        />
         </Button>     
   )
 }

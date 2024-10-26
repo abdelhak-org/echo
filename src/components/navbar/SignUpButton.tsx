@@ -1,3 +1,4 @@
+'use client'
 import { useSession } from "next-auth/react";
 import { Button } from "../ui/button";
 import Link from "next/link";
@@ -16,7 +17,7 @@ const SignUpButton = () => {
   return( 
     <Link href="/register">
     <Button
-    className="text-neutral-500 font-sans text-[14px]   "
+    className="text-gray-600 font-sans text-[14px]   "
     variant={"link"} >
       Sign Up
     </Button>
