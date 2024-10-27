@@ -1,3 +1,4 @@
+'use client'
 import ImageUploader from '@/components/dashboard/ImageUploader'
 import React from 'react'
 

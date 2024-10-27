@@ -62,8 +62,7 @@ const Tiptap = ({ content, handleContentChange }: TiptapProps) => {
       },
     },
     onUpdate: ({ editor }) => {
-      const json = editor.getJSON();
-      handleContentChange(JSON.stringify(json));
+      handleContentChange(editor.getHTML());
     },
   });
 

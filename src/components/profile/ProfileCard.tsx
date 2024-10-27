@@ -1,3 +1,4 @@
+'use client'
 import React, { ChangeEvent } from 'react';
 import Image from 'next/image';
 import { Edit3Icon } from 'lucide-react';

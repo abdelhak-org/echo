@@ -1,5 +1,9 @@
 'use client'
 import React , {useState , useEffect} from "react";
+import Image from "next/image";
+import default_card_img from "@/../public/default_card_ing.jpg"
+import Link from "next/link";
+import { Post } from "@/types/interfaces";
 import {
   Card,
   CardContent,
@@ -9,9 +13,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import Link from "next/link";
 import { AiFillLike } from "react-icons/ai";
-import { Post } from "@/types/interfaces";
 
 const PostCard = ({
   id,
@@ -22,57 +24,60 @@ const PostCard = ({
   likes = 10,
   author
 }: Post) => {
+
     const [isClient , setIsClent] = useState(false)
 
     useEffect(()=>{
      setIsClent(true)
     },[])
+    console.log(author.src)
   return (
-    <div className="w-full max-w-[1534px] md:min-h-[270px] flex flex-col md:flex-row bg-white
-    overflow-hidden dark:bg-neutral-800 rounded-md shadow-lg my-4 space-x-4">
-      <div className="w-full md:w-1/5 h-full overflow-hidden rounded-md dark:bg-neutral-800">
-        <img
-          src="https://res.cloudinary.com/drxurev4o/image/upload/v1719504845/mobile-info/photo-1718907008648-aa9801d2b5e1_eloejh.jpg"
+    <div className="w-full max-w-[1536px]  md:min-h-[270px]  my-2
+    flex flex-col items-center justify-center  md:flex-row bg-white border  dark:bg-neutral-900 overflow-hidden dark:bg-neutral-800 rounded-md shadow-lg  gap-4 p-4"
+    >
+      <div className="w-full  md:w-1/5  rounded-md ">
+
+        <Image
+          src={default_card_img}
+          width={100}
+          height={100}
           alt="cardImg"
-          className="w-full h-full object-cover rounded-md"
+          className="w-full h-full object-cover  rounded-md"
         />
+
       </div>
-      <Card className="w-full md:w-4/5 flex flex-col justify-between border dark:bg-neutral-800">
+      <Card className="w-full md:w-4/5 flex flex-col justify-between border ">
         <CardHeader>
-          <CardTitle className="font-sans font-bold text-[18px] tracking-wide text-neutral-950 dark:text-neutral-200">
+          <CardTitle className="font-serif   text-2xl  tracking-wide text-neutral-900 dark:text-neutral-200 ">
             <Link href={`http://localhost:3000/posts/${id}`}>{title}</Link>
           </CardTitle>
-          <CardDescription>
+          <CardDescription
+           className="font-sans text-neutral-700 dark:text-neutral-400 tracking-wide text-sm"
+           >
             {description?.substring(0, 80) }
           </CardDescription>
+         </CardHeader>
           
-        { isClient && (<div
+        { isClient && (<CardContent
+           className={isClient && "font-sans text-neutral-700 dark:text-neutral-200 tracking-wide text-lg"}
            dangerouslySetInnerHTML={{ __html: content.split(" ").slice(0,80).join(" ")  }}
           />)
         }
           
-        
-      
-        </CardHeader>
-        
-        <CardContent
-          
-          className="text-[14px] w-full dark:text-neutral-300"
-        >
-      
-               </CardContent>
-
         <CardFooter className="flex space-x-4">
           <Avatar>
             <AvatarImage
-              src={author?.src }
+              src={author.src }
               alt="@shadcn"
+              width={100}
+              height={100}
             />
-            <AvatarFallback>CN</AvatarFallback>
+            <AvatarFallback>{author.name}</AvatarFallback>
           </Avatar>
           <p>{createdAt.substring(0, 10)}</p>
           <p className="text-blue-500 relative px-2">
-            <AiFillLike size={18} />
+            <AiFillLike
+            size={18} />
             <span className="absolute left-8 top-0 z-50 text-blue-300">
               {likes}
             </span>

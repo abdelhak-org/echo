@@ -17,7 +17,7 @@
 
 
     return (
-       <html lang="en" className ={`${inter.className}  `} suppressHydrationWarning >
+       <html lang="en" className ={`${inter.className}  `}  >
         <body className="w-screen  min-h-screen flex flex-col" > 
         <ThemeProvider
           attribute = 'class'

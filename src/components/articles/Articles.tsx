@@ -15,13 +15,13 @@ const Articles = async () => {
         </h2>
       </div>
 
-      <div className="w-full h-fit py-4">
+      <div className="w-full h-fit py-4 ">
         {posts?.map((post: Post, index: number) => (
           <PostCard
             key={index}
             id={post._id.toString()}
             title={post.title}
-            description={post.description}
+                description={post.description}
             content={post.content}
             createdAt={post.createdAt}
             likes={post.likes}
