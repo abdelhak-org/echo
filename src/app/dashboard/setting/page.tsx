@@ -1,5 +1,102 @@
-'use client'
-import React from 'react'
+import { authOptions } from "@/app/api/auth/[...nextauth]/route"
+import { getServerSession } from "next-auth"
+import   {getPostsByUserId} from "@/actions/posts"
+
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+ 
+const page =async () => {
+  const session =await getServerSession(authOptions);
+  const user = session?.user as string
+  const posts = await getPostsByUserId(user?.userId)
+  return (
+    <section
+    className="w-full grow py-24  overflow-scroll p-4 "
+    >
+       <h2
+    className="font-bolder font-serif text-2xl pl-4 my-8 underline-offset-4 underline "
+    >Profile Infos </h2>
+
+    <Table 
+    className="p-4 border border-gray-200 rounded-md "
+    >
+ 
+  <TableHeader>
+    <TableRow>
+      <TableHead className="w-[100px]">User</TableHead>
+      <TableHead>email</TableHead>
+      <TableHead>Roll</TableHead>
+      <TableHead className="text-right">articles</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell className="font-medium">{user.userName  }</TableCell>
+      <TableCell>{user.email}</TableCell>
+      <TableCell>author  </TableCell>
+      <TableCell
+      className="text-right"
+      >{posts.length}</TableCell>
+
+    </TableRow>
+  </TableBody>
+</Table>
+    <h2
+    className="font-bolder font-serif text-2xl pl-4 my-8 underline-offset-4 underline "
+    >Articles</h2>
+
+    {
+      posts?.map((post , index)=>{
+           return(
+           
+            <Accordion
+            key={index}
+            type="single" collapsible 
+            className="bg-white hover:bg-gray-200 px-8 my-2 border rounded-md border-gray-300"
+            >
+            <AccordionItem value="item-1">
+            <AccordionTrigger>{post.title} </AccordionTrigger>
+            <AccordionContent>
+{              post.description as string
+}            </AccordionContent>
+            </AccordionItem>
+            </Accordion>
+
+           )
+      })
+    }
+
+   
+
+    </section>
+  )
+}
+
+export default page
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * 
@@ -41,18 +138,3 @@ console.log(autoCropUrl);
 })();
 
 */
-
-
-
-const page = () => {
-  return (
-    <div className=" bg-neutral-200 rounded-md py-8">
-    <h1 className="text-3xl text-center my-8 font-bold tracking-wider">
-      Setting
-    </h1>
- 
-  </div>
-  )
-}
-
-export default page

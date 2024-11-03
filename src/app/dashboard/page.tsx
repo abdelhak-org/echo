@@ -5,7 +5,7 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div className='  p-4  rounded-md bg-neutral-200 '>
+    <section  className='p-4  rounded-md bg-gray-100  w-full grow  '>
       
       <h1 className='text-center font-bold text-3xl my-4 text-sans 
       '>Dashboard</h1>
@@ -16,7 +16,7 @@ const page = () => {
         alias minus est expedita soluta, suscipit cumque vel fuga nostrum. 
       </p>
     
-    </div>
+    </section >
     )
 
 

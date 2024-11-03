@@ -4,8 +4,8 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div className=" bg-neutral-200 rounded-md py-8">
-  
+    <div className=" w-full grow  bg-gray-100  rounded-md p-8">
+     
   </div>
   )
 }
