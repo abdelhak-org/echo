@@ -44,10 +44,10 @@ const ProfileCard = ({ url, userId, setUrl  , update , image , imgType}:ProfileC
         height={100}
       />
 
-      <label className="group w-full h-full absolute top-0 left-0 flex items-center justify-center">
-        <div className="flex-col items-center justify-center pt-5 pb-6 hidden group-hover:flex cursor-pointer text-white">
+      <label className="group w-full h-full absolute top-0 left-0 flex items-center justify-center bg-gray-300/20">
+        <div className="flex-col items-center justify-center pt-5 pb-6 hidden group-hover:flex cursor-pointer text-gray-800">
           <Edit3Icon size={26} />
-          <p className="mb-2 text-sm text-neutral-100">
+          <p className="mb-2 text-sm ">
             <span className="font-semibold">Click to Edit</span>
           </p>
           <p className="text-xs text-inherit">SVG, PNG, JPG or GIF</p>

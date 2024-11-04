@@ -59,7 +59,7 @@ const page =async () => {
     >Articles</h2>
 
     {
-      posts?.map((post , index)=>{
+       posts?.map((post , index)=>{
            return(
            
             <Accordion
