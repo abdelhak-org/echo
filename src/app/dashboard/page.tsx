@@ -5,9 +5,9 @@ import React from 'react'
 
 const page = () => {
   return (
-    <section  className='p-4  rounded-md bg-gray-100  w-full grow  '>
+    <section  className='p-4  rounded-md bg-gray-100  w-full grow dark:bg-neutral-800  '>
       
-      <h1 className='text-center font-bold text-3xl my-4 text-sans 
+      <h1 className='text-center font-bold text-3xl my-4 text-serif 
       '>Dashboard</h1>
       
       <p

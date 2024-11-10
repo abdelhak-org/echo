@@ -26,7 +26,7 @@ const Navbar = () => {
         <ModeToggle />
         
         <div className="flex items-center grow md:grow-0  font-semibold   space-x-4 flex-row">
-          <Link href="/posts">
+          <Link href="/posts?page=1">
             <Button
               className="text-gray-800 font-sans text-[14px] dark:text-gray-100   "
               variant={"link"}

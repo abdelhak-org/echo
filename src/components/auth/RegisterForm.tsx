@@ -70,9 +70,9 @@ const RegisterForm = () => {
 
 
   return (
-    <div  className=" flex justify-center items-center flex-col  shadow-md dark:bg-neutral-950  
-    border p-8 rounded-md border-neutral-300 w-[760px]  bg-neutral-100 ">
-      <h4 className="text-black text-center my-2  text-3xl font-sans  font-bold   dark:text-gray-100  ">Create an Account  </h4>
+    <div  className=" flex justify-center items-center flex-col  shadow-md font-sans dark:bg-neutral-900
+    border p-8 rounded-md border-neutral-300 w-[667px]  bg-neutral-100 ">
+      <h4 className="text-black text-center my-2  text-3xl font-serif  font-bold   dark:text-gray-50  ">Create an Account  </h4>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 font-roboto w-full ">
         <FormField
@@ -80,12 +80,12 @@ const RegisterForm = () => {
             name="userName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-neutral-900 dark:text-neutral-300 text-xl ">UserName</FormLabel>
+                <FormLabel className="text-neutral-900 dark:text-neutral-200 text-lg ">UserName</FormLabel>
                 <FormControl>
                   <Input
-                    className="w-full bg-neutral-200  text-xl   border-transparent focus:ring-0  py-3 px-4 h-12
+                    className="w-full bg-white  text-xl   border-transparent focus:ring-0  py-3 px-4 h-12
                     focus:ring-neutral-200 focus:ring-opacity-40 focus:ring-offset-0 
-                      focus:border-neutral-300 focus:ring-offset-white
+                      focus:border-neutral-300 focus:ring-offset-white shadow-md
                     border-[1px] text-neutral-900"
                     placeholder="Enter your Email"
                     {...field}
@@ -105,12 +105,12 @@ const RegisterForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-neutral-900 dark:text-neutral-300 text-xl ">Email</FormLabel>
+                <FormLabel className="text-neutral-900 dark:text-neutral-300 text-lg ">Email</FormLabel>
                 <FormControl>
                   <Input
-                    className="w-full bg-neutral-200  text-xl   border-transparent focus:ring-0  py-3 px-4 h-12
+                    className="w-full bg-white  text-xl   border-transparent focus:ring-0  py-3 px-4 h-12
                     focus:ring-neutral-200 focus:ring-opacity-40 focus:ring-offset-0 
-                      focus:border-neutral-300 focus:ring-offset-white
+                      focus:border-neutral-300 focus:ring-offset-white shadow-md
                     border-[1px] text-neutral-900"
                     placeholder="Enter your Email"
                     {...field}
@@ -126,13 +126,15 @@ const RegisterForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-neutral-700 dark:text-neutral-300 text-xl">Password</FormLabel>
+                <FormLabel className="text-neutral-700 dark:text-neutral-300 text-lg">Password</FormLabel>
                 <FormControl>
                   <Input
-                      className="w-full bg-neutral-200  text-xl   border-transparent focus:ring-0  py-3 px-4  h-12
+                      className="w-full bg-white  text-xl   border-transparent focus:ring-0  py-3 px-4  h-12
                       focus:ring-neutral-200 focus:ring-opacity-40 focus:ring-offset-0 
                       focus:border-neutral-300 focus:ring-offset-white
-                      border-[1px] text-neutral-900"
+                      border-[1px] text-neutral-900 shadow-md
+                      
+                      "
                       placeholder="Enter your Password"
                     {...field}
                   />

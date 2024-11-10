@@ -28,11 +28,11 @@ export type LoginCredentials = z.infer<typeof formSchema>;
 const LoginForm: NextPage = () => {
   const Router = useRouter();
   const form = useForm<LoginCredentials>({
-    defaultValues: {
+      defaultValues: {
       email: "",
       password: "",
-    },
-    resolver: zodResolver(formSchema),
+      },
+      resolver: zodResolver(formSchema),
   });
 
   const onSubmit = async (values: LoginCredentials) => {
@@ -54,10 +54,13 @@ const LoginForm: NextPage = () => {
   };
 
   return (
-    <div className="flex justify-center items-center flex-col shadow-md dark:bg-neutral-900 dark:text-neutral-100 border p-8 rounded-md border-neutral-300 w-[760px] bg-neutral-100">
-      <h4 className="text-black text-center font-sans font-bold text-3xl underline my-2 dark:text-neutral-100">
+    <div className="flex justify-center items-center flex-col max-w-[667px]
+       shadow-md dark:bg-neutral-900 dark:text-neutral-100 border
+       p-8 rounded-md border-neutral-300 w-[760px] bg-neutral-100">
+    <h4 className="text-black text-center font-serif font-bold
+       text-3xl underline my-2 dark:text-neutral-100">
         Sign in
-      </h4>
+    </h4>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 font-mono w-full">
           <FormField
@@ -105,7 +108,7 @@ const LoginForm: NextPage = () => {
           click here
         </span>
       </div>
-      <ToastContainer  />
+      <ToastContainer   />
     </div>
   );
 };

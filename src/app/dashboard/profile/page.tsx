@@ -42,14 +42,14 @@ const {  data:session  , status , update }  = useSession()
           
           />
           
-      <div className="w-full h-fit flex flex-col space-y-4 py-4 text-inherit my-12 border rounded-md border-neutral-300 bg-white ">
+      <div className="w-full h-fit flex flex-col space-y-4 py-4 text-inherit my-12  bg-white ">
         <ul className="w-full  px-8  mx-auto ">
     
-          <li className="px-8 py-2 my-2 border border-transparent border-b-blue-300 flex "><span className="w-60 font-semibold">Full Name</span>  {user.userName}</li>
-          <li className="px-8 py-2 my-2 border border-transparent border-b-blue-300 flex "><span className="w-60 font-semibold">Email</span> {user.email}</li>
-          <li className="px-8 py-2 my-2 border border-transparent border-b-blue-300 flex "> <span className="w-60 font-semibold">Phone</span>  +49 814 85 48 22</li>
-          <li className="px-8 py-2 my-2 border border-transparent border-b-blue-300 flex "><span className="w-60 font-semibold">Mobile</span> +49 176 174 55 45</li>
-            <li className="px-8 py-2 my-2 border border-transparent border-b-blue-300  flex ">
+          <li className="px-8 py-2 my-2 border border-transparent border-b-neutral-300 flex "><span className="w-60 font-semibold">Full Name</span>  {user.userName}</li>
+          <li className="px-8 py-2 my-2 border border-transparent border-b-neutral-300 flex "><span className="w-60 font-semibold">Email</span> {user.email}</li>
+          <li className="px-8 py-2 my-2 border border-transparent border-b-neutral-300 flex "> <span className="w-60 font-semibold">Phone</span>  +49 814 85 48 22</li>
+          <li className="px-8 py-2 my-2 border border-transparent border-b-neutral-300 flex "><span className="w-60 font-semibold">Mobile</span> +49 176 174 55 45</li>
+            <li className="px-8 py-2 my-2 border border-transparent border-b-neutral-300  flex ">
               <span className="w-60 font-semibold">Adress</span>  Bay Area San Francisco CA
             </li>
         </ul>

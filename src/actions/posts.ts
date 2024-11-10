@@ -60,3 +60,25 @@ export async function getPostsByUserId(id:string) {
   } finally {
   }
    }
+
+   
+   //getPostById
+
+export async function getPostById(id:string) {
+  try {
+    client = await clientPromise;
+    db = await client.db("echodb");
+    const  postsCollection = await  db.collection("posts");
+    const posts:Posts = await postsCollection.find({id:id}).toArray();
+    if (!posts ) {
+      throw new Error("no posts found")
+    }
+  
+    
+    return posts
+} catch (error: any) {
+  Response.json({message: error.message})
+} finally {
+}
+ };
+ 

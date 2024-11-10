@@ -31,7 +31,7 @@ const page =async () => {
     >Profile Infos </h2>
 
     <Table 
-    className="p-4 border border-gray-200 rounded-md "
+    className=" p-4 border border-neutral-200 rounded-md  "
     >
  
   <TableHeader>
@@ -65,7 +65,7 @@ const page =async () => {
             <Accordion
             key={index}
             type="single" collapsible 
-            className="bg-white hover:bg-gray-200 px-8 my-2 border rounded-md border-gray-300"
+            className="bg-white dark:bg-neutral-700 hover:bg-gray-200 px-8 my-2 border rounded-md border-gray-300"
             >
             <AccordionItem value="item-1">
             <AccordionTrigger>{post.title} </AccordionTrigger>

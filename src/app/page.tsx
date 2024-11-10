@@ -6,7 +6,7 @@ import NewsLetter from "@/components/NewsLetter";
 export default function Home() {
 
   return (
-   <main className="w-full h-full">
+   <main className="w-full grow">
    <HeroSection  />
    <Articles />
    <NewsLetter/>

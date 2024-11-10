@@ -2,7 +2,7 @@ import LoginForm from "@/components/auth/LoginForm"
 
 const Page = () => {
   return (
-    <div className='w-full  grow    flex justify-center items-center bg-neutral-50  dark:bg-neutral-950'>
+    <div className='w-full  grow flex justify-center items-center bg-white  dark:bg-black'>
       <LoginForm/>
 
     </div>

@@ -39,8 +39,8 @@ const ControllMenu = () => {
     },
   ];
   return (
-    <aside className="w-full duration-200 transition-all  px-2  max-w-[260px] min-w-[220px] grow 
-      rounded-md border py-8 text-left md:px-4 bg-gray-100 m-2 z-50">
+    <aside className="w-full transition  duration-200 transition-all  px-2  max-w-[260px] min-w-[220px] grow 
+      rounded-md border py-8 text-left md:px-4 bg-gray-100 dark:bg-neutral-700  m-2 z-50">
       <Link href="/dashboard">
         <div
         

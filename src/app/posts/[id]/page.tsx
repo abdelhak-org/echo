@@ -2,8 +2,9 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Post } from "@/types/interfaces"; // Import the 'Post' type from the appropriate module
 
+
 const PostView = async ({ params }: { params: { id: string } }) => {
-  const fetchPost = async () => {
+    const fetchPost = async () => {
     try {
   
         const res = await fetch(`http://localhost:3000/api/posts/${params?.id}`);
@@ -13,10 +14,9 @@ const PostView = async ({ params }: { params: { id: string } }) => {
     } catch (error: any) {
       console.error(error);
     }
-  };
-
-   const post:Post  = await fetchPost();
-  return (
+    };
+    const post:Post  = await fetchPost();
+    return (
     <article className="w-full grow px-4 py-8">
 
       <div className="w-[670px]  mx-auto  my-4 px-2 ">
@@ -31,7 +31,7 @@ const PostView = async ({ params }: { params: { id: string } }) => {
       <div className="w-[670px] h-fit mx-auto relative  px-2 flex items-center">
         <Avatar className="mr-4">
           <AvatarImage src={post?.author?.src|| 'https://res.cloudinary.com/drxurev4o/image/upload/v1720356413/echo/profile/a7o6ebisscvkkzfrmnnu.jpg' } alt="@shadcn" />
-          <AvatarFallback>{post.author.name[0]}</AvatarFallback>
+          <AvatarFallback>{post.author.name}</AvatarFallback>
         </Avatar>
       </div>
       <div className="w-[800px] h-60  mx-auto my-8  overflow-hidden rounded-md">

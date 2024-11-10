@@ -17,6 +17,16 @@ import { ToastContainer, toast } from "react-toastify";
 import Tiptap from "@/components/tiptap/Tiptap";
 import { useSession } from "next-auth/react";
 
+interface User {
+  name?: string | null | undefined;
+  email?: string | null | undefined;
+  image?: string | null | undefined;
+  userId: string | null | undefined;
+  author:{
+    name:string | null | undefined;
+    src:string | null | undefined;
+  }
+}
 const formSchema = z.object({
   userId: z.string(),
   title: z.string(),
@@ -29,16 +39,6 @@ const formSchema = z.object({
 });
 
 export type postSchema = z.infer<typeof formSchema>;
-interface User {
-  name?: string | null | undefined;
-  email?: string | null | undefined;
-  image?: string | null | undefined;
-  userId: string | null | undefined;
-  author:{
-    name:string | null | undefined;
-    src:string | null | undefined;
-  }
-}
 
 const page = () => {
   const { data: session, status } = useSession();
@@ -58,7 +58,6 @@ const page = () => {
   });
 
   const handlePost = async (data: postSchema) => {
-    console.log(data , "data ........<<<<<<<<<<<<<")
     try {
       const response = await fetch("http://localhost:3000/api/posts", {
         method: "POST",
@@ -66,15 +65,15 @@ const page = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
-      });
-      if (response.ok) {
+        });
+        if (response.ok) {
         toast.success("post Added Successfully");
-      } else {
+         } else {
         toast.error("Post Adding Failed");
         const data = await response.json();
         throw new Error(data.error);
       }
-    } catch (error: any) {
+      } catch (error: any) {
       console.error(error);
     }
   };
