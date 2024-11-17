@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { AiFillLike } from "react-icons/ai";
+import { Edit3Icon } from "lucide-react";
 
 const PostCard = ({
   id,
@@ -26,25 +27,24 @@ const PostCard = ({
 }: Post) => {
 
     const [isClient , setIsClent] = useState(false)
-
+    const [postImage , setPostImage] = useState("")
     useEffect(()=>{
      setIsClent(true)
     },[])
-    console.log(author.src)
   return (
     <div className="w-full max-w-[1536px]  md:min-h-[270px]  my-2
     flex flex-col items-center justify-center  md:flex-row bg-white border  dark:bg-neutral-900 overflow-hidden dark:bg-neutral-800 rounded-md shadow-lg  gap-4 p-4"
     >
-      <div className="w-full  md:w-1/5  rounded-md ">
+      <div className="w-full  md:w-1/5  group rounded-md relative">
 
         <Image
-          src={default_card_img}
+          src={default_card_img }
           width={100}
           height={100}
           alt="cardImg"
-          className="w-full h-full object-cover  rounded-md"
+          className="w-full h-full object-cover  rounded-md "
         />
-
+    
       </div>
       <Card className="w-full md:w-4/5 flex flex-col justify-between border ">
         <CardHeader>

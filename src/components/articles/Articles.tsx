@@ -21,7 +21,7 @@ const Articles = async () => {
             key={index}
             id={post._id.toString()}
             title={post.title}
-                description={post.description}
+            description={post.description}
             content={post.content}
             createdAt={post.createdAt}
             likes={post.likes}

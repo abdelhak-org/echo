@@ -29,7 +29,7 @@ const ToolBar = ({
     <>  
       <div
         className="flex w-full h-fit  justify-between  flex-rows 
-          gap-5 w-full flex-wrap border border-gray-700 p-2 bg-black
+          gap-5 w-full flex-wrap border border-gray-700 p-2 bg-black 
          px-4 py-3 rounded-tl-md rounded-tr-md "
       >
         <button
@@ -39,7 +39,7 @@ const ToolBar = ({
           }}
           className={
             editor.isActive("bold")
-              ? "bg-gray-700 text-white p-2 rounded-lg"
+              ? "bg-gray-700 text-white  p-2 rounded-lg"
               : " text-gray-200"
           }
         >
@@ -160,8 +160,8 @@ const ToolBar = ({
           onClick={(e) => {
             e.preventDefault();
             editor.commands.setImage({
-              src: "https://res.cloudinary.com/drxurev4o/image/upload/v1723048633/echo/profile/ddvgzyxovtsxhjztw9bf.jpg",
-              alt: "image title",
+              src: "https://gratisography.com/wp-content/uploads/2024/10/gratisography-happy-cone-1170x780.jpg",
+              alt: "image-title",
               title: "image title",
             });
           }}

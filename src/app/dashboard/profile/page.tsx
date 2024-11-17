@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { User  } from "@/types/interfaces";
 import ProfileCard from "@/components/profile/ProfileCard";
-
+import useUser from "@/hooks/useUser";
 interface Session {
   user :User;
   status :string ;
@@ -20,9 +20,10 @@ const {  data:session  , status , update }  = useSession()
   if(session && session.user) 
     {
       setUser(session.user as User)
-      setUrl(session.user.src  as string )
+      setUrl(session.user?.src   )
     }
-}, [session , url])
+
+}, [session,  url])
 
 
 
@@ -42,7 +43,8 @@ const {  data:session  , status , update }  = useSession()
           
           />
           
-      <div className="w-full h-fit flex flex-col space-y-4 py-4 text-inherit my-12  bg-white ">
+      <div className="w-full h-fit flex flex-col space-y-4 py-4 text-inherit rounded-md
+      my-12  bg-white dark:bg-neutral-700 ">
         <ul className="w-full  px-8  mx-auto ">
     
           <li className="px-8 py-2 my-2 border border-transparent border-b-neutral-300 flex "><span className="w-60 font-semibold">Full Name</span>  {user.userName}</li>

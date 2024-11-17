@@ -67,7 +67,8 @@ const page =async () => {
             type="single" collapsible 
             className="bg-white dark:bg-neutral-700 hover:bg-gray-200 px-8 my-2 border rounded-md border-gray-300"
             >
-            <AccordionItem value="item-1">
+            <AccordionItem 
+            value="item-1">
             <AccordionTrigger>{post.title} </AccordionTrigger>
             <AccordionContent>
 {              post.description as string

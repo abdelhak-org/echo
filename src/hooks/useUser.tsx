@@ -1,15 +1,16 @@
 
 import { useSession } from "next-auth/react"
-
+import {User} from "@/types/interfaces"
 
 const useUser = () => {
   const {data:session , status} =  useSession()
+      if ( session === null ) return 
   return (
    
     {
-      session,
+      currentUser :session.user   ,
       status
-    
+
     }
     
   )

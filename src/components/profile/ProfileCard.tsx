@@ -35,7 +35,8 @@ const ProfileCard = ({ url, userId, setUrl  , update , image , imgType}:ProfileC
   };
 
   return (
-    <div className="w-60 h-60 rounded-full overflow-hidden  p-2 border border-gray-300 relative group flex justify-center items-center">
+    <div className="w-60 h-60 rounded-full overflow-hidden  p-2 border border-gray-300 relative 
+     group flex justify-center items-center">
       <Image
         src={url || 'https://res.cloudinary.com/drxurev4o/image/upload/v1720356413/echo/profile/a7o6ebisscvkkzfrmnnu.jpg'}
         alt="profile"

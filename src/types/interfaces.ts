@@ -35,7 +35,7 @@ export interface comments {
 }
 export interface User {
     userId:number | string;
-    src?: string;
+    src: string;
     userName: string;
     email: string;
     password?: string;

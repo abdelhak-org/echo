@@ -93,10 +93,11 @@ const page = () => {
 
   return (
     <div
-      className="  flex space-y-4 flex-col  shadow-md dark:bg-gray-950 
-    border p-4 rounded-md border-gray-300  "
+      className="  flex space-y-4 flex-col  shadow-md dark:bg-neutral-700 
+      border p-4 rounded-md   "
     >
-      <h4 className="text-black text-center  text-3xl font-sans underline font-semibold  dark:text-gray-100 ">
+      <h4 className=" text-black text-center  text-3xl font-sans underline font-semibold
+        dark:text-neutral-100 font-serif ">
         Write
       </h4>
       <Form {...form}>
