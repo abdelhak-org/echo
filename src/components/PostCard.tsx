@@ -59,7 +59,7 @@ const PostCard = ({
          </CardHeader>
           
         { isClient && (<CardContent
-           className=" font-sans text-neutral-700 dark:text-white tracking-wide text-lg "
+           className=" font-sans text-neutral-700 dark:text-neutral-100 tracking-wide text-lg "
            dangerouslySetInnerHTML={{ __html: content.split(" ").slice(0,80).join(" ")  }}
           />)
         }

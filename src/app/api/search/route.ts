@@ -9,7 +9,6 @@ import clientPromise from "../../../lib/mongodb";
 
 export async function GET(req: Request , res: Response) {
   const url = new URL(req.url);
-  console.log(url)
     const page = parseInt(url.searchParams.get('page') as string) ;
     const limit = parseInt(url.searchParams.get('limit') as string) ;
     const startIndex = (page - 1) * limit;
@@ -24,7 +23,6 @@ export async function GET(req: Request , res: Response) {
   
       const posts = await postsCollection.find().skip(startIndex).limit(endIndex).toArray();
       
-        console.log(totalPosts)
       if (!posts) {
         throw new Error("No Posts Found");
       }

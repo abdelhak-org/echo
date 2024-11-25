@@ -25,13 +25,13 @@ const Tiptap = ({ content, handleContentChange }: TiptapProps) => {
       }),
       Paragraph.configure({
         HTMLAttributes: {
-          class: "my-2 text-[15px]  text-gray-800 indent-1",
+          class: "my-2 text-[15px] indent-1",
         },
       }),
       Heading.configure({
         levels: [1, 2, 3],
         HTMLAttributes: {
-          class:"text-[18px] font-bold tracking-wide text-gray-900 font-sans font-bold",
+          class:"",
         },
       }),
       Strike,
@@ -43,13 +43,13 @@ const Tiptap = ({ content, handleContentChange }: TiptapProps) => {
         inline: true,
         allowBase64: true,
         HTMLAttributes: {
-          class: "w-60  h-auto mx-auto",
+          class: "",
         },
       }),
       BulletList.configure({
         itemTypeName: 'listItem',
         HTMLAttributes: {
-          class: 'p-2 ',
+          class: '',
         },
       })
       
@@ -58,7 +58,7 @@ const Tiptap = ({ content, handleContentChange }: TiptapProps) => {
     editorProps: {
       attributes: {
         class:
-          "flex flex-col p-4   text-neutral-700  w-full  outline-none  tracking-wide font-sans  text-[15px] ",
+          "",
       },
     },
     onUpdate: ({ editor }) => {

@@ -14,7 +14,6 @@ const Articles = async () => {
           Articles
         </h2>
       </div>
-
       <div className="w-full h-fit py-4 ">
         {posts?.map((post: Post, index: number) => (
           <PostCard

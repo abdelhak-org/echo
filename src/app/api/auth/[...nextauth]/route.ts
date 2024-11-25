@@ -64,6 +64,7 @@ export const authOptions: AuthOptions = {
     CredentialsProvider({
       name: "credentials",
       credentials: {},
+      // @ts-ignore
       async authorize (credentials: User ) {
         try {
           const client = await clientPromise;

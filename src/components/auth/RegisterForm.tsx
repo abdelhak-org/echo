@@ -63,7 +63,6 @@ const RegisterForm = () => {
     }
 
   function onSubmit(values:RegisterCredentials) {
-    console.log(values)
     handleRegister(values);
     
   }
