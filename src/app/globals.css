@@ -177,4 +177,7 @@ piechart
   .tiptap-list-item {
     @apply max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400
   }
+  .tiptap-image {
+    @applye max-h-[360px] mx-auto h-auto border rounded-md p-1 bg-white 
+  }
 }

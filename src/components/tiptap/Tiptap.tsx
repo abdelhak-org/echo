@@ -51,7 +51,7 @@ const Tiptap = ({ content, handleContentChange }: TiptapProps) => {
         inline: true,
         allowBase64: true,
         HTMLAttributes: {
-          class: "tiptap-img , max-w-[400px] border rounded-md block mx-auto",
+          class: "tiptap-img ",
         },
       }),
       ListItem,
@@ -63,7 +63,6 @@ const Tiptap = ({ content, handleContentChange }: TiptapProps) => {
 
         
       }),
-      Image,
       Dropcursor
       
       
