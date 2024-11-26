@@ -14,11 +14,12 @@ import {
   Code,
   ImageIcon,
   PenIcon,
+  Trash2,
 } from "lucide-react";
 
 const ToolBar = ({
   editor,
-  content,
+  content
 }: {
   editor: Editor | null;
   content: string;
@@ -28,10 +29,24 @@ const ToolBar = ({
   return (
     <>  
       <div
-        className="flex w-full h-fit  justify-between  flex-rows 
-          gap-5 w-full flex-wrap border border-gray-700 p-2 bg-black 
-         px-4 py-3 rounded-tl-md rounded-tr-md "
+        className="flex w-full h-fit  justify-left items-center  flex-row space-x-8
+        border border-gray-700  bg-black  px-4 py-2 rounded-tl-md rounded-tr-md "
       >
+          <button
+          onClick={(e) => {
+            e.preventDefault();
+            editor.commands.setParagraph();
+            console.log(editor.getHTML())
+          }}
+          className={
+            editor.isActive("paragraph")
+              ? "bg-gray-700 text-white p-2 rounded-lg"
+              : " text-gray-200 text-white p-2 rounded-lg"
+          }
+        >
+          <PenIcon className="w-5 h-5 " />
+        </button>
+
         <button
           onClick={(e) => {
             e.preventDefault();
@@ -40,7 +55,7 @@ const ToolBar = ({
           className={
             editor.isActive("bold")
               ? "bg-gray-700 text-white  p-2 rounded-lg"
-              : " text-gray-200"
+              : " text-gray-200 text-white p-2 rounded-lg"
           }
         >
           <Bold className="w-5 h-5 " />
@@ -54,7 +69,7 @@ const ToolBar = ({
           className={
             editor.isActive("italic")
               ? "bg-gray-700 text-white p-2 rounded-lg"
-              : " text-gray-200"
+              : " text-gray-200 text-white p-2 rounded-lg"
           }
         >
           <Italic className="w-5 h-5 " />
@@ -68,7 +83,7 @@ const ToolBar = ({
           className={
             editor.isActive("strike")
               ? "bg-gray-700 text-white p-2 rounded-lg"
-              : " text-gray-200"
+              : " text-gray-200 text-white p-2 rounded-lg"
           }
         >
           <Strikethrough className="w-5 h-5 " />
@@ -82,7 +97,7 @@ const ToolBar = ({
           className={
             editor.isActive("bulletList")
               ? "bg-gray-700 text-white p-2 rounded-lg"
-              : " text-gray-200"
+              : " text-gray-200 text-white p-2 rounded-lg"
           }
         >
           <List className="w-5 h-5 " />
@@ -91,26 +106,12 @@ const ToolBar = ({
         <button
           onClick={(e) => {
             e.preventDefault();
-            editor.chain().focus().toggleOrderedList().run();
-          }}
-          className={
-            editor.isActive("orderedList")
-              ? "bg-gray-700 text-white p-2 rounded-lg"
-              : " text-gray-200"
-          }
-        >
-          <ListOrdered className="w-5 h-5 " />
-        </button>
-
-        <button
-          onClick={(e) => {
-            e.preventDefault();
             editor.chain().focus().toggleHeading({ level: 2 }).run();
           }}
           className={
-            editor.isActive("heading", { level: 2 })
+            editor.isActive("heading",{level:2})
               ? "bg-gray-700 text-white p-2 rounded-lg"
-              : " text-gray-200"
+              : " text-gray-200 text-white p-2 rounded-lg"
           }
         >
           <Heading2 className="w-5 h-5 " />
@@ -124,7 +125,7 @@ const ToolBar = ({
           className={
             editor.isActive("blockquote")
               ? "bg-gray-700 text-white p-2 rounded-lg"
-              : " text-gray-200"
+              : " text-gray-200 text-white p-2 rounded-lg"
           }
         >
           <Quote className=" w-5 h-5 " />
@@ -138,7 +139,7 @@ const ToolBar = ({
           className={
             editor.isActive("undo")
               ? "bg-gray-700 text-white p-2 rounded-lg"
-              : " text-gray-200"
+              : " text-gray-200 text-white p-2 rounded-lg"
           }
         >
           <Undo className="w-5 h-5 " />
@@ -151,7 +152,7 @@ const ToolBar = ({
           className={
             editor.isActive("redo")
               ? "bg-gray-700 text-white p-2 rounded-lg"
-              : " text-gray-200"
+              : " text-gray-200 text-white p-2 rounded-lg"
           }
         >
           <Redo className="w-5 h-5 " />
@@ -159,34 +160,40 @@ const ToolBar = ({
         <button
           onClick={(e) => {
             e.preventDefault();
+            let url;
             editor.commands.setImage({
-              src: "https://gratisography.com/wp-content/uploads/2024/10/gratisography-happy-cone-1170x780.jpg",
+              src: prompt("url :" ,url) as string,
               alt: "image-title",
-              title: "image title",
+              
             });
           }}
           className={
             editor.isActive("setimage")
               ? "bg-gray-700 text-white p-2 rounded-lg"
-              : " text-gray-200"
+              : " text-gray-200 text-white p-2 rounded-lg"
           }
         >
           <ImageIcon className="w-5 h-5 " />
         </button>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            editor.commands.setParagraph();
-          }}
-          className={
-            editor.isActive("paragraph")
-              ? "bg-gray-700 text-white p-2 rounded-lg"
-              : " text-gray-200"
-          }
+        <button 
+        onClick={(e)=>{
+          e.preventDefault();
+          editor.commands.clearContent()
+
+
+
+        }}
+        className={
+          editor.isActive("setimage")
+            ? "bg-gray-700 text-white p-2 rounded-lg"
+            : " text-gray-200 text-white p-2 rounded-lg"
+        }
         >
-          <PenIcon className="w-5 h-5 " />
+          <Trash2 size={18}/>
         </button>
+      
       </div>
+
 
 
   

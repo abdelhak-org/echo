@@ -82,3 +82,18 @@ export async function getPostById(id:string) {
 }
  };
  
+
+ // Delete Post
+ export async function deletePost(id:string) {
+  try {
+    client = await clientPromise;
+    db = await client.db("echodb");
+    const  postsCollection = await  db.collection("posts");
+          postsCollection.deleteOne({id});
+    
+} catch (error: any) {
+  Response.json({message: error.message})
+} finally {
+}
+ };
+ 

@@ -1,7 +1,7 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 import { getServerSession } from "next-auth"
 import   {getPostsByUserId} from "@/actions/posts"
-
+import { deletePost } from "@/actions/posts"
 import {
   Table,
   TableBody,
@@ -17,7 +17,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
- 
+import {  Trash2 } from "lucide-react"
+
 const page =async () => {
   const session =await getServerSession(authOptions);
   const user = session?.user as string
@@ -70,9 +71,12 @@ const page =async () => {
             <AccordionItem 
             value="item-1">
             <AccordionTrigger>{post.title} </AccordionTrigger>
-            <AccordionContent>
+            <AccordionContent >
 {              post.description as string
-}            </AccordionContent>
+}            
+
+           
+            </AccordionContent>
             </AccordionItem>
             </Accordion>
 

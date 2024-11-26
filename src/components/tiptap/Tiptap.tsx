@@ -2,13 +2,22 @@
 
 import React, { useEffect } from "react";
 import { useEditor, EditorContent} from "@tiptap/react";
+import Document from '@tiptap/extension-document';
+import Blockquote from '@tiptap/extension-blockquote'
 import Paragraph from "@tiptap/extension-paragraph";
 import Heading from "@tiptap/extension-heading";
-import StarterKit from "@tiptap/starter-kit";
 import Strike from "@tiptap/extension-strike";
 import History from "@tiptap/extension-history";
-import Image from "@tiptap/extension-image";
 import BulletList from '@tiptap/extension-bullet-list'
+import ListItem from '@tiptap/extension-list-item'
+import Text from '@tiptap/extension-text'
+import Bold from '@tiptap/extension-bold'
+import Italic from '@tiptap/extension-italic'
+import Dropcursor from '@tiptap/extension-dropcursor'
+import Image from '@tiptap/extension-image'
+
+
+
 import ToolBar from "./ToolBar";
 interface TiptapProps {
   content: string;
@@ -20,50 +29,59 @@ const Tiptap = ({ content, handleContentChange }: TiptapProps) => {
 
   const editor = useEditor({
     extensions: [
-      StarterKit.configure({
-        history: false,
-      }),
+      Document,
+      Text,
+      Blockquote,
+      Bold,
+      Italic,
+      History,
       Paragraph.configure({
         HTMLAttributes: {
-          class: "my-2 text-[15px] indent-1",
+          class: "tiptap-paragraph",
         },
       }),
       Heading.configure({
         levels: [1, 2, 3],
         HTMLAttributes: {
-          class:"",
+          class:"tiptap-heading",
         },
       }),
       Strike,
-      History.configure({
-        depth: 10,
-        newGroupDelay: 1000,
-      }),
       Image.configure({
         inline: true,
         allowBase64: true,
         HTMLAttributes: {
-          class: "",
+          class: "tiptap-img , max-w-[400px] border rounded-md block mx-auto",
         },
       }),
+      ListItem,
       BulletList.configure({
-        itemTypeName: 'listItem',
+        itemTypeName: 'bulletList',
         HTMLAttributes: {
-          class: '',
+          class: 'tiptap-list',
         },
-      })
+
+        
+      }),
+      Image,
+      Dropcursor
+      
       
     ],
+/// editor props
+      editorProps: {
+       attributes: {
+        class:'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none p-4'
 
-    editorProps: {
-      attributes: {
-        class:
-          "",
       },
     },
     onUpdate: ({ editor }) => {
       handleContentChange(editor.getHTML());
+      console.log(editor.getHTML())
+
+      
     },
+    
   });
 
   useEffect(() => {
@@ -84,9 +102,10 @@ const Tiptap = ({ content, handleContentChange }: TiptapProps) => {
           whiteSpace: "pre-line",
           backgroundColor: "white",
           borderRadius: "0px 0px 8px 8px",
-          border: "1px solid  #ccc",
+          border: "1px solid  #eee",
           overflow: "wrap",
           minHeight: "240px",
+
 
         }}
         />
