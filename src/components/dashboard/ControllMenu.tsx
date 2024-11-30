@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import { AiOutlineProfile } from "react-icons/ai";
 import Link from "next/link";

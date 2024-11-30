@@ -17,7 +17,7 @@ export const authOptions: AuthOptions = {
     // jwt function
     async jwt({ token, user ,trigger, session }: { token: any; user: User  , trigger :any ,session:any}) {
       if (user) {
-      
+        token.name = user.userName;
         token.userId = user.userId;
         token.userName = user.userName;
         token.email = user.email;
@@ -47,6 +47,7 @@ export const authOptions: AuthOptions = {
       }
      
       if (token) {
+        
         session.user.userId = token.userId;
         session.user.userName = token.userName;
         session.user.email = token.email;

@@ -15,33 +15,38 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import Tiptap from "@/components/tiptap/Tiptap";
-import { useSession } from "next-auth/react";
-
+import { useSession   } from "next-auth/react";
 interface User {
   name?: string | null | undefined;
   email?: string | null | undefined;
   image?: string | null | undefined;
   userId: string | null | undefined;
-  author:{
-    name:string | null | undefined;
-    src:string | null | undefined;
-  }
+  userName?:string;
+  src ?:string ;
+  author: {
+    name: string | null | undefined;
+    src: string | null | undefined;
+  };
+}
+interface sessionType {
+  user: User;
+  expire: string | number;
 }
 const formSchema = z.object({
   userId: z.string(),
   title: z.string(),
   description: z.string(),
   content: z.string(),
-  author:z.object({
-    name:z.string(),
-    src:z.string()
-  })
+  author: z.object({
+    name: z.string().optional(),
+    src: z.string().optional(),
+  }),
 });
 
 export type postSchema = z.infer<typeof formSchema>;
 
 const page = () => {
-  const { data: session, status } = useSession();
+  const { data: session , status } = useSession<sessionType | any>();
   const Router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     defaultValues: {
@@ -49,14 +54,14 @@ const page = () => {
       title: "",
       description: "",
       content: "",
-      author:{
-        name:session?.user?.userName as string,
-        src:session.user.src as string 
-      }
+      author: {
+        name: session?.user?.userName as string,
+        src: session?.user?.src as string
+      },
     },
     resolver: zodResolver(formSchema),
   });
-
+  console.log(session?.user)
   const handlePost = async (data: postSchema) => {
     try {
       const response = await fetch("http://localhost:3000/api/posts", {
@@ -65,15 +70,15 @@ const page = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
-        });
-        if (response.ok) {
+      });
+      if (response.ok) {
         toast.success("post Added Successfully");
-         } else {
+      } else {
         toast.error("Post Adding Failed");
         const data = await response.json();
         throw new Error(data.error);
       }
-      } catch (error: any) {
+    } catch (error: any) {
       console.error(error);
     }
   };
@@ -96,8 +101,10 @@ const page = () => {
       className="  flex space-y-4 flex-col  shadow-md dark:bg-neutral-700 
       border p-4 rounded-md   "
     >
-      <h4 className=" text-black text-center  text-3xl font-sans underline font-semibold
-        dark:text-neutral-100 font-serif ">
+      <h4
+        className=" text-black text-center  text-3xl font-sans underline font-semibold
+        dark:text-neutral-100 font-serif "
+      >
         Write
       </h4>
       <Form {...form}>
@@ -139,7 +146,7 @@ const page = () => {
                   </FormLabel>
                   <FormControl>
                     <Input
-                        className="w-full bg-white  text-xl   border border-gray-300 focus:ring-0  py-3 px-4  h-12
+                      className="w-full bg-white  text-xl   border border-gray-300 focus:ring-0  py-3 px-4  h-12
                       focus:ring-gray-200 focus:ring-opacity-40 focus:ring-offset-0 
                       focus:border-gray-300 focus:ring-offset-white
                       text-gray-900"
@@ -186,7 +193,9 @@ const page = () => {
           </div>
         </form>
       </Form>
-      <ToastContainer style={{ position: "absolute", right: "16px" , top:"16px" }} />
+      <ToastContainer
+        style={{ position: "absolute", right: "16px", top: "16px" }}
+      />
     </div>
   );
 };
