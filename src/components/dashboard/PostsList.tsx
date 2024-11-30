@@ -1,18 +1,34 @@
-
+"use client";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { getPosts } from "@/actions/posts";
-const PostsList = async () => {
-  const posts = await getPosts()
-  if (!posts) return null;
+import { Post } from "@/types/interfaces";
+import { useEffect, useState } from "react";
 
+const PostsList = () => {
+  const [userPosts, setUserPosts] = useState([]);
+
+  const getUserPost = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/api/users/userPosts", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+      setUserPosts(data.posts);
+    } catch (error) {}
+  };
+  useEffect(() => {
+    getUserPost();
+  }, [userPosts]);
   return (
     <div>
-      {posts?.map((post, index) => {
+      {userPosts?.map((post: Post, index: number) => {
         return (
           <Accordion
             key={index}
