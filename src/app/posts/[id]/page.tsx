@@ -14,12 +14,12 @@ const PostView = async ({ params }: { params: { id: string } }) => {
   };
   const post: Post = await fetchPost();
   return (
-    <article className="w-full grow px-4 py-8">
-      <div className="w-[670px]  mx-auto  my-4 px-2 ">
-        <h3 className=" w-full text-2xl font-bold capitalize  mx-auto  font-sans text-neutral-900">
+    <article className="w-full grow px-4 py-8 ">
+      <div className="w-[802px]  mx-auto  my-4 px-2   ">
+        <h3 className=" w-full text-2xl font-bold capitalize  mx-auto  font-sans text-neutral-900 dark:text-neutral-200">
           {post?.title}
         </h3>
-        <p className="text-sm font-light font-sans capitalize my-8 mx-auto w-fit text-neutral-900/80">
+        <p className="text-sm font-light font-sans capitalize my-8 mx-auto w-fit text-neutral-900/80 dark:text-neutral-500">
           {post?.description}
         </p>
       </div>
